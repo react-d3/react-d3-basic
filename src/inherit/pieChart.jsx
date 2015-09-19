@@ -7,15 +7,12 @@ import {
 
 import {
   Chart as Chart,
+  Legend as Legend,
 } from 'react-d3-core';
 
 import {
   default as Pie,
-} from '../pie/index';
-
-import {
-  Legend as Legend,
-} from 'react-d3-core';
+} from '../pie';
 
 export default class PieChart extends Component {
   constructor(props) {

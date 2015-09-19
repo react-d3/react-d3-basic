@@ -30103,33 +30103,33 @@
 
 	var _reactD3Core = __webpack_require__(160);
 
-	var _lineIndex = __webpack_require__(161);
+	var _line = __webpack_require__(161);
 
-	var _lineIndex2 = _interopRequireDefault(_lineIndex);
+	var _line2 = _interopRequireDefault(_line);
 
-	var _areaIndex = __webpack_require__(162);
+	var _area = __webpack_require__(162);
 
-	var _areaIndex2 = _interopRequireDefault(_areaIndex);
+	var _area2 = _interopRequireDefault(_area);
 
-	var _area_stackIndex = __webpack_require__(163);
+	var _area_stack = __webpack_require__(163);
 
-	var _area_stackIndex2 = _interopRequireDefault(_area_stackIndex);
+	var _area_stack2 = _interopRequireDefault(_area_stack);
 
-	var _scatterIndex = __webpack_require__(164);
+	var _scatter = __webpack_require__(164);
 
-	var _scatterIndex2 = _interopRequireDefault(_scatterIndex);
+	var _scatter2 = _interopRequireDefault(_scatter);
 
-	var _barIndex = __webpack_require__(165);
+	var _bar = __webpack_require__(165);
 
-	var _barIndex2 = _interopRequireDefault(_barIndex);
+	var _bar2 = _interopRequireDefault(_bar);
 
-	var _bar_groupIndex = __webpack_require__(166);
+	var _bar_group = __webpack_require__(166);
 
-	var _bar_groupIndex2 = _interopRequireDefault(_bar_groupIndex);
+	var _bar_group2 = _interopRequireDefault(_bar_group);
 
-	var _bar_stackIndex = __webpack_require__(167);
+	var _bar_stack = __webpack_require__(167);
 
-	var _bar_stackIndex2 = _interopRequireDefault(_bar_stackIndex);
+	var _bar_stack2 = _interopRequireDefault(_bar_stack);
 
 	var xyChart = (function (_Component) {
 	  _inherits(xyChart, _Component);
@@ -30295,10 +30295,10 @@
 	          var lines = chartSeriesData.map(function (d, i) {
 	            if (d.area) {
 	              // area chart
-	              return _react2['default'].createElement(_areaIndex2['default'], _extends({ dataset: d, key: i }, _this.props, _this.state));
+	              return _react2['default'].createElement(_area2['default'], _extends({ dataset: d, key: i }, _this.props, _this.state));
 	            } else {
 	              // simple line chart
-	              return _react2['default'].createElement(_lineIndex2['default'], _extends({ dataset: d, key: i }, _this.props, _this.state));
+	              return _react2['default'].createElement(_line2['default'], _extends({ dataset: d, key: i }, _this.props, _this.state));
 	            }
 	          });
 	        }
@@ -30306,7 +30306,7 @@
 	        if (showScatter && !interpolate) {
 	          // show scatters in line chart
 	          var scatters = chartSeriesData.map(function (d, i) {
-	            return _react2['default'].createElement(_scatterIndex2['default'], _extends({ dataset: d, key: i }, _this.props, _this.state));
+	            return _react2['default'].createElement(_scatter2['default'], _extends({ dataset: d, key: i }, _this.props, _this.state));
 	          });
 	        }
 
@@ -30381,7 +30381,7 @@
 	        // if x and y scale is all set, doing plotting...
 	        if (chartSeries) {
 	          var scatters = chartSeriesData.map(function (d, i) {
-	            return _react2['default'].createElement(_scatterIndex2['default'], _extends({ dataset: d, key: i }, _this2.props, _this2.state));
+	            return _react2['default'].createElement(_scatter2['default'], _extends({ dataset: d, key: i }, _this2.props, _this2.state));
 	          });
 	        }
 
@@ -30447,7 +30447,7 @@
 	      if (xScaleSet && yScaleSet) {
 	        // if x and y scale is all set, doing plotting...
 	        if (chartSeries) {
-	          var areas = _react2['default'].createElement(_area_stackIndex2['default'], _extends({ dataset: chartSeriesData }, this.props, this.state));
+	          var areas = _react2['default'].createElement(_area_stack2['default'], _extends({ dataset: chartSeriesData }, this.props, this.state));
 	        }
 
 	        if (showLegend) {
@@ -30517,7 +30517,7 @@
 	        // if x and y scale is all set, doing plotting...
 	        if (chartSeries) {
 	          var bars = chartSeriesData.map(function (d, i) {
-	            return _react2['default'].createElement(_barIndex2['default'], _extends({ dataset: d, key: i }, _this3.props, _this3.state));
+	            return _react2['default'].createElement(_bar2['default'], _extends({ dataset: d, key: i }, _this3.props, _this3.state));
 	          });
 	        }
 
@@ -30597,7 +30597,7 @@
 	          })).rangeRoundBands([0, xScaleSet.rangeBand()]);
 
 	          var bargroups = chartSeriesData.map(function (d, i) {
-	            return _react2['default'].createElement(_bar_groupIndex2['default'], _extends({ x1: x1, dataset: d, key: i, count: i }, _this4.props, _this4.state));
+	            return _react2['default'].createElement(_bar_group2['default'], _extends({ x1: x1, dataset: d, key: i, count: i }, _this4.props, _this4.state));
 	          });
 	        }
 
@@ -30678,7 +30678,7 @@
 	              return { name: dkey.name, value: newVal };
 	            });
 
-	            return _react2['default'].createElement(_bar_stackIndex2['default'], _extends({ stackVal: stackVal, dataset: d, key: i, count: i }, _this5.props, _this5.state));
+	            return _react2['default'].createElement(_bar_stack2['default'], _extends({ stackVal: stackVal, dataset: d, key: i, count: i }, _this5.props, _this5.state));
 	          }).reverse();
 	        }
 
@@ -62027,7 +62027,7 @@
 	};
 	module.exports = exports["default"];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "line.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -62116,7 +62116,7 @@
 	};
 	module.exports = exports["default"];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "area.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -62223,7 +62223,7 @@
 	};
 	module.exports = exports["default"];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "area_stack.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -62296,7 +62296,7 @@
 	Scatter.defaultProps = {};
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "scatter.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -62375,7 +62375,7 @@
 	};
 	module.exports = exports["default"];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "bar.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -62459,7 +62459,7 @@
 	};
 	module.exports = exports["default"];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "bar_group.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -62543,7 +62543,7 @@
 	};
 	module.exports = exports["default"];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "bar_stack.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -62576,9 +62576,9 @@
 
 	var _reactD3Core = __webpack_require__(160);
 
-	var _pieIndex = __webpack_require__(169);
+	var _pie = __webpack_require__(169);
 
-	var _pieIndex2 = _interopRequireDefault(_pieIndex);
+	var _pie2 = _interopRequireDefault(_pie);
 
 	var PieChart = (function (_Component) {
 	  _inherits(PieChart, _Component);
@@ -62631,7 +62631,7 @@
 	        var legends = _react2['default'].createElement(_reactD3Core.Legend, this.props);
 	      }
 
-	      var pie = _react2['default'].createElement(_pieIndex2['default'], _extends({ chartSeriesData: chartSeriesData }, this.props));
+	      var pie = _react2['default'].createElement(_pie2['default'], _extends({ chartSeriesData: chartSeriesData }, this.props));
 
 	      return _react2['default'].createElement(
 	        _reactD3Core.Chart,
@@ -62763,7 +62763,7 @@
 	};
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/lijung/Documents/elixirdoc/react-d3-basics/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "pie.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },

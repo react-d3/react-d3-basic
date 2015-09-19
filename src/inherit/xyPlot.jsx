@@ -8,51 +8,39 @@ import {
 
 import {
   Chart as Chart,
-} from 'react-d3-core';
-
-import {
   Xaxis as Xaxis,
-} from 'react-d3-core';
-
-import {
   Yaxis as Yaxis,
-} from 'react-d3-core';
-
-import {
   Legend as Legend,
-} from 'react-d3-core';
-
-import {
   Grid as Grid,
 } from 'react-d3-core';
 
 import {
   default as Line,
-} from '../line/index';
+} from '../line';
 
 import {
   default as AreaSimple,
-} from '../area/index';
+} from '../area';
 
 import {
   default as AreaStack,
-} from '../area_stack/index';
+} from '../area_stack';
 
 import {
   default as Scatter,
-} from '../scatter/index';
+} from '../scatter';
 
 import {
   default as Bar,
-} from '../bar/index';
+} from '../bar';
 
 import {
   default as BarGroup,
-} from '../bar_group/index';
+} from '../bar_group';
 
 import {
   default as BarStack,
-} from '../bar_stack/index';
+} from '../bar_stack';
 
 export default class xyChart extends Component {
   constructor(props) {
