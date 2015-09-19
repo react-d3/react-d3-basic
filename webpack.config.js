@@ -6,8 +6,8 @@ var
   webpack         = require('webpack'),
   nodeModulesPath = path.join(__dirname, 'node_modules');
 
-var js_root = './example';
-var js_dist = path.join(__dirname, js_root + '/dist');
+var js_root = './example/src';
+var js_dist = path.join(__dirname, './example/dist');
 
 module.exports = [{
   name: 'chartComponent',

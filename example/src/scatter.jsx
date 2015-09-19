@@ -6,8 +6,8 @@ import {
 } from 'react';
 
 import {
-  LineChart
-} from '../src/index';
+  ScatterPlot
+} from '../../src/index';
 
 (() => {
   // testing data: https://gist.githubusercontent.com/mbostock/3884955/raw/18407febaa958769cd9a5691e4e13a5e6211557b/data.tsv
@@ -78,7 +78,7 @@ import {
   ** - yScale
   */
   React.render(
-    <LineChart
+    <ScatterPlot
       title= {title}
       data= {generalChartData}
       width= {width}

@@ -7,11 +7,11 @@ import {
 
 import {
   LineChart
-} from '../src/index';
+} from '../../src/index';
 
 (() => {
-  // testing data: https://gist.github.com/chilijung/5363f6511731c83417e6
-  const parseDate = d3.time.format("%b %Y").parse;
+  // testing data: https://gist.githubusercontent.com/mbostock/3883195/raw/01b17f8e20a88e591f590166f42637df1f4a3011/data.tsv
+  const parseDate = d3.time.format("%d-%b-%y").parse;
 
   const width = 960,
     height = 500,
@@ -26,9 +26,10 @@ import {
     showYAxis = true,
     chartSeries = [
       {
-        field: 'price',
+        field: 'close',
         name: 'Price',
-        color: '#ff7f0e'
+        color: '#ff7f0e',
+        area: true
       }
     ],
     x = (d) => {
@@ -36,17 +37,17 @@ import {
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = [x(generalChartData[0]), x(generalChartData[generalChartData.length - 1])],
+    xDomain = d3.extent(generalChartData, (d) => x(d)),
     xRange = [0, width - margins.left - margins.right],
     xScale = d3.time.scale(),
     xAxisClassName = 'x-axis',
     xLabel = "Date",
     y = (d) => {
-      return +d;
+      return d;
     },
     yOrient = 'right',
-    yTickOrient = 'left',
-    yDomain = [0, d3.max(generalChartData, (d) => { return +d.price; })],
+    yTickOrient = 'right',
+    yDomain = [0, d3.max(generalChartData, (d) => { return +d.close; })],
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = d3.scale.linear(),
     yAxisClassName = 'y-axis',
@@ -74,14 +75,16 @@ import {
       id= {id}
       margins= {margins}
       svgClassName= {svgClassName}
-      labelOffset = {30}
+      labelOffset = {50}
+      areaOpacity = {0.3}
       titleClassName= {titleClassName}
       yAxisClassName= {yAxisClassName}
       xAxisClassName= {xAxisClassName}
       legendClassName= {legendClassName}
       lineClass = 'test-line-class'
+      areaClass = 'test-area-class'
       scatterClass = 'test-line-dot-class'
-      showScatter = {true}
+      showScatter = {false}
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}

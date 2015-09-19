@@ -6,12 +6,13 @@ import {
 } from 'react';
 
 import {
-  LineChart
-} from '../src/index';
+  AreaStackChart
+} from '../../src/index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3883195/raw/01b17f8e20a88e591f590166f42637df1f4a3011/data.tsv
-  const parseDate = d3.time.format("%d-%b-%y").parse;
+  // testing data: https://gist.githubusercontent.com/mbostock/3885211/raw/622c8dce904c4f7d3719dac7252b11e4222f012a/data.tsv
+  const parseDate = d3.time.format("%y-%b-%d").parse;
+  const formatPercent = d3.format(".0%");
 
   const width = 960,
     height = 500,
@@ -24,12 +25,26 @@ import {
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
+    interpolate = 'basis',
     chartSeries = [
       {
-        field: 'close',
-        name: 'Price',
-        color: '#ff7f0e',
-        area: true
+        field: 'IE',
+        name: 'IE browser'
+      },
+      {
+        field: 'Chrome',
+        name: 'Chrome browser'
+      },
+      {
+        field: 'Firefox'
+      },
+      {
+        field: 'Safari',
+        name: 'Safari browser'
+      },
+      {
+        field: 'Opera',
+        name: 'Opera browser'
       }
     ],
     x = (d) => {
@@ -37,21 +52,20 @@ import {
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = d3.extent(generalChartData, (d) => x(d)),
+    xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
     xScale = d3.time.scale(),
     xAxisClassName = 'x-axis',
     xLabel = "Date",
     y = (d) => {
-      return d;
+      return d / 100;
     },
-    yOrient = 'right',
+    yOrient = 'left',
     yTickOrient = 'right',
-    yDomain = [0, d3.max(generalChartData, (d) => { return +d.close; })],
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = d3.scale.linear(),
     yAxisClassName = 'y-axis',
-    yLabel = "Price";
+    yLabel = "Browser rate (%)";
 
   /*
   ** Inherit variables:
@@ -67,7 +81,7 @@ import {
   ** - yScale
   */
   React.render(
-    <LineChart
+    <AreaStackChart
       title= {title}
       data= {generalChartData}
       width= {width}
@@ -75,20 +89,21 @@ import {
       id= {id}
       margins= {margins}
       svgClassName= {svgClassName}
-      labelOffset = {50}
-      areaOpacity = {0.3}
+      labelOffset = {30}
       titleClassName= {titleClassName}
       yAxisClassName= {yAxisClassName}
       xAxisClassName= {xAxisClassName}
       legendClassName= {legendClassName}
+      legendPosition= 'right'
+      categoricalColors= {d3.scale.category10()}
+      chartSeries = {chartSeries}
+      interpolate = {interpolate}
       lineClass = 'test-line-class'
-      areaClass = 'test-area-class'
       scatterClass = 'test-line-dot-class'
-      showScatter = {false}
+      showScatter = {true}
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
-      chartSeries= {chartSeries}
       x= {x}
       xDomain= {xDomain}
       xRange= {xRange}
@@ -99,12 +114,12 @@ import {
       xLabelPosition = 'bottom'
       y= {y}
       yOrient= {yOrient}
-      yDomain= {yDomain}
       yRange= {yRange}
       yScale= {yScale}
       yTickOrient= {yTickOrient}
+      yTickFormat= {formatPercent}
       yLabel = {yLabel}
-      yLabelPosition = 'right'
+      yLabelPosition = 'left'
     />
   , document.getElementById('data-line-chart')
   )

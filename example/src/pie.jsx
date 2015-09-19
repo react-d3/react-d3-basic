@@ -7,7 +7,7 @@ import {
 
 import {
   PieChart
-} from '../src/index';
+} from '../../src/index';
 
 (() => {
   // testing data: https://gist.githubusercontent.com/mbostock/3887235/raw/64a85a99c1209f27d030df170d2cbf4576bacd8c/data.csv

@@ -6,11 +6,19 @@ import {
 } from 'react';
 
 import {
-  BarChart
-} from '../src/index';
+  BarStackChart
+} from '../../src/index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3885304/raw/37bd91278846c053188a130a01770cddff023590/data.tsv
+  // testing data: https://gist.githubusercontent.com/mbostock/3887051/raw/f2168c294fa0a941a74d56f6eb56d3da3f6c5760/data.csv
+
+  var ageNames = d3.keys(generalChartData[0]).filter(function(key) { return key !== "State"; });
+
+  generalChartData.forEach(function(d) {
+    var y0 = 0;
+    d.ages = ageNames.map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+    d.total = d.ages[d.ages.length - 1].y1;
+  });
 
   const width = 960,
     height = 500,
@@ -25,32 +33,56 @@ import {
     showYAxis = true,
     chartSeries = [
       {
-        field: 'frequency',
-        name: 'Frequency'
-      }
+        field: 'Under 5 Years',
+        name: 'Under 5 Years'
+      },
+      {
+        field: '5 to 13 Years',
+        name: '5 to 13 Years'
+      },
+      {
+        field: '14 to 17 Years',
+        name: '14 to 17 Years'
+      },
+      {
+        field: '18 to 24 Years',
+        name: '18 to 24 Years'
+      },
+      {
+        field: '25 to 44 Years',
+        name: '25 to 44 Years'
+      },
+      {
+        field: '45 to 64 Years',
+        name: '45 to 64 Years'
+      },
+      {
+        field: '65 Years and Over',
+        name: '65 Years and Over'
+      },
+
     ],
     x = (d) => {
-      return d.letter;
+      return d.State;
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = generalChartData.map((d) => { return d.letter; }),
+    xDomain = generalChartData.map((d) => { return d.State; }),
     xRangeRoundBands = {interval: [0, width - margins.left - margins.right], padding: .1},
     xScale = d3.scale.ordinal(),
     xAxisClassName = 'x-axis',
-    xLabel = "Letter",
+    xLabel = "Age",
     y = (d) => {
       return +d;
     },
     yOrient = 'left',
-    yTickOrient = 'right',
+    yTickOrient = 'left',
     yRange = [height - margins.top - margins.bottom, 0],
-    yDomain = [0, +d3.max(generalChartData, (d) => { return d.frequency; })],
+    yDomain = [0, d3.max(generalChartData, function(d) { return d.total; })],
     yScale = d3.scale.linear(),
     yAxisClassName = 'y-axis',
-    yLabel = "Frequency";
-
-  console.log(yDomain)
+    yLabel = "Population",
+    yTickFormat = d3.format(".2s");
 
   /*
   ** Inherit variables:
@@ -66,7 +98,7 @@ import {
   ** - yScale
   */
   React.render(
-    <BarChart
+    <BarStackChart
       title= {title}
       data= {generalChartData}
       width= {width}
@@ -85,25 +117,34 @@ import {
       lineClass = 'test-line-class'
       barClass= 'test-bar-class'
       scatterClass = 'test-line-dot-class'
+      gridAxisClassName = 'grid-axis-class'
       showScatter = {true}
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
       x= {x}
+      showXGrid= {false}
       xDomain= {xDomain}
       xRangeRoundBands= {xRangeRoundBands}
       xScale= {xScale}
       xOrient= {xOrient}
       xTickOrient= {xTickOrient}
+      xTickPadding = {3}
+      xInnerTickSize = {6}
+      xOuterTickSize = {6}
       xLabel = {xLabel}
       xLabelPosition = 'bottom'
       y= {y}
+      showYGrid= {true}
       yOrient= {yOrient}
       yRange= {yRange}
       yDomain= {yDomain}
       yScale= {yScale}
       yTickOrient= {yTickOrient}
-      yTicks= {[10, "%"]}
+      yTickPadding = {4}
+      yInnerTickSize = {6}
+      yOuterTickSize = {6}
+      yTickFormat= {yTickFormat}
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />

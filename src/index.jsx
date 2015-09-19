@@ -12,7 +12,6 @@ import {
   default as PieChart
 } from './inherit/pieChart';
 
-require('./css/xychart.css')
 require('./css/pie.css')
 
 export {LineChart as LineChart};

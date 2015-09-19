@@ -7,7 +7,7 @@ import {
 
 import {
   LineChart
-} from '../src/index';
+} from '../../src/index';
 
 (() => {
 

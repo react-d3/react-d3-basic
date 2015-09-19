@@ -6,16 +6,16 @@ import {
 } from 'react';
 
 import {
-  default as Chart,
-} from './chartContainer';
+  Chart as Chart,
+} from 'react-d3-core';
 
 import {
   default as Pie,
 } from '../pie/index';
 
 import {
-  default as Legend,
-} from './legend';
+  Legend as Legend,
+} from 'react-d3-core';
 
 export default class PieChart extends Component {
   constructor(props) {

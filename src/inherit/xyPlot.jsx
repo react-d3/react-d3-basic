@@ -7,16 +7,24 @@ import {
 } from 'react';
 
 import {
-  default as Chart,
-} from './chartContainer';
+  Chart as Chart,
+} from 'react-d3-core';
 
 import {
-  default as Xaxis,
-} from './axis/xaxis';
+  Xaxis as Xaxis,
+} from 'react-d3-core';
 
 import {
-  default as Yaxis,
-} from './axis/yaxis';
+  Yaxis as Yaxis,
+} from 'react-d3-core';
+
+import {
+  Legend as Legend,
+} from 'react-d3-core';
+
+import {
+  Grid as Grid,
+} from 'react-d3-core';
 
 import {
   default as Line,
@@ -45,14 +53,6 @@ import {
 import {
   default as BarStack,
 } from '../bar_stack/index';
-
-import {
-  default as Legend,
-} from './legend';
-
-import {
-  default as Grid,
-} from './grid';
 
 export default class xyChart extends Component {
   constructor(props) {
