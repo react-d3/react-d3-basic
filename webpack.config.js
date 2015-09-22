@@ -1,8 +1,7 @@
 
 'use strict';
 
-var
-  path            = require('path'),
+var path            = require('path'),
   webpack         = require('webpack'),
   nodeModulesPath = path.join(__dirname, 'node_modules');
 
@@ -32,8 +31,7 @@ module.exports = [{
   module: {
     loaders: [
       {
-        test: [/\.jsx$/, /\.js$/],
-        exclude: /node_modules/,
+        test: [/\.jsx$/],
         loaders: ["react-hot", "babel-loader?stage=0"],
       },
       {

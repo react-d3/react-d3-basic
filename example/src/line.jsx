@@ -6,10 +6,12 @@ import {
 } from 'react';
 
 import {
-  LineChart
-} from '../../src/index';
+  LineChart as LineChart
+} from '../../index';
 
 (() => {
+
+  var generalChartData = require('json!./user_sample.json');
 
   const width = 960,
     height = 500,
@@ -21,6 +23,13 @@ import {
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
+    chartSeries = [
+      {
+        field: 'age',
+        name: 'Age',
+        color: '#ff7f0e'
+      }
+    ],
     x = (d) => {
       return d.index;
     },
@@ -28,33 +37,20 @@ import {
     xTickOrient = 'top',
     xDomain = d3.extent(generalChartData, x),
     xRange = [0, width - margins.left - margins.right],
-    xScale = d3.scale.linear(),
+    xScale = 'linear',
     xAxisClassName = 'x-axis',
     xLabel = "Index",
     y = (d) => {
-      return d.age;
+      return d;
     },
     yOrient = 'right',
     yTickOrient = 'left',
-    yDomain = d3.extent(generalChartData, y),
+    yDomain = d3.extent(generalChartData, (d) => {return d.age;}),
     yRange = [height - margins.top - margins.bottom, 0],
-    yScale = d3.scale.linear(),
+    yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Age";
 
-  /*
-  ** Inherit variables:
-  **
-  ** - id
-  ** - x
-  ** - xDomain
-  ** - xRange
-  ** - xScale
-  ** - y
-  ** - yDomain
-  ** - yRange
-  ** - yScale
-  */
   React.render(
     <LineChart
       title= {title}
@@ -67,6 +63,7 @@ import {
       titleClassName= {titleClassName}
       yAxisClassName= {yAxisClassName}
       xAxisClassName= {xAxisClassName}
+      chartSeries= {chartSeries}
       lineClass = 'test-line-class'
       scatterClass = 'test-line-dot-class'
       showScatter = {true}

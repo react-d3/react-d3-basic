@@ -42,6 +42,17 @@ import {
   default as BarStack,
 } from '../bar_stack';
 
+import {
+  default as Voronoi,
+} from '../utils/voronoi';
+
+/**
+**
+** xyChart class
+**
+**
+**/
+
 export default class xyChart extends Component {
   constructor(props) {
     super(props);
@@ -71,6 +82,21 @@ export default class xyChart extends Component {
     }
   }
 
+  voronoiMouseOut(d, focus) {
+    focus.attr("transform", "translate(-100,-100)");
+  }
+
+  voronoiMouseOver(d, focus) {
+    const {
+      xScaleSet,
+      yScaleSet
+    } = this.state;
+
+    focus.attr("transform", "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")");
+    focus.style('fill', 'none')
+      .style('stroke', d.color)
+  }
+
   mkSeries() {
     const {data, chartSeries, x, y, categoricalColors} = this.props;
 
@@ -88,7 +114,10 @@ export default class xyChart extends Component {
       var mapping = data.map(d => {
         return {
           x: x(d),
-          y: y(d[f.field])
+          y: y(d[f.field]),
+          color: f.color,
+          name: f.name,
+          field: f.field
         }
       })
 
@@ -132,7 +161,7 @@ xyChart.propTypes = {
   x: PropTypes.func.isRequired,
   xDomain: PropTypes.array,
   xRange: PropTypes.array,
-  xScale: PropTypes.func.isRequired,
+  xScale: PropTypes.string.isRequired,
   xOrient: PropTypes.oneOf(['bottom', 'top']),
   xTickOrient: PropTypes.oneOf(['bottom', 'top']),
   xAxisClassName: PropTypes.string,
@@ -140,12 +169,19 @@ xyChart.propTypes = {
   y: PropTypes.func.isRequired,
   yDomain: PropTypes.array,
   yRange: PropTypes.array,
-  yScale: PropTypes.func.isRequired,
+  yScale: PropTypes.string.isRequired,
   yOrient: PropTypes.oneOf(['right', 'left']),
   yTickOrient: PropTypes.oneOf(['right', 'left']),
   yAxisClassName: PropTypes.string,
   yLabel: PropTypes.string,
 }
+
+/**
+**
+** LineChart class
+**
+**
+**/
 
 export class LineChart extends xyChart {
 
@@ -155,8 +191,20 @@ export class LineChart extends xyChart {
     var scatters;
     var legends;
 
-    const {xScaleSet, yScaleSet, chartSeriesData, showXGrid, showYGrid} = this.state;
-    const {showScatter, interpolate, chartSeries, showLegend} = this.props;
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData,
+      showXGrid,
+      showYGrid
+    } = this.state;
+
+    const {
+      showScatter,
+      interpolate,
+      chartSeries,
+      showLegend
+    } = this.props;
 
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />
@@ -185,11 +233,13 @@ export class LineChart extends xyChart {
         var scatters = chartSeriesData.map((d, i) => {
           return <Scatter dataset={d} key={i} {...this.props} {...this.state} />
         })
+        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
       }
 
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
+
     }
 
     return (
@@ -201,6 +251,7 @@ export class LineChart extends xyChart {
           {scatters}
           {legends}
         </g>
+        {voronoi}
         <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
         <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
       </Chart>
@@ -211,6 +262,13 @@ export class LineChart extends xyChart {
 LineChart.defaultProps = {
   showScatter: false
 }
+
+/**
+**
+** ScatterPlot class
+**
+**
+**/
 
 export class ScatterPlot extends xyChart {
 

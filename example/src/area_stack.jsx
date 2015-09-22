@@ -7,7 +7,7 @@ import {
 
 import {
   AreaStackChart
-} from '../../src/index';
+} from '../../index';
 
 (() => {
   // testing data: https://gist.githubusercontent.com/mbostock/3885211/raw/622c8dce904c4f7d3719dac7252b11e4222f012a/data.tsv

@@ -7,7 +7,7 @@ import {
 
 import {
   BarGroupChart
-} from '../../src/index';
+} from '../../index';
 
 (() => {
   // testing data: https://gist.githubusercontent.com/mbostock/3887051/raw/f2168c294fa0a941a74d56f6eb56d3da3f6c5760/data.csv

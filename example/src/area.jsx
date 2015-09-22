@@ -7,7 +7,7 @@ import {
 
 import {
   LineChart
-} from '../../src/index';
+} from '../../index';
 
 (() => {
   // testing data: https://gist.githubusercontent.com/mbostock/3883195/raw/01b17f8e20a88e591f590166f42637df1f4a3011/data.tsv

@@ -6,13 +6,13 @@ import {
   BarChart as BarChart,
   BarGroupChart as BarGroupChart,
   BarStackChart as BarStackChart,
-} from './inherit/xyPlot';
+} from './src/inherit/xyPlot';
 
 import {
   default as PieChart
-} from './inherit/pieChart';
+} from './src/inherit/pieChart';
 
-require('./css/pie.css')
+require('./src/css/pie.css')
 
 export {LineChart as LineChart};
 export {ScatterPlot as ScatterPlot}
