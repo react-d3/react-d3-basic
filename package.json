@@ -7,7 +7,8 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "site": "git subtree push --prefix example origin gh-pages"
   },
   "author": "ElixirDoc team",
   "license": "Apache 2.0",

@@ -12,7 +12,6 @@ module.exports = [{
   name: 'chartComponent',
   entry: {
     line: js_root + '/line.jsx',
-    line_date: js_root + '/line_date.jsx',
     line_multi: js_root + '/line_multi.jsx',
     scatter: js_root + '/scatter.jsx',
     area: js_root + '/area.jsx',

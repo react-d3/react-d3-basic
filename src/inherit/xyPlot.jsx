@@ -223,12 +223,12 @@ export class LineChart extends xyChart {
       xScaleSet,
       yScaleSet,
       chartSeriesData,
-      showXGrid,
-      showYGrid
     } = this.state;
 
     const {
       showScatter,
+      showXGrid,
+      showYGrid,
       showTooltip,
       interpolate,
       chartSeries,
@@ -236,11 +236,11 @@ export class LineChart extends xyChart {
     } = this.props;
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+      var xgrid = <Grid type="x" key="xgrid" {...this.props} {...this.state} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+      var ygrid = <Grid type="y" key="ygrid" {...this.props} {...this.state} />
     }
 
     if (xScaleSet && yScaleSet) {
@@ -317,13 +317,13 @@ export class ScatterPlot extends xyChart {
       xScaleSet,
       yScaleSet,
       chartSeriesData,
-      showXGrid,
-      showYGrid
     } = this.state;
     const {
       chartSeries,
       showLegend,
-      showTooltip
+      showTooltip,
+      showXGrid,
+      showYGrid
     } = this.props;
 
     if(showXGrid) {
@@ -378,8 +378,17 @@ export class AreaStackChart extends xyChart {
 
   render() {
 
-    const { xScaleSet, yScaleSet, chartSeriesData, showXGrid, showYGrid } = this.state;
-    const { chartSeries, showLegend} = this.props;
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
 
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />
@@ -424,8 +433,18 @@ export class BarChart extends xyChart {
 
   render() {
 
-    const { xScaleSet, yScaleSet, chartSeriesData, showXGrid, showYGrid } = this.state;
-    const { chartSeries, showLegend} = this.props;
+    const {
+      x,
+      ScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
 
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />
@@ -471,8 +490,17 @@ export class BarGroupChart extends xyChart {
 
   render() {
 
-    const { xScaleSet, yScaleSet, chartSeriesData, showXGrid, showYGrid } = this.state;
-    const { chartSeries, showLegend} = this.props;
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
 
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />
@@ -526,8 +554,18 @@ export class BarStackChart extends xyChart {
 
   render() {
 
-    const { xScaleSet, yScaleSet, chartSeriesData} = this.state;
-    const { chartSeries, showLegend, showXGrid, showYGrid} = this.props;
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
 
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />

@@ -11,7 +11,6 @@ import {
 
 (() => {
   var generalChartData = require('dsv?delimiter=\t!./data/temp.tsv')
-
   const parseDate = d3.time.format("%Y%m%d").parse;
 
   const width = 960,
@@ -101,6 +100,8 @@ import {
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
+      showXGrid= {true}
+      showYGrid= {true}
       showTooltip= {true}
       x= {x}
       xDomain= {xDomain}
