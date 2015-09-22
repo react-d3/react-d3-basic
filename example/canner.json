@@ -13,6 +13,47 @@
       "bar-stack-chart",
       "pie-chart",
       "donut-chart"
+    ],
+    "link": [
+      "min/line.min",
+      "min/line_multi.min",
+      "min/scatter.min",
+      "min/area.min",
+      "min/area_stack.min",
+      "min/bar.min",
+      "min/bar_group.min",
+      "min/bar_stack.min",
+      "min/pie.min",
+      "min/donut.min"
+    ]
+  }
+},{
+  "layout": "./gallery.hbs",
+  "filename": "./example/gallery_dev.html",
+  "data": {
+    "charts": [
+      "line-chart",
+      "line-chart-multi",
+      "scatter-chart",
+      "area-chart",
+      "area-stack-chart",
+      "bar-chart",
+      "bar-group-chart",
+      "bar-stack-chart",
+      "pie-chart",
+      "donut-chart"
+    ],
+    "link": [
+      "origin/line",
+      "origin/line_multi",
+      "origin/scatter",
+      "origin/area",
+      "origin/area_stack",
+      "origin/bar",
+      "origin/bar_group",
+      "origin/bar_stack",
+      "origin/pie",
+      "origin/donut"
     ]
   }
 }]

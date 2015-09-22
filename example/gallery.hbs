@@ -36,15 +36,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
-    <script src="./dist/min/line.min.js"></script>
-    <script src="./dist/min/line_multi.min.js"></script>
-    <script src="./dist/min/scatter.min.js"></script>
-    <script src="./dist/min/area.min.js"></script>
-    <script src="./dist/min/area_stack.min.js"></script>
-    <script src="./dist/min/bar.min.js"></script>
-    <script src="./dist/min/bar_group.min.js"></script>
-    <script src="./dist/min/bar_stack.min.js"></script>
-    <script src="./dist/min/pie.min.js"></script>
+    {{#each link}}
+      <script src="./dist/{{this}}.js"></script>
+    {{/each}}
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -6,35 +6,95 @@ import {
   PropTypes,
 } from 'react';
 
-export default class Scatter extends Component {
-  constructor (props) {
-    super(props);
-  }
+import {
+  Chart as Chart,
+  Xaxis as Xaxis,
+  Yaxis as Yaxis,
+  Legend as Legend,
+  Grid as Grid,
+} from 'react-d3-core';
 
-  componentDidMount () {
-    const { dataset, scatterClass, x, xScaleSet, y, yScaleSet } = this.props;
+import {
+  default as xyChart
+} from './inherit/xyPlot';
 
-    // make dot
-    d3.select(React.findDOMNode(this.refs.scatterPlot))
-      .selectAll('.' + scatterClass)
-      .data(dataset.data)
-    .enter().append('circle')
-      .attr('class', scatterClass)
-      .attr('r', 3.5)
-      .attr('cx', (d) => { return xScaleSet(d.x) })
-      .attr('cy', (d) => { return yScaleSet(d.y) })
-      .style('fill', dataset.color)
-  }
+import {
+  default as Scatter,
+} from './components/scatter';
+
+import {
+  default as Voronoi,
+} from './utils/voronoi';
+
+import {
+  default as Tooltip,
+} from './utils/tooltip';
+
+
+export default class ScatterPlot extends xyChart {
 
   render() {
+
+    var scatters;
+    var legends;
+
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData,
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showTooltip,
+      showXGrid,
+      showYGrid
+    } = this.props;
+
+    if(showXGrid) {
+      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+    }
+
+    if(showYGrid) {
+      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+    }
+
+    if (xScaleSet && yScaleSet) {
+      // if x and y scale is all set, doing plotting...
+      if(chartSeries) {
+        var scatters = chartSeriesData.map((d, i) => {
+          return <Scatter dataset={d} key={i} {...this.props} {...this.state} />
+        })
+      }
+      var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
+
+      if(showLegend) {
+        var legends = <Legend {...this.props} {...this.state} />
+      }
+
+      if(showTooltip){
+        var tooltip = <Tooltip {...this.props} {...this.state} />
+      }
+    }
+
     return (
-      <g
-        ref= "scatterPlot"
-        >
-      </g>
+      <div>
+        {tooltip}
+        <Chart {...this.props}>
+          {xgrid}
+          {ygrid}
+          <g ref= "plotGroup">
+            {scatters}
+            {legends}
+          </g>
+          {voronoi}
+          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        </Chart>
+      </div>
     )
   }
 }
 
-Scatter.defaultProps = {
+ScatterPlot.defaultProps = {
 }

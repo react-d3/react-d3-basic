@@ -3,56 +3,88 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from 'react';
 
-export default class BarStack extends Component {
-  constructor (props) {
-    super(props);
-  }
+import {
+  Chart as Chart,
+  Xaxis as Xaxis,
+  Yaxis as Yaxis,
+  Legend as Legend,
+  Grid as Grid,
+} from 'react-d3-core';
 
-  componentDidMount () {
-    const {
-      height,
-      margins,
-      dataset,
-      barClass,
-      barOpacity,
-      xScaleSet,
-      yScaleSet,
-      x1,
-      stackVal
-    } = this.props;
+import {
+  default as xyChart
+} from './inherit/xyPlot';
 
-    // make areas
-    var chart = d3.select(React.findDOMNode(this.refs.barGroup))
-      .datum(dataset)
-      .attr("class", "g")
+import {
+  default as BarStack,
+} from './components/bar_stack';
 
-    chart.selectAll("rect")
-      .data(dataset.data)
-    .enter().append("rect")
-      .attr("width", xScaleSet.rangeBand())
-      .attr("x", (d) => { return xScaleSet(d.x); })
-      .attr("y", (d, i) => { return yScaleSet(stackVal[i].value) })
-      .attr("height", (d, i) => {
-        return yScaleSet(0) - yScaleSet(stackVal[i].value);
-      })
-      .style("fill", (d) => { return dataset.color; })
-      .style("fill-opacity", barOpacity);
-
-  }
+export default class BarStackChart extends xyChart {
 
   render() {
-    return (
-      <g
-        ref= "barGroup"
-        >
 
-      </g>
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
+
+    if(showXGrid) {
+      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+    }
+
+    if(showYGrid) {
+      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+    }
+
+    if (xScaleSet && yScaleSet) {
+      // if x and y scale is all set, doing plotting...
+      if(chartSeries) {
+        var stackVal = chartSeriesData[0].data.map(d => {
+          return {name: d.x, value: 0};
+        })
+
+        var bargroups = chartSeriesData.map((d, i) => {
+          stackVal = stackVal.map((dkey, i) => {
+            var newVal = dkey.value + d.data[i].y
+
+            return {name: dkey.name, value: newVal}
+          })
+
+          return <BarStack stackVal={stackVal} dataset={d} key={i} count={i} {...this.props} {...this.state} />
+        }).reverse()
+      }
+
+      if(showLegend) {
+        var legends = <Legend {...this.props} {...this.state} />
+      }
+    }
+
+    return (
+      <Chart {...this.props}>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {bargroups}
+          {legends}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </Chart>
     )
   }
 }
 
-BarStack.defaultProps = {
-  barOpacity: 1
+BarStackChart.defaultProps = {
+  showLegend: true,
 }

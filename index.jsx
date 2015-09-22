@@ -1,12 +1,26 @@
 import {
-  default as xyPlot,
-  LineChart as LineChart,
-  ScatterPlot as ScatterPlot,
-  AreaStackChart as AreaStackChart,
-  BarChart as BarChart,
-  BarGroupChart as BarGroupChart,
-  BarStackChart as BarStackChart,
-} from './src/inherit/xyPlot';
+  default as LineChart,
+} from './src/line';
+
+import {
+  default as ScatterPlot,
+} from './src/scatter';
+
+import {
+  default as AreaStackChart,
+} from './src/area_stack';
+
+import {
+  default as BarChart,
+} from './src/bar';
+
+import {
+  default as BarGroupChart,
+} from './src/bar_group';
+
+import {
+  default as BarStackChart,
+} from './src/bar_stack';
 
 import {
   default as PieChart

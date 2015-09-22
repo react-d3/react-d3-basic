@@ -3,53 +3,84 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from 'react';
 
-export default class BarGroup extends Component {
-  constructor (props) {
-    super(props);
-  }
+import {
+  Chart as Chart,
+  Xaxis as Xaxis,
+  Yaxis as Yaxis,
+  Legend as Legend,
+  Grid as Grid,
+} from 'react-d3-core';
 
-  componentDidMount () {
-    const {
-      height,
-      margins,
-      dataset,
-      barClass,
-      barOpacity,
-      xScaleSet,
-      yScaleSet,
-      x1,
-      count
-    } = this.props;
+import {
+  default as xyChart
+} from './inherit/xyPlot';
 
-    // make areas
-    var chart = d3.select(React.findDOMNode(this.refs.barGroup))
-      .datum(dataset)
-      .attr("class", "g")
+import {
+  default as BarGroup,
+} from './components/bar_group';
 
-    chart.selectAll("rect")
-      .data(dataset.data)
-    .enter().append("rect")
-      .attr("width", x1.rangeBand())
-      .attr("x", function(d) { return xScaleSet(d.x) + x1.rangeBand() * count;})
-      .attr("y", function(d) { return yScaleSet(d.y); })
-      .attr("height", function(d) { return height - margins.top - margins.bottom - yScaleSet(d.y); })
-      .style("fill", function(d) { return dataset.color; });
-
-  }
+export class BarGroupChart extends xyChart {
 
   render() {
-    return (
-      <g
-        ref= "barGroup"
-        >
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
 
-      </g>
+    if(showXGrid) {
+      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+    }
+
+    if(showYGrid) {
+      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+    }
+
+    if (xScaleSet && yScaleSet) {
+      // if x and y scale is all set, doing plotting...
+      if(chartSeries) {
+
+        // settings x1
+        var x1 = d3.scale.ordinal();
+
+        // mapping x1, inner x axis
+        x1.domain(chartSeriesData.map((d) => { return d.field}))
+          .rangeRoundBands([0, xScaleSet.rangeBand()]);
+
+        var bargroups = chartSeriesData.map((d, i) => {
+          return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} />
+        })
+      }
+
+      if(showLegend) {
+        var legends = <Legend {...this.props} {...this.state} />
+      }
+    }
+
+    return (
+      <Chart {...this.props}>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {bargroups}
+          {legends}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </Chart>
     )
   }
 }
 
-BarGroup.defaultProps = {
-  barOpacity: 0.6
+BarGroupChart.defaultProps = {
+  showLegend: true
 }

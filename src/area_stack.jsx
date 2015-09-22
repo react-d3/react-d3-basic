@@ -6,59 +6,74 @@ import {
   PropTypes,
 } from 'react';
 
-export default class AreaStack extends Component {
-  constructor (props) {
-    super(props);
-  }
+import {
+  Chart as Chart,
+  Xaxis as Xaxis,
+  Yaxis as Yaxis,
+  Legend as Legend,
+  Grid as Grid,
+} from 'react-d3-core';
 
-  componentDidMount () {
-    const { dataset, areaClass, areaOpacity } = this.props;
-    const _setStack = this._setStack();
-    const _setAxis = this._setAxes();
+import {
+  default as xyChart
+} from './inherit/xyPlot';
 
-    // make areas
-    var chart = d3.selectAll(React.findDOMNode(this.refs.areaGroup))
-      .data(_setStack(dataset))
-    .enter().append("g")
-      .attr("class", `${areaClass} area`)
+import {
+  default as AreaStack,
+} from './components/area_stack';
 
-    chart.append("path")
-      .attr("class", "area")
-      .attr("d", (d) => { return _setAxis(d.data) })
-      .style("fill", (d) => { return d.color} )
-      .style("fill-opacity", areaOpacity);
 
-  }
-
-  _setStack () {
-    return d3.layout.stack()
-      .values((d) => { return d.data; });
-  }
-
-  _setAxes () {
-    const { height, margins, initPlot, x, y, xScaleSet, yScaleSet, interpolate } = this.props;
-
-    return initPlot
-      .interpolate(interpolate)
-      .x((d) => { return xScaleSet(d.x) })
-      .y0((d) => { return yScaleSet(d.y0) })
-      .y1((d) => { return yScaleSet(d.y0 + d.y) });
-  }
+export default class AreaStackChart extends xyChart {
 
   render() {
 
-    return (
-      <g
-        ref= "areaGroup"
-        >
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
 
-      </g>
+    if(showXGrid) {
+      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+    }
+
+    if(showYGrid) {
+      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+    }
+
+
+    if (xScaleSet && yScaleSet) {
+      // if x and y scale is all set, doing plotting...
+      if(chartSeries) {
+        var areas = <AreaStack dataset={chartSeriesData} {...this.props} {...this.state} />
+      }
+
+      if(showLegend) {
+        var legends = <Legend {...this.props} {...this.state} />
+      }
+    }
+
+    return (
+      <Chart {...this.props}>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {areas}
+          {legends}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </Chart>
     )
   }
 }
 
-AreaStack.defaultProps = {
-  initPlot: d3.svg.area(),
-  interpolate: null,
-  areaOpacity: 0.6
+AreaStackChart.defaultProps = {
+  showLegend: true
 }

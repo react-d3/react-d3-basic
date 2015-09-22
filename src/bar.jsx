@@ -3,43 +3,79 @@
 import {
   default as React,
   Component,
+  PropTypes,
 } from 'react';
 
-export default class Bar extends Component {
-  constructor (props) {
-    super(props);
-  }
+import {
+  Chart as Chart,
+  Xaxis as Xaxis,
+  Yaxis as Yaxis,
+  Legend as Legend,
+  Grid as Grid,
+} from 'react-d3-core';
 
-  componentDidMount () {
-    const { height, margins, dataset, barClass, barOpacity, xScaleSet, yScaleSet } = this.props;
+import {
+  default as xyChart
+} from './inherit/xyPlot';
 
-    // make areas
-    var chart = d3.selectAll(React.findDOMNode(this.refs.barGroup))
-      .data(dataset.data)
-    .enter().append("rect")
-      .attr("class", `${barClass} bar`)
-      .attr("x", (d) => { return xScaleSet(d.x); })
-      .attr("width", xScaleSet.rangeBand())
-      .attr("y", (d) => { return yScaleSet(d.y); })
-      .attr("height", (d) => { return height - margins.top - margins.bottom - yScaleSet(d.y); })
-      .style("fill", dataset.color )
-      .style("fill-opacity", barOpacity);
+import {
+  default as Bar,
+} from './components/bar';
 
 
-  }
+export default class BarChart extends xyChart {
 
   render() {
-    return (
-      <g
-        ref= "barGroup"
-        >
 
-      </g>
+    const {
+      x,
+      ScaleSet,
+      yScaleSet,
+      chartSeriesData
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showXGrid,
+      showYGrid
+    } = this.props;
+
+    if(showXGrid) {
+      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+    }
+
+    if(showYGrid) {
+      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+    }
+
+    if (xScaleSet && yScaleSet) {
+      // if x and y scale is all set, doing plotting...
+      if(chartSeries) {
+        var bars = chartSeriesData.map((d, i) => {
+          return <Bar dataset={d} key={i} {...this.props} {...this.state} />
+        })
+      }
+
+      if(showLegend) {
+        var legends = <Legend {...this.props} {...this.state} />
+      }
+    }
+
+    return (
+      <Chart {...this.props}>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {bars}
+          {legends}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </Chart>
     )
   }
 }
 
-Bar.defaultProps = {
-  interpolate: null,
-  barOpacity: 0.6
+BarChart.defaultProps = {
+  showLegend: true
 }

@@ -12,7 +12,7 @@ import {
 
 import {
   default as Pie,
-} from '../pie';
+} from '../components/pie';
 
 export default class PieChart extends Component {
   constructor(props) {
