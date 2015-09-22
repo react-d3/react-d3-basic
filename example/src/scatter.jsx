@@ -10,14 +10,15 @@ import {
 } from '../../index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3884955/raw/18407febaa958769cd9a5691e4e13a5e6211557b/data.tsv
+  var generalChartData = require('dsv?delimiter=\t!./data/temp.tsv')
+
   const parseDate = d3.time.format("%Y%m%d").parse;
 
   const width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "test chart lib",
+    title = "Scatter Plot",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
@@ -50,7 +51,7 @@ import {
     xTickOrient = 'bottom',
     xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
-    xScale = d3.time.scale(),
+    xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
     y = (d) => {
@@ -60,23 +61,11 @@ import {
     yTickOrient = 'left',
     yDomain = [20, 100],
     yRange = [height - margins.top - margins.bottom, 0],
-    yScale = d3.scale.linear(),
+    yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Temperature (ºF)";
 
-  /*
-  ** Inherit variables:
-  **
-  ** - id
-  ** - x
-  ** - xDomain
-  ** - xRange
-  ** - xScale
-  ** - y
-  ** - yDomain
-  ** - yRange
-  ** - yScale
-  */
+
   React.render(
     <ScatterPlot
       title= {title}
@@ -100,6 +89,7 @@ import {
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
+      showTooltip= {true}
       x= {x}
       xDomain= {xDomain}
       xRange= {xRange}
@@ -117,6 +107,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-line-chart')
+  , document.getElementById('data-scatter-chart')
   )
 })()

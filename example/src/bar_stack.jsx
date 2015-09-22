@@ -10,7 +10,7 @@ import {
 } from '../../index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3887051/raw/f2168c294fa0a941a74d56f6eb56d3da3f6c5760/data.csv
+  var generalChartData = require('dsv?delimiter=,!./data/age.csv')
 
   var ageNames = d3.keys(generalChartData[0]).filter(function(key) { return key !== "State"; });
 
@@ -24,7 +24,7 @@ import {
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "test chart lib",
+    title = "Bar Stack Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
@@ -69,7 +69,7 @@ import {
     xTickOrient = 'bottom',
     xDomain = generalChartData.map((d) => { return d.State; }),
     xRangeRoundBands = {interval: [0, width - margins.left - margins.right], padding: .1},
-    xScale = d3.scale.ordinal(),
+    xScale = 'ordinal',
     xAxisClassName = 'x-axis',
     xLabel = "Age",
     y = (d) => {
@@ -79,24 +79,12 @@ import {
     yTickOrient = 'left',
     yRange = [height - margins.top - margins.bottom, 0],
     yDomain = [0, d3.max(generalChartData, function(d) { return d.total; })],
-    yScale = d3.scale.linear(),
+    yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Population",
     yTickFormat = d3.format(".2s");
 
-  /*
-  ** Inherit variables:
-  **
-  ** - id
-  ** - x
-  ** - xDomain
-  ** - xRange
-  ** - xScale
-  ** - y
-  ** - yDomain
-  ** - yRange
-  ** - yScale
-  */
+
   React.render(
     <BarStackChart
       title= {title}
@@ -148,6 +136,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-line-chart')
+  , document.getElementById('data-bar-stack-chart')
   )
 })()

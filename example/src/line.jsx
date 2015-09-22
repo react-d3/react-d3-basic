@@ -11,13 +11,13 @@ import {
 
 (() => {
 
-  var generalChartData = require('json!./user_sample.json');
+  var generalChartData = require('json!./data/user.json');
 
   const width = 960,
     height = 500,
     margins = {top: 20, right: 50, bottom: 30, left: 50},
     id = "test-chart",
-    title = "test chart lib",
+    title = "Simple Line Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     showLegend = true,
@@ -70,6 +70,7 @@ import {
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
+      showTooltip= {true}
       x= {x}
       xDomain= {xDomain}
       xRange= {xRange}

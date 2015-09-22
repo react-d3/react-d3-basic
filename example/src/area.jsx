@@ -10,14 +10,15 @@ import {
 } from '../../index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3883195/raw/01b17f8e20a88e591f590166f42637df1f4a3011/data.tsv
+  var generalChartData = require('dsv?delimiter=\t!./data/stock.tsv')
+
   const parseDate = d3.time.format("%d-%b-%y").parse;
 
   const width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "test chart lib",
+    title = "Simple Area Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
@@ -39,7 +40,7 @@ import {
     xTickOrient = 'bottom',
     xDomain = d3.extent(generalChartData, (d) => x(d)),
     xRange = [0, width - margins.left - margins.right],
-    xScale = d3.time.scale(),
+    xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
     y = (d) => {
@@ -49,7 +50,7 @@ import {
     yTickOrient = 'right',
     yDomain = [0, d3.max(generalChartData, (d) => { return +d.close; })],
     yRange = [height - margins.top - margins.bottom, 0],
-    yScale = d3.scale.linear(),
+    yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Price";
 
@@ -88,6 +89,7 @@ import {
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
+      showTooltip= {true}
       chartSeries= {chartSeries}
       x= {x}
       xDomain= {xDomain}
@@ -106,6 +108,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'right'
     />
-  , document.getElementById('data-line-chart')
+  , document.getElementById('data-area-chart')
   )
 })()

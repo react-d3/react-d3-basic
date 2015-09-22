@@ -10,13 +10,13 @@ import {
 } from '../../index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3885304/raw/37bd91278846c053188a130a01770cddff023590/data.tsv
+  var generalChartData = require('dsv?delimiter=\t!./data/letter.tsv')
 
   const width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "test chart lib",
+    title = "Bar Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
@@ -36,7 +36,7 @@ import {
     xTickOrient = 'bottom',
     xDomain = generalChartData.map((d) => { return d.letter; }),
     xRangeRoundBands = {interval: [0, width - margins.left - margins.right], padding: .1},
-    xScale = d3.scale.ordinal(),
+    xScale = 'ordinal',
     xAxisClassName = 'x-axis',
     xLabel = "Letter",
     y = (d) => {
@@ -46,25 +46,10 @@ import {
     yTickOrient = 'right',
     yRange = [height - margins.top - margins.bottom, 0],
     yDomain = [0, +d3.max(generalChartData, (d) => { return d.frequency; })],
-    yScale = d3.scale.linear(),
+    yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Frequency";
 
-  console.log(yDomain)
-
-  /*
-  ** Inherit variables:
-  **
-  ** - id
-  ** - x
-  ** - xDomain
-  ** - xRange
-  ** - xScale
-  ** - y
-  ** - yDomain
-  ** - yRange
-  ** - yScale
-  */
   React.render(
     <BarChart
       title= {title}
@@ -107,6 +92,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-line-chart')
+  , document.getElementById('data-bar-chart')
   )
 })()

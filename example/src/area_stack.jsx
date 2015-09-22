@@ -10,7 +10,8 @@ import {
 } from '../../index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3885211/raw/622c8dce904c4f7d3719dac7252b11e4222f012a/data.tsv
+  var generalChartData = require('dsv?delimiter=\t!./data/browser.tsv')
+
   const parseDate = d3.time.format("%y-%b-%d").parse;
   const formatPercent = d3.format(".0%");
 
@@ -18,7 +19,7 @@ import {
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "test chart lib",
+    title = "Stack Area Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
@@ -54,7 +55,7 @@ import {
     xTickOrient = 'bottom',
     xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
-    xScale = d3.time.scale(),
+    xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
     y = (d) => {
@@ -63,23 +64,10 @@ import {
     yOrient = 'left',
     yTickOrient = 'right',
     yRange = [height - margins.top - margins.bottom, 0],
-    yScale = d3.scale.linear(),
+    yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Browser rate (%)";
 
-  /*
-  ** Inherit variables:
-  **
-  ** - id
-  ** - x
-  ** - xDomain
-  ** - xRange
-  ** - xScale
-  ** - y
-  ** - yDomain
-  ** - yRange
-  ** - yScale
-  */
   React.render(
     <AreaStackChart
       title= {title}
@@ -121,6 +109,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-line-chart')
+  , document.getElementById('data-area-stack-chart')
   )
 })()

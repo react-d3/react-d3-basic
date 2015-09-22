@@ -17,7 +17,7 @@ import {
     radius = Math.min(width, height - 120) / 2,
     margins = {top: 50, right: 50, bottom: 20, left: 50},
     id = "test-chart",
-    title = "Pie Chart",
+    title = "Donut Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
@@ -78,10 +78,10 @@ import {
       value = {value}
       name = {name}
       outerRadius= {radius - 10}
-      innerRadius= {0}
+      innerRadius= {40}
       pieSort = {d3.descending}
 
     />
-  , document.getElementById('data-pie-chart')
+  , document.getElementById('data-donut-chart')
   )
 })()

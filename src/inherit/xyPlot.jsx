@@ -229,6 +229,7 @@ export class LineChart extends xyChart {
 
     const {
       showScatter,
+      showTooltip,
       interpolate,
       chartSeries,
       showLegend
@@ -255,8 +256,6 @@ export class LineChart extends xyChart {
           }
         })
       }
-
-
       var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
 
       if(showScatter && !interpolate) {
@@ -270,11 +269,15 @@ export class LineChart extends xyChart {
         var legends = <Legend {...this.props} {...this.state} />
       }
 
+      if(showTooltip) {
+        var tooltip = <Tooltip {...this.props} {...this.state}/>
+      }
+
     }
 
     return (
       <div>
-        <Tooltip {...this.props} {...this.state}/>
+        {tooltip}
         <Chart {...this.props}>
           {xgrid}
           {ygrid}
@@ -310,8 +313,18 @@ export class ScatterPlot extends xyChart {
     var scatters;
     var legends;
 
-    const { xScaleSet, yScaleSet, chartSeriesData, showXGrid, showYGrid } = this.state;
-    const { chartSeries, showLegend} = this.props;
+    const {
+      xScaleSet,
+      yScaleSet,
+      chartSeriesData,
+      showXGrid,
+      showYGrid
+    } = this.state;
+    const {
+      chartSeries,
+      showLegend,
+      showTooltip
+    } = this.props;
 
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />
@@ -328,23 +341,32 @@ export class ScatterPlot extends xyChart {
           return <Scatter dataset={d} key={i} {...this.props} {...this.state} />
         })
       }
+      var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
 
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
+
+      if(showTooltip){
+        var tooltip = <Tooltip {...this.props} {...this.state} />
+      }
     }
 
     return (
-      <Chart {...this.props}>
-        {xgrid}
-        {ygrid}
-        <g ref= "plotGroup">
-          {scatters}
-          {legends}
-        </g>
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-      </Chart>
+      <div>
+        {tooltip}
+        <Chart {...this.props}>
+          {xgrid}
+          {ygrid}
+          <g ref= "plotGroup">
+            {scatters}
+            {legends}
+          </g>
+          {voronoi}
+          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        </Chart>
+      </div>
     )
   }
 }

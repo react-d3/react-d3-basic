@@ -20,7 +20,8 @@ module.exports = [{
     bar: js_root + '/bar.jsx',
     bar_group: js_root + '/bar_group.jsx',
     bar_stack: js_root + '/bar_stack.jsx',
-    pie: js_root + '/pie.jsx'
+    pie: js_root + '/pie.jsx',
+    donut: js_root + '/donut.jsx'
   },
 
   output: {
