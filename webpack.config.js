@@ -6,10 +6,17 @@ var path            = require('path'),
   nodeModulesPath = path.join(__dirname, 'node_modules');
 
 var js_root = './example/src';
-var js_dist = path.join(__dirname, './example/dist');
+var js_dist = path.join(__dirname, './example/dist/origin');
+var js_dist_min = path.join(__dirname, './example/dist/min');
+
+// 0 stands for development, 1 stands for production
+// for development mode: NODE_ENV=0 webpack
+// for production mode: NODE_ENV=1 webpack
+var ENV = !!(+process.env.NODE_ENV || 0);
 
 module.exports = [{
   name: 'chartComponent',
+  devtool: ENV ? "source-map": '',
   entry: {
     line: js_root + '/line.jsx',
     line_multi: js_root + '/line_multi.jsx',
@@ -24,8 +31,8 @@ module.exports = [{
   },
 
   output: {
-    path: js_dist,
-    filename: '[name].js'
+    path: ENV ? js_dist_min  : js_dist,
+    filename: ENV ? '[name].min.js': '[name].js'
   },
 
   module: {
@@ -45,7 +52,12 @@ module.exports = [{
     extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
   },
 
-  plugins: [
+  plugins: ENV ? [
+    new webpack.optimize.UglifyJsPlugin({minimize: true}),
+    new webpack.ProvidePlugin({
+      'd3': 'd3'
+    })
+  ]: [
     new webpack.ProvidePlugin({
       'd3': 'd3'
     })
