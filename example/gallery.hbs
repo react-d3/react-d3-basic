@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>
+      react-d3 Gallery examples
+    </title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">React-d3</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">React-d3</span>
+        <nav class="mdl-navigation">
+          {{#each charts}}
+            <a class="mdl-navigation__link" href="#{{this}}">{{this}}</a>
+          {{/each}}
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div style="margin: 30px;">
+          {{#each charts}}
+            <a name="{{this}}"></a>
+            <div id="data-{{this}}"></div>
+          {{/each}}
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <script src="./dist/min/line.min.js"></script>
+    <script src="./dist/min/line_multi.min.js"></script>
+    <script src="./dist/min/scatter.min.js"></script>
+    <script src="./dist/min/area.min.js"></script>
+    <script src="./dist/min/area_stack.min.js"></script>
+    <script src="./dist/min/bar.min.js"></script>
+    <script src="./dist/min/bar_group.min.js"></script>
+    <script src="./dist/min/bar_stack.min.js"></script>
+    <script src="./dist/min/pie.min.js"></script>
+  </body>
+</html>

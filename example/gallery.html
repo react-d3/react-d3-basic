@@ -1,20 +1,61 @@
-<html>
-  <head>
+<html><head>
     <title>
       react-d3 Gallery examples
     </title>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-    <div id="data-line-chart"></div>
-    <div id="data-line-chart-multi"></div>
-    <div id="data-scatter-chart"></div>
-    <div id="data-area-chart"></div>
-    <div id="data-area-stack-chart"></div>
-    <div id="data-bar-chart"></div>
-    <div id="data-bar-group-chart"></div>
-    <div id="data-bar-stack-chart"></div>
-    <div id="data-pie-chart"></div>
-    <div id="data-donut-chart"></div>
+    <div class="mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">React-d3</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">React-d3</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="#line-chart">line-chart</a>
+            <a class="mdl-navigation__link" href="#line-chart-multi">line-chart-multi</a>
+            <a class="mdl-navigation__link" href="#scatter-chart">scatter-chart</a>
+            <a class="mdl-navigation__link" href="#area-chart">area-chart</a>
+            <a class="mdl-navigation__link" href="#area-stack-chart">area-stack-chart</a>
+            <a class="mdl-navigation__link" href="#bar-chart">bar-chart</a>
+            <a class="mdl-navigation__link" href="#bar-group-chart">bar-group-chart</a>
+            <a class="mdl-navigation__link" href="#bar-stack-chart">bar-stack-chart</a>
+            <a class="mdl-navigation__link" href="#pie-chart">pie-chart</a>
+            <a class="mdl-navigation__link" href="#donut-chart">donut-chart</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div style="margin: 30px;">
+            <a name="line-chart"></a>
+            <div id="data-line-chart"></div>
+            <a name="line-chart-multi"></a>
+            <div id="data-line-chart-multi"></div>
+            <a name="scatter-chart"></a>
+            <div id="data-scatter-chart"></div>
+            <a name="area-chart"></a>
+            <div id="data-area-chart"></div>
+            <a name="area-stack-chart"></a>
+            <div id="data-area-stack-chart"></div>
+            <a name="bar-chart"></a>
+            <div id="data-bar-chart"></div>
+            <a name="bar-group-chart"></a>
+            <div id="data-bar-group-chart"></div>
+            <a name="bar-stack-chart"></a>
+            <div id="data-bar-stack-chart"></div>
+            <a name="pie-chart"></a>
+            <div id="data-pie-chart"></div>
+            <a name="donut-chart"></a>
+            <div id="data-donut-chart"></div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
     <script src="./dist/min/line.min.js"></script>
     <script src="./dist/min/line_multi.min.js"></script>
     <script src="./dist/min/scatter.min.js"></script>
@@ -24,6 +65,17 @@
     <script src="./dist/min/bar_group.min.js"></script>
     <script src="./dist/min/bar_stack.min.js"></script>
     <script src="./dist/min/pie.min.js"></script>
-    <script src="./dist/min/donut.min.js"></script>
-  </body>
-</html>
+    <script src="./dist/origin/donut.js"></script>
+    <script src="./dist/origin/line.js"></script>
+    <script src="./dist/origin/line_multi.js"></script>
+    <script src="./dist/origin/scatter.js"></script>
+    <script src="./dist/origin/area.js"></script>
+    <script src="./dist/origin/area_stack.js"></script>
+    <script src="./dist/origin/bar.js"></script>
+    <script src="./dist/origin/bar_group.js"></script>
+    <script src="./dist/origin/bar_stack.js"></script>
+    <script src="./dist/origin/pie.js"></script>
+    <script src="./dist/origin/donut.js"></script>
+  
+
+</body></html>

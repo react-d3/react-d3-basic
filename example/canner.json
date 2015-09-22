@@ -1,0 +1,18 @@
+[{
+  "layout": "./gallery.hbs",
+  "filename": "./example/gallery.html",
+  "data": {
+    "charts": [
+      "line-chart",
+      "line-chart-multi",
+      "scatter-chart",
+      "area-chart",
+      "area-stack-chart",
+      "bar-chart",
+      "bar-group-chart",
+      "bar-stack-chart",
+      "pie-chart",
+      "donut-chart"
+    ]
+  }
+}]
