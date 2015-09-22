@@ -25,7 +25,9 @@ export default class Voronoi extends Component {
       x,
       y,
       onMouseOver,
-      onMouseOut
+      onMouseOut,
+      focus,
+      height
     } = this.props;
 
     // because d3.geom.voronoi does not handle coincident points (and this data from the government comes pre-rounded to a tenth of a degree), d3.nest is used to collapse coincident points before constructing the Voronoi.
@@ -38,9 +40,7 @@ export default class Voronoi extends Component {
       .map((d) => { return d.values; })
 
     var voronoiPolygon = this._setGeomVoronoi().call(this, nestData)
-
-
-
+    
     // make voronoi
     var dom = React.findDOMNode(this.refs.voronoi);
     d3.select(dom)
@@ -49,20 +49,34 @@ export default class Voronoi extends Component {
     .enter().append("path")
       .attr("d", (d) => { return "M" + d.join("L") + "Z"; })
       .datum((d) => { return d.point; })
-      .on("mouseover", (d) => { return onMouseOver(d, focusDom) })
-      .on("mouseout", (d) => { return onMouseOut(d, focusDom) })
+      .on("mouseover", focus? (d) => { return onMouseOver(d, focusDom)}: onMouseOver)
+      .on("mouseout", focus? (d) => { return onMouseOut(d, focusDom)}: onMouseOut)
 
     // build new focus dom
-    var focusDom = d3.select(dom)
-    .append("g")
-      .attr("transform", "translate(-100,-100)")
-      .attr("class", "focus");
+    if(focus) {
+      var focusDom = d3.select(dom)
+      .append("g")
+        .attr("transform", "translate(-100,-100)")
+        .attr("class", "react-d3-basics__voronoi_utils__focus");
 
-    focusDom.append("circle")
-      .attr("r", 7);
+      focusDom.append("circle")
+        .attr("class", "focus__inner_circle")
+        .attr("r", 3);
 
-    focusDom.append("text")
-      .attr("y", -10);
+      focusDom.append("circle")
+        .attr("class", "focus__outer_circle")
+        .attr("r", 7);
+
+      focusDom.append("line")
+        .attr("class", "focus__line")
+        .attr("x1", 0)
+        .attr("y1", -height)
+        .attr("x2", 0)
+        .attr("y2", height)
+        .style("stroke-width", 2)
+        .style("stroke-opacity", 0.5)
+
+    }
   }
 
   _setGeomVoronoi () {

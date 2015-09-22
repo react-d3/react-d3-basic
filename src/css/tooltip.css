@@ -1,0 +1,19 @@
+.tooltip_table {
+  display:table;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+}
+.tooltip_tr {
+  display: table-row;
+  background-image: linear-gradient(#FFF, #EEE);
+  padding: 3px;
+  height: 30px;
+}
+.tooltip_td {
+  display: table-cell;
+  padding: 3px;
+  vertical-align: middle;
+  white-space: normal;
+  border: 1px solid #D3D3D3;
+}

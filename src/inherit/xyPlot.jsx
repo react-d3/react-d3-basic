@@ -46,6 +46,10 @@ import {
   default as Voronoi,
 } from '../utils/voronoi';
 
+import {
+  default as Tooltip,
+} from '../utils/tooltip';
+
 /**
 **
 ** xyChart class
@@ -61,6 +65,9 @@ export default class xyChart extends Component {
     this.setScale = this.setScale.bind(this);
 
     this.state = {
+      xTooltip: null,
+      yTooltip: null,
+      contentTooltip: null,
       xScaleSet: null,
       yScaleSet: null,
       chartSeriesData: chartSeries? this.mkSeries(): null
@@ -84,6 +91,12 @@ export default class xyChart extends Component {
 
   voronoiMouseOut(d, focus) {
     focus.attr("transform", "translate(-100,-100)");
+
+    this.setState({
+      xTooltip: null,
+      yTooltip: null,
+      contentTooltip: null
+    })
   }
 
   voronoiMouseOver(d, focus) {
@@ -93,8 +106,23 @@ export default class xyChart extends Component {
     } = this.state;
 
     focus.attr("transform", "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")");
-    focus.style('fill', 'none')
+
+    focus.select(".focus__inner_circle")
+      .style('fill', d.color)
+
+    focus.select(".focus__line")
       .style('stroke', d.color)
+
+    focus.select(".focus__outer_circle")
+      .style('fill', 'none')
+      .style('stroke', d.color)
+      .style('stroke-width', 3)
+
+    this.setState({
+      xTooltip: d3.event.clientX,
+      yTooltip: d3.event.clientY,
+      contentTooltip: d
+    })
   }
 
   mkSeries() {
@@ -228,12 +256,14 @@ export class LineChart extends xyChart {
         })
       }
 
+
+      var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
+
       if(showScatter && !interpolate) {
         // show scatters in line chart
         var scatters = chartSeriesData.map((d, i) => {
           return <Scatter dataset={d} key={i} {...this.props} {...this.state} />
         })
-        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
       }
 
       if(showLegend) {
@@ -243,18 +273,21 @@ export class LineChart extends xyChart {
     }
 
     return (
-      <Chart {...this.props}>
-        {xgrid}
-        {ygrid}
-        <g ref= "plotGroup">
-          {lines}
-          {scatters}
-          {legends}
-        </g>
-        {voronoi}
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-      </Chart>
+      <div>
+        <Tooltip {...this.props} {...this.state}/>
+        <Chart {...this.props}>
+          {xgrid}
+          {ygrid}
+          <g ref= "plotGroup">
+            {lines}
+            {scatters}
+            {legends}
+          </g>
+          {voronoi}
+          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        </Chart>
+      </div>
     )
   }
 }

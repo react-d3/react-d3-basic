@@ -10,7 +10,8 @@ import {
 } from '../../index';
 
 (() => {
-  // testing data: https://gist.githubusercontent.com/mbostock/3884955/raw/18407febaa958769cd9a5691e4e13a5e6211557b/data.tsv
+  var generalChartData = require('dsv?delimiter=\t!./data/temp.tsv')
+
   const parseDate = d3.time.format("%Y%m%d").parse;
 
   const width = 960,
@@ -50,7 +51,7 @@ import {
     xTickOrient = 'bottom',
     xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
-    xScale = d3.time.scale(),
+    xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
     y = (d) => {
@@ -60,7 +61,7 @@ import {
     yTickOrient = 'left',
     yDomain = [20, 100],
     yRange = [height - margins.top - margins.bottom, 0],
-    yScale = d3.scale.linear(),
+    yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Temperature (ºF)";
 
@@ -117,6 +118,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-line-chart')
+  , document.getElementById('data-line-chart-multi')
   )
 })()
