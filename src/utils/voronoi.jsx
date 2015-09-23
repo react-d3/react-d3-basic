@@ -50,15 +50,15 @@ export default class Voronoi extends Component {
     .enter().append("path")
       .attr("d", (d) => { return "M" + d.join("L") + "Z"; })
       .datum((d) => { return d.point; })
-      .on("mouseover", focus? (d) => { return onMouseOver(d, focusDom, stack)}: onMouseOver)
-      .on("mouseout", focus? (d) => { return onMouseOut(d, focusDom, stack)}: onMouseOut)
+      .on("mouseover",  (d) => { return focus? onMouseOver(d, focusDom, stack): onMouseOver(d)})
+      .on("mouseout", (d) => { return focus? onMouseOut(d, focusDom, stack): onMouseOut(d)})
 
     // build new focus dom
     if(focus) {
       var focusDom = d3.select(dom)
-      .append("g")
-        .attr("transform", "translate(-100,-100)")
-        .attr("class", "react-d3-basics__voronoi_utils__focus");
+        .append("g")
+          .attr("transform", "translate(-100,-100)")
+          .attr("class", "react-d3-basics__voronoi_utils__focus");
 
       focusDom.append("circle")
         .attr("class", "focus__inner_circle")

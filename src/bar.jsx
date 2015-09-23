@@ -22,8 +22,39 @@ import {
   default as Bar,
 } from './components/bar';
 
+import {
+  default as Voronoi,
+} from './utils/voronoi';
+
+import {
+  default as Tooltip,
+} from './utils/tooltip';
+
 
 export default class BarChart extends xyChart {
+
+  _mouseOver(d, dom) {
+
+    d3.select(dom)
+      .style("fill-opacity", 0.8);
+
+    this.setState({
+      xTooltip: d3.event.clientX,
+      yTooltip: d3.event.clientY,
+      contentTooltip: d
+    })
+  }
+
+  _mouseOut(d, dom, opacity) {
+    d3.select(dom)
+      .style("fill-opacity", opacity);
+
+    this.setState({
+      xTooltip: null,
+      yTooltip: null,
+      contentTooltip: null
+    })
+  }
 
   render() {
 
@@ -37,7 +68,8 @@ export default class BarChart extends xyChart {
       chartSeries,
       showLegend,
       showXGrid,
-      showYGrid
+      showYGrid,
+      showTooltip
     } = this.props;
 
     if(showXGrid) {
@@ -52,26 +84,33 @@ export default class BarChart extends xyChart {
       // if x and y scale is all set, doing plotting...
       if(chartSeries) {
         var bars = chartSeriesData.map((d, i) => {
-          return <Bar dataset={d} key={i} {...this.props} {...this.state} />
+          return <Bar dataset={d} key={i} {...this.props} {...this.state} onMouseOver={this._mouseOver.bind(this)} onMouseOut={this._mouseOut.bind(this)} />
         })
       }
 
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
+
+      if(showTooltip) {
+        var tooltip = <Tooltip {...this.props} {...this.state}/>
+      }
     }
 
     return (
-      <Chart {...this.props}>
-        {xgrid}
-        {ygrid}
-        <g ref= "plotGroup">
-          {bars}
-          {legends}
-        </g>
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-      </Chart>
+      <div>
+        {tooltip}
+        <Chart {...this.props}>
+          {xgrid}
+          {ygrid}
+          <g ref= "plotGroup">
+            {legends}
+            {bars}
+          </g>
+          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        </Chart>
+      </div>
     )
   }
 }

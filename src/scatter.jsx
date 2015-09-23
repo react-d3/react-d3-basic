@@ -95,6 +95,3 @@ export default class ScatterPlot extends xyChart {
     )
   }
 }
-
-ScatterPlot.defaultProps = {
-}

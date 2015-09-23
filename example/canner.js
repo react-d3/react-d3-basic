@@ -53,4 +53,12 @@ module.exports = [{
     "type": "area_stack",
     "prefix": ENV? 'min': 'origin'
   }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/bar.html",
+  "data": {
+    "title": "Bar Chart",
+    "type": "bar",
+    "prefix": ENV? 'min': 'origin'
+  }
 }]

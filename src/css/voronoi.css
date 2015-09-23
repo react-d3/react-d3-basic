@@ -1,4 +1,5 @@
 .react-d3-basics__voronoi_utils path {
   fill: none;
-  pointer-events: all;  
+  pointer-events: all;
+  stroke: red;
 }

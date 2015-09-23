@@ -10,11 +10,29 @@ export default class Bar extends Component {
     super(props);
   }
 
+  static defaultProps = {
+    interpolate: null,
+    barOpacity: 0.6,
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
+  }
+
   componentDidMount () {
-    const { height, margins, dataset, barClass, barOpacity, xScaleSet, yScaleSet } = this.props;
+    const {
+      height,
+      margins,
+      dataset,
+      barClass,
+      barOpacity,
+      xScaleSet,
+      yScaleSet,
+      onMouseOut,
+      onMouseOver,
+    } = this.props;
 
     // make areas
-    var chart = d3.selectAll(React.findDOMNode(this.refs.barGroup))
+    var chart = d3.select(React.findDOMNode(this.refs.barGroup))
+      .selectAll("rect")
       .data(dataset.data)
     .enter().append("rect")
       .attr("class", `${barClass} bar`)
@@ -23,8 +41,9 @@ export default class Bar extends Component {
       .attr("y", (d) => { return yScaleSet(d.y); })
       .attr("height", (d) => { return height - margins.top - margins.bottom - yScaleSet(d.y); })
       .style("fill", dataset.color )
-      .style("fill-opacity", barOpacity);
-
+      .style("fill-opacity", barOpacity)
+      .on("mouseover", function(d) { return onMouseOver(d, this); })
+      .on("mouseout", function(d) { return onMouseOut(d, this, barOpacity); })
 
   }
 
@@ -37,9 +56,4 @@ export default class Bar extends Component {
       </g>
     )
   }
-}
-
-Bar.defaultProps = {
-  interpolate: null,
-  barOpacity: 0.6
 }

@@ -24,6 +24,54 @@ export default class xyChart extends Component {
     }
   }
 
+  static defaultProps = {
+    showLegend: true,
+    categoricalColors: d3.scale.category10(),
+    showXGrid: true,
+    showYGrid: true,
+    showXAxis: true,
+    showYAxis: true,
+  }
+
+  static propTypes = {
+    title: PropTypes.string,
+    data: PropTypes.array.isRequired,
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    id: PropTypes.string,
+    margins: PropTypes.object.isRequired,
+    svgClassName: PropTypes.string,
+    titleClassName: PropTypes.string,
+    yAxisClassName: PropTypes.string,
+    xAxisClassName: PropTypes.string,
+    legendClassName: PropTypes.string,
+    lineClass: PropTypes.string,
+    scatterClass: PropTypes.string,
+    showScatter: PropTypes.bool,
+    showLegend: PropTypes.bool,
+    showXAxis: PropTypes.bool,
+    showYAxis: PropTypes.bool,
+    lineMulti: PropTypes.array,
+    interpolate: PropTypes.string,
+    legendPosition: PropTypes.oneOf(['left', 'right']),
+    x: PropTypes.func.isRequired,
+    xDomain: PropTypes.array,
+    xRange: PropTypes.array,
+    xScale: PropTypes.string.isRequired,
+    xOrient: PropTypes.oneOf(['bottom', 'top']),
+    xTickOrient: PropTypes.oneOf(['bottom', 'top']),
+    xAxisClassName: PropTypes.string,
+    xLabel: PropTypes.string,
+    y: PropTypes.func.isRequired,
+    yDomain: PropTypes.array,
+    yRange: PropTypes.array,
+    yScale: PropTypes.string.isRequired,
+    yOrient: PropTypes.oneOf(['right', 'left']),
+    yTickOrient: PropTypes.oneOf(['right', 'left']),
+    yAxisClassName: PropTypes.string,
+    yLabel: PropTypes.string,
+  }
+
   setScale(axis, func) {
 
     if(axis === 'x'){
@@ -40,7 +88,8 @@ export default class xyChart extends Component {
   }
 
   voronoiMouseOut(d, focus) {
-    focus.attr("transform", "translate(-100,-100)");
+    if(focus)
+      focus.attr("transform", "translate(-100,-100)");
 
     this.setState({
       xTooltip: null,
@@ -57,18 +106,20 @@ export default class xyChart extends Component {
 
     var newY = stack? yScaleSet(d.y + d.y0): yScaleSet(d.y);
 
-    focus.attr("transform", "translate(" + xScaleSet(d.x) + "," + newY + ")");
+    if(focus) {
+      focus.attr("transform", "translate(" + xScaleSet(d.x) + "," + newY + ")");
 
-    focus.select(".focus__inner_circle")
-      .style('fill', d.color)
+      focus.select(".focus__inner_circle")
+        .style('fill', d.color)
 
-    focus.select(".focus__line")
-      .style('stroke', d.color)
+      focus.select(".focus__line")
+        .style('stroke', d.color)
 
-    focus.select(".focus__outer_circle")
-      .style('fill', 'none')
-      .style('stroke', d.color)
-      .style('stroke-width', 3)
+      focus.select(".focus__outer_circle")
+        .style('fill', 'none')
+        .style('stroke', d.color)
+        .style('stroke-width', 3)
+    }
 
     this.setState({
       xTooltip: d3.event.clientX,
@@ -106,52 +157,4 @@ export default class xyChart extends Component {
 
     return chartSeriesData;
   }
-}
-
-xyChart.defaultProps = {
-  showLegend: true,
-  categoricalColors: d3.scale.category10(),
-  showXGrid: true,
-  showYGrid: true,
-  showXAxis: true,
-  showYAxis: true,
-}
-
-xyChart.propTypes = {
-  title: PropTypes.string,
-  data: PropTypes.array.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  id: PropTypes.string,
-  margins: PropTypes.object.isRequired,
-  svgClassName: PropTypes.string,
-  titleClassName: PropTypes.string,
-  yAxisClassName: PropTypes.string,
-  xAxisClassName: PropTypes.string,
-  legendClassName: PropTypes.string,
-  lineClass: PropTypes.string,
-  scatterClass: PropTypes.string,
-  showScatter: PropTypes.bool,
-  showLegend: PropTypes.bool,
-  showXAxis: PropTypes.bool,
-  showYAxis: PropTypes.bool,
-  lineMulti: PropTypes.array,
-  interpolate: PropTypes.string,
-  legendPosition: PropTypes.oneOf(['left', 'right']),
-  x: PropTypes.func.isRequired,
-  xDomain: PropTypes.array,
-  xRange: PropTypes.array,
-  xScale: PropTypes.string.isRequired,
-  xOrient: PropTypes.oneOf(['bottom', 'top']),
-  xTickOrient: PropTypes.oneOf(['bottom', 'top']),
-  xAxisClassName: PropTypes.string,
-  xLabel: PropTypes.string,
-  y: PropTypes.func.isRequired,
-  yDomain: PropTypes.array,
-  yRange: PropTypes.array,
-  yScale: PropTypes.string.isRequired,
-  yOrient: PropTypes.oneOf(['right', 'left']),
-  yTickOrient: PropTypes.oneOf(['right', 'left']),
-  yAxisClassName: PropTypes.string,
-  yLabel: PropTypes.string,
 }

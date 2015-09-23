@@ -74,6 +74,7 @@ import {
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
+      showTooltip= {true}
       x= {x}
       xDomain= {xDomain}
       xRangeRoundBands= {xRangeRoundBands}
