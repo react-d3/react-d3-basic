@@ -69,4 +69,28 @@ module.exports = [{
     "type": "bar_group",
     "prefix": ENV? 'min': 'origin'
   }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/bar_stack.html",
+  "data": {
+    "title": "Bar Stack Chart",
+    "type": "bar_stack",
+    "prefix": ENV? 'min': 'origin'
+  }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/pie.html",
+  "data": {
+    "title": "Pie Chart",
+    "type": "pie",
+    "prefix": ENV? 'min': 'origin'
+  }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/donut.html",
+  "data": {
+    "title": "Donut Chart",
+    "type": "donut",
+    "prefix": ENV? 'min': 'origin'
+  }
 }]

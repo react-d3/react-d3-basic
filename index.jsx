@@ -24,7 +24,7 @@ import {
 
 import {
   default as PieChart
-} from './src/inherit/pieChart';
+} from './src/pie';
 
 require('./src/css/pie.css')
 
