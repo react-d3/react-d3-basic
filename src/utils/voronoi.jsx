@@ -27,6 +27,7 @@ export default class Voronoi extends Component {
       onMouseOver,
       onMouseOut,
       focus,
+      stack,
       height
     } = this.props;
 
@@ -40,7 +41,7 @@ export default class Voronoi extends Component {
       .map((d) => { return d.values; })
 
     var voronoiPolygon = this._setGeomVoronoi().call(this, nestData)
-    
+
     // make voronoi
     var dom = React.findDOMNode(this.refs.voronoi);
     d3.select(dom)
@@ -49,8 +50,8 @@ export default class Voronoi extends Component {
     .enter().append("path")
       .attr("d", (d) => { return "M" + d.join("L") + "Z"; })
       .datum((d) => { return d.point; })
-      .on("mouseover", focus? (d) => { return onMouseOver(d, focusDom)}: onMouseOver)
-      .on("mouseout", focus? (d) => { return onMouseOut(d, focusDom)}: onMouseOut)
+      .on("mouseover", focus? (d) => { return onMouseOver(d, focusDom, stack)}: onMouseOver)
+      .on("mouseout", focus? (d) => { return onMouseOut(d, focusDom, stack)}: onMouseOut)
 
     // build new focus dom
     if(focus) {
@@ -88,12 +89,13 @@ export default class Voronoi extends Component {
       x,
       xScaleSet,
       y,
-      yScaleSet
+      yScaleSet,
+      stack
     } = this.props;
 
     var voronoi = initVoronoi()
       .x((d) => { return xScaleSet(d.x); })
-      .y((d) => { return yScaleSet(d.y); })
+      .y((d) => { return stack ? yScaleSet(d.y + d.y0): yScaleSet(d.y); })
       .clipExtent([
         [-margins.left, -margins.top],
         [width + margins.right, height + margins.bottom]

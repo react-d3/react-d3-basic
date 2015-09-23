@@ -41,6 +41,10 @@ import {
 
 export default class LineChart extends xyChart {
 
+  static defaultProps = {
+    showScatter: false
+  }
+
   render() {
 
     var lines;
@@ -121,8 +125,4 @@ export default class LineChart extends xyChart {
       </div>
     )
   }
-}
-
-LineChart.defaultProps = {
-  showScatter: false
 }

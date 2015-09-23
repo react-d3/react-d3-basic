@@ -49,13 +49,15 @@ export default class xyChart extends Component {
     })
   }
 
-  voronoiMouseOver(d, focus) {
+  voronoiMouseOver(d, focus, stack) {
     const {
       xScaleSet,
       yScaleSet
     } = this.state;
 
-    focus.attr("transform", "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")");
+    var newY = stack? yScaleSet(d.y + d.y0): yScaleSet(d.y);
+
+    focus.attr("transform", "translate(" + xScaleSet(d.x) + "," + newY + ")");
 
     focus.select(".focus__inner_circle")
       .style('fill', d.color)
