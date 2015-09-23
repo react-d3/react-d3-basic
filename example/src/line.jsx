@@ -88,6 +88,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'right'
     />
-  , document.getElementById('data-line-chart')
+  , document.getElementById('data_line')
   )
 })()

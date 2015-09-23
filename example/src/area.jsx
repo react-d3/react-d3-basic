@@ -108,6 +108,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'right'
     />
-  , document.getElementById('data-area-chart')
+  , document.getElementById('data_area')
   )
 })()

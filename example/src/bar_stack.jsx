@@ -136,6 +136,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-bar-stack-chart')
+  , document.getElementById('data_bar_stack')
   )
 })()

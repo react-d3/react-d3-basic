@@ -82,6 +82,6 @@ import {
       pieSort = {d3.descending}
 
     />
-  , document.getElementById('data-donut-chart')
+  , document.getElementById('data_donut')
   )
 })()

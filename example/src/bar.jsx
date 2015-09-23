@@ -11,7 +11,7 @@ import {
 
 (() => {
   var generalChartData = require('dsv?delimiter=\t!./data/letter.tsv')
-  
+
   const width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
@@ -92,6 +92,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-bar-chart')
+  , document.getElementById('data_bar')
   )
 })()

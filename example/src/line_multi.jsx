@@ -120,6 +120,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-line-chart-multi')
+  , document.getElementById('data_line_multi')
   )
 })()

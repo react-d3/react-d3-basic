@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "NODE_ENV=0 webpack -w",
     "site-build": "NODE_ENV=1 webpack",
-    "site": "git subtree push --prefix example origin gh-pages"
+    "site": "NODE_ENV=1 canner-core build ./example/canner.js && git subtree push --prefix example origin gh-pages",
+    "dev": "NODE_ENV=0 canner-core build ./example/canner.js && npm run watch"
   },
   "author": "ElixirDoc team",
   "license": "Apache 2.0",

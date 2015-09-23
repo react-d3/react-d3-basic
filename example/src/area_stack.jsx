@@ -109,6 +109,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-area-stack-chart')
+  , document.getElementById('data_area_stack')
   )
 })()

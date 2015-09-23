@@ -138,6 +138,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-bar-group-chart')
+  , document.getElementById('data_bar_group')
   )
 })()

@@ -107,6 +107,6 @@ import {
       yLabel = {yLabel}
       yLabelPosition = 'left'
     />
-  , document.getElementById('data-scatter-chart')
+  , document.getElementById('data_scatter')
   )
 })()
