@@ -10,6 +10,12 @@ export default class Pie extends Component {
     super(props);
   }
 
+  static defaultProps = {
+    initArc: d3.svg.arc(),
+    initPie: d3.layout.pie(),
+    pieOpacity: 0.8
+  }
+
   componentDidMount () {
     const {
       initArc,
@@ -19,12 +25,19 @@ export default class Pie extends Component {
       pieSort,
       value,
       chartSeriesData,
-      radius
+      radius,
+      onMouseOut,
+      onMouseOver,
+      pieOpacity
     } = this.props;
 
 
-    var arc = initArc
+    var arc = d3.svg.arc()
       .outerRadius(outerRadius)
+      .innerRadius(innerRadius);
+
+    var arcOver = d3.svg.arc()
+      .outerRadius(outerRadius + 10)
       .innerRadius(innerRadius);
 
     var pie = initPie
@@ -40,7 +53,12 @@ export default class Pie extends Component {
 
     g.append("path")
       .attr("d", arc)
-      .style("fill", (d) => { return d.data.color; });
+      .style("fill", (d) => { return d.data.color; })
+      .style("fill-opacity", pieOpacity)
+      // not using ES6 fat arrow syntax, cause it will cause 'this' variable not passing issue see details in here:
+      // https://github.com/mbostock/d3/issues/2246
+      .on("mouseover", function(d) { return onMouseOver(d, this, arcOver); })
+      .on("mouseout", function(d) { return onMouseOut(d, this, pieOpacity, arc); })
 
     var labelr = radius + 10;
 
@@ -82,9 +100,4 @@ export default class Pie extends Component {
       </g>
     )
   }
-}
-
-Pie.defaultProps = {
-  initArc: d3.svg.arc(),
-  initPie: d3.layout.pie()
 }
