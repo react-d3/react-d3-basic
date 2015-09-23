@@ -22,10 +22,37 @@ import {
   default as BarGroup,
 } from './components/bar_group';
 
+import {
+  default as Tooltip,
+} from './utils/tooltip';
+
 export default class BarGroupChart extends xyChart {
 
+  _mouseOver(d, dom) {
+
+    d3.select(dom)
+      .style("fill-opacity", 1);
+
+    this.setState({
+      xTooltip: d3.event.clientX,
+      yTooltip: d3.event.clientY,
+      contentTooltip: d
+    })
+  }
+
+  _mouseOut(d, dom, opacity) {
+    d3.select(dom)
+      .style("fill-opacity", opacity);
+
+    this.setState({
+      xTooltip: null,
+      yTooltip: null,
+      contentTooltip: null
+    })
+  }
+
   render() {
-    
+
     const {
       xScaleSet,
       yScaleSet,
@@ -35,7 +62,8 @@ export default class BarGroupChart extends xyChart {
       chartSeries,
       showLegend,
       showXGrid,
-      showYGrid
+      showYGrid,
+      showTooltip
     } = this.props;
 
     if(showXGrid) {
@@ -58,26 +86,33 @@ export default class BarGroupChart extends xyChart {
           .rangeRoundBands([0, xScaleSet.rangeBand()]);
 
         var bargroups = chartSeriesData.map((d, i) => {
-          return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} />
+          return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} onMouseOver={this._mouseOver.bind(this)} onMouseOut={this._mouseOut.bind(this)} />
         })
       }
 
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
+
+      if(showTooltip) {
+        var tooltip = <Tooltip {...this.props} {...this.state}/>
+      }
     }
 
     return (
-      <Chart {...this.props}>
-        {xgrid}
-        {ygrid}
-        <g ref= "plotGroup">
-          {bargroups}
-          {legends}
-        </g>
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-      </Chart>
+      <div>
+        {tooltip}
+        <Chart {...this.props}>
+          {xgrid}
+          {ygrid}
+          <g ref= "plotGroup">
+            {legends}
+            {bargroups}
+          </g>
+          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        </Chart>
+      </div>
     )
   }
 }

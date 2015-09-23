@@ -61,4 +61,12 @@ module.exports = [{
     "type": "bar",
     "prefix": ENV? 'min': 'origin'
   }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/bar_group.html",
+  "data": {
+    "title": "Bar Group Chart",
+    "type": "bar_group",
+    "prefix": ENV? 'min': 'origin'
+  }
 }]

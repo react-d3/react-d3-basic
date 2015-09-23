@@ -23,10 +23,6 @@ import {
 } from './components/bar';
 
 import {
-  default as Voronoi,
-} from './utils/voronoi';
-
-import {
   default as Tooltip,
 } from './utils/tooltip';
 
@@ -36,7 +32,7 @@ export default class BarChart extends xyChart {
   _mouseOver(d, dom) {
 
     d3.select(dom)
-      .style("fill-opacity", 0.8);
+      .style("fill-opacity", 1);
 
     this.setState({
       xTooltip: d3.event.clientX,
