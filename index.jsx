@@ -26,7 +26,6 @@ import {
   default as PieChart
 } from './src/pie';
 
-require('./src/css/pie.css')
 
 export {LineChart as LineChart};
 export {ScatterPlot as ScatterPlot}
