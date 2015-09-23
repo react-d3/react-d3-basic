@@ -12,6 +12,7 @@ import {
 (() => {
   var generalChartData = require('dsv?delimiter=,!./data/age.csv')
 
+  console.log(BarGroupChart)
   var ageNames = d3.keys(generalChartData[0]).filter(function(key) { return key !== "State"; });
 
   generalChartData.forEach(function(d) {

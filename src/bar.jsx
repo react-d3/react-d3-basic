@@ -29,7 +29,7 @@ export default class BarChart extends xyChart {
 
     const {
       x,
-      ScaleSet,
+      xScaleSet,
       yScaleSet,
       chartSeriesData
     } = this.state;

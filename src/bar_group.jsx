@@ -22,9 +22,10 @@ import {
   default as BarGroup,
 } from './components/bar_group';
 
-export class BarGroupChart extends xyChart {
+export default class BarGroupChart extends xyChart {
 
   render() {
+    
     const {
       xScaleSet,
       yScaleSet,
