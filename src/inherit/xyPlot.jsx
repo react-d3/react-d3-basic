@@ -13,6 +13,7 @@ export default class xyChart extends Component {
     const {chartSeries} = this.props;
 
     this.setScale = this.setScale.bind(this);
+    this.setDomain = this.setDomain.bind(this);
 
     this.state = {
       xTooltip: null,
@@ -20,6 +21,8 @@ export default class xyChart extends Component {
       contentTooltip: null,
       xScaleSet: null,
       yScaleSet: null,
+      xDomainSet: null,
+      yDomainSet: null,
       chartSeriesData: chartSeries? this.mkSeries(): null
     }
   }
@@ -73,7 +76,6 @@ export default class xyChart extends Component {
   }
 
   setScale(axis, func) {
-
     if(axis === 'x'){
       // set x scale
       this.setState({
@@ -83,6 +85,20 @@ export default class xyChart extends Component {
       // set y scale
       this.setState({
         yScaleSet: func
+      })
+    }
+  }
+
+  setDomain(axis, val) {
+    if(axis === 'x'){
+      // set x scale
+      this.setState({
+        xDomainSet: val
+      })
+    }else if(axis === 'y'){
+      // set y scale
+      this.setState({
+        yDomainSet: val
       })
     }
   }

@@ -84,7 +84,6 @@ import {
     yLabel = "Population",
     yTickFormat = d3.format(".2s");
 
-  console.log(d3.max(generalChartData, function(d) { return d.total; }))
   React.render(
     <BarStackChart
       title= {title}

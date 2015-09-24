@@ -26,6 +26,10 @@ import {
   default as PieChart
 } from './src/pie';
 
+import {
+  default as BrushLine,
+} from './src/brush_line';
+
 
 export {LineChart as LineChart};
 export {ScatterPlot as ScatterPlot}
@@ -34,3 +38,4 @@ export {BarChart as BarChart}
 export {BarGroupChart as BarGroupChart}
 export {BarStackChart as BarStackChart}
 export {PieChart as PieChart}
+export {BrushLine as BrushLine}

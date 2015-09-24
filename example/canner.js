@@ -93,4 +93,12 @@ module.exports = [{
     "type": "donut",
     "prefix": ENV? 'min': 'origin'
   }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/brush_line.html",
+  "data": {
+    "title": "Brush Line Chart",
+    "type": "brush_line",
+    "prefix": ENV? 'min': 'origin'
+  }
 }]

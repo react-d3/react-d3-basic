@@ -11,19 +11,34 @@ export default class Scatter extends Component {
     super(props);
   }
 
-  componentDidMount () {
-    const { dataset, scatterClass, x, xScaleSet, y, yScaleSet } = this.props;
+  static defaultProps = {
+    defaultSymbol: 'circle',
+    defaultSymbolSize: 8
+  }
 
-    // make dot
+  componentDidMount () {
+    const {
+      dataset,
+      scatterClass,
+      x,
+      xScaleSet,
+      y,
+      yScaleSet,
+      defaultSymbol,
+      defaultSymbolSize
+    } = this.props;
+
+    var symbol = dataset.symbol? dataset.symbol: defaultSymbol;
+    var symbolSize = dataset.symbolSize? dataset.symbolSize: defaultSymbolSize;
+    
     d3.select(React.findDOMNode(this.refs.scatterPlot))
       .selectAll('.' + scatterClass)
       .data(dataset.data)
-    .enter().append('circle')
-      .attr('class', scatterClass)
-      .attr('r', 3.5)
-      .attr('cx', (d) => { return xScaleSet(d.x) })
-      .attr('cy', (d) => { return yScaleSet(d.y) })
+    .enter().append("path")
+      .attr("transform", (d) => { return "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")"; })
+      .attr("d", d3.svg.symbol().size((d) => { return symbolSize * symbolSize;}).type(symbol))
       .style('fill', dataset.color)
+
   }
 
   render() {
@@ -34,7 +49,4 @@ export default class Scatter extends Component {
       </g>
     )
   }
-}
-
-Scatter.defaultProps = {
 }

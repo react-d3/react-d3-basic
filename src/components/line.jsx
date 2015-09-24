@@ -11,21 +11,35 @@ export default class Line extends Component {
     super(props);
   }
 
+  static defaultProps = {
+    interpolate: null
+  }
+
   componentDidMount () {
-    const { dataset, lineClass } = this.props;
+    const { dataset, lineClass , showBrush} = this.props;
 
     // make lines
-    d3.select(React.findDOMNode(this.refs.linePath))
+    var lines = d3.select(React.findDOMNode(this.refs.linePath))
       .datum(dataset.data)
       .attr("class", `${lineClass} line`)
       .attr("d", this._setAxes())
       .style("stroke", dataset.color);
+
+    if(showBrush)
+      lines.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
   }
 
   _setAxes () {
-    const { initPlot, x, y, xScaleSet, yScaleSet, interpolate } = this.props;
+    const {
+      x,
+      y,
+      xScaleSet,
+      yScaleSet,
+      height,
+      interpolate
+    } = this.props;
 
-    return initPlot
+    return d3.svg.line()
       .interpolate(interpolate)
       .x((d) => { return xScaleSet(d.x) })
       .y((d) => { return yScaleSet(d.y) });
@@ -39,9 +53,4 @@ export default class Line extends Component {
       </path>
     )
   }
-}
-
-Line.defaultProps = {
-  initPlot: d3.svg.line(),
-  interpolate: null
 }

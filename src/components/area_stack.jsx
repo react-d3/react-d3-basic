@@ -16,8 +16,6 @@ export default class AreaStack extends Component {
     const _setStack = this._setStack();
     const _setAxis = this._setAxes();
 
-    console.log(_setStack(dataset))
-
     // make areas
     var chart = d3.selectAll(React.findDOMNode(this.refs.areaGroup))
       .data(_setStack(dataset))

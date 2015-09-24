@@ -38,6 +38,13 @@ import {
   default as Tooltip,
 } from './utils/tooltip';
 
+import {
+  default as Brush,
+} from './utils/brush';
+
+import {
+  default as BrushFocus,
+} from './utils/brush_focus';
 
 export default class LineChart extends xyChart {
 
@@ -54,6 +61,8 @@ export default class LineChart extends xyChart {
     const {
       xScaleSet,
       yScaleSet,
+      xDomainSet,
+      yDomainSet,
       chartSeriesData,
     } = this.state;
 
@@ -62,10 +71,20 @@ export default class LineChart extends xyChart {
       showXGrid,
       showYGrid,
       showTooltip,
+      showBrush,
       interpolate,
       chartSeries,
       showLegend
     } = this.props;
+
+    var {
+      xDomain,
+      ...otherProps
+    } = this.props;
+
+    if(xDomainSet) {
+      xDomain = xDomainSet;
+    }
 
     if(showXGrid) {
       var xgrid = <Grid type="x" key="xgrid" {...this.props} {...this.state} />
@@ -87,6 +106,12 @@ export default class LineChart extends xyChart {
             return <Line dataset={d} key={i} {...this.props} {...this.state} />
           }
         })
+
+        if(showBrush){
+          var focus = <BrushFocus {...this.props} />
+          var brush = <Brush {...this.props} {...this.state} chartSeriesData={chartSeriesData} setDomain={this.setDomain} />
+        }
+
       }
       var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
 
@@ -111,6 +136,7 @@ export default class LineChart extends xyChart {
       <div>
         {tooltip}
         <Chart {...this.props}>
+          {focus}
           {xgrid}
           {ygrid}
           <g ref= "plotGroup">
@@ -119,9 +145,10 @@ export default class LineChart extends xyChart {
             {legends}
           </g>
           {voronoi}
-          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+          <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomain} />
           <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
         </Chart>
+        {brush}
       </div>
     )
   }

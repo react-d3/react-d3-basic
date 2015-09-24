@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "NODE_ENV=0 webpack -w",
     "site-build": "NODE_ENV=1 webpack",
-    "site": "NODE_ENV=1 canner-core build ./example/canner.js && git add . && git commit -m 'update site' && git subtree push --prefix example origin gh-pages",
+    "site": "NODE_ENV=1 canner-core build ./example/canner.js && git add . && git commit -m 'update site' && git subtree push --prefix example origin gh-pages && git push origin master",
     "dev": "NODE_ENV=0 canner-core build ./example/canner.js && npm run watch"
   },
   "author": "ElixirDoc team",
@@ -29,6 +29,6 @@
   "dependencies": {
     "d3": "^3.5.6",
     "react": "^0.13.3",
-    "react-d3-core": "0.0.5"
+    "react-d3-core": "0.0.8"
   }
 }
