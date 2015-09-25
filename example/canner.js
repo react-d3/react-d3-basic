@@ -51,6 +51,13 @@ module.exports = [{
     "charts": brush_charts,
     "link": ENV? prod_brush_link: dev_brush_link
   }
+}, {
+  "layout": "./gallery.hbs",
+  "filename": "./example/combine.html",
+  "data": {
+    "charts": ["combine"],
+    "link": ENV? 'min/combine.min': 'origin/combine'
+  }
 },{
   "layout": "./charts.hbs",
   "filename": "./example/line.html",

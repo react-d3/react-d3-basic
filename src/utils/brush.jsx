@@ -158,7 +158,7 @@ export default class Brush extends Component {
     }
 
     return (
-      <Svg height={height} margins={margins}>
+      <Svg height={brushHeight} margins={margins}>
         <g ref="brushComponentGroup">
           {brushChart}
           <Xaxis height={brushHeight} {...otherProps} setScale={this.setBrushScale} />

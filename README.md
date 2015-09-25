@@ -26,6 +26,7 @@ See examples in [Gallery](http://react-d3.github.io/react-d3-basics/gallery.html
 - Line Chart
 - Multipule Line Chart
 - Scatter Plot
+- Area Stack Chart
 
 See examples in [Gallery](http://react-d3.github.io/react-d3-basics/brush_gallery.html)
 
