@@ -12,6 +12,12 @@ var charts = [
   "bar_stack",
   "pie",
   "donut"
+];
+
+var brush_charts = [
+  "brush_line",
+  "brush_line_multi",
+  "brush_scatter",
 ]
 
 var prod_link = charts.map(function(d) {
@@ -22,12 +28,27 @@ var dev_link = charts.map(function(d) {
   return 'origin/' + d
 })
 
+var prod_brush_link = brush_charts.map(function(d) {
+  return 'min/' + d + '.min'
+})
+
+var dev_brush_link = brush_charts.map(function(d) {
+  return 'origin/' + d
+})
+
 module.exports = [{
   "layout": "./gallery.hbs",
   "filename": "./example/gallery.html",
   "data": {
     "charts": charts,
     "link": ENV? prod_link: dev_link
+  }
+},{
+  "layout": "./gallery.hbs",
+  "filename": "./example/brush_gallery.html",
+  "data": {
+    "charts": brush_charts,
+    "link": ENV? prod_brush_link: dev_brush_link
   }
 },{
   "layout": "./charts.hbs",

@@ -18,14 +18,14 @@ import {
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "Multipule Line Chart",
+    title = "Multipule Line Chart With Brush",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
-    brushHeight = 300,
+    brushHeight = 200,
     yBrushRange = [brushHeight - margins.top - margins.bottom, 0],
     chartSeries = [
       {

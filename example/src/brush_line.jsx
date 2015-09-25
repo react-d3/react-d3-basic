@@ -17,13 +17,13 @@ import {
     height = 500,
     margins = {top: 20, right: 50, bottom: 30, left: 50},
     id = "test-chart",
-    title = "Simple Line Chart",
+    title = "Simple Line Chart With Brush",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
-    brushHeight = 300,
+    brushHeight = 200,
     chartSeries = [
       {
         field: 'age',
