@@ -105,7 +105,7 @@ export default class Combine extends XYPlot {
       <div>
         <Title title="Brush Multiple charts at once"/>
         {brush}
-        <h2 style={h2_style}>Brush the chart above!!! And two charts below will automaticlly update!</h2>
+        <h4 style={h2_style}>Brush the chart above!!! And two charts below will automaticlly update!</h4>
         <Svg {...this.props}>
           {focus1}
           {xgrid}

@@ -56,7 +56,7 @@ module.exports = [{
   "filename": "./example/combine.html",
   "data": {
     "charts": ["combine"],
-    "link": ENV? 'min/combine.min': 'origin/combine'
+    "link": ENV? ['min/combine.min']: ['origin/combine']
   }
 },{
   "layout": "./charts.hbs",
