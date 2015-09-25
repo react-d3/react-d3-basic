@@ -90,6 +90,8 @@ export default class xyChart extends Component {
   }
 
   setDomain(axis, val) {
+    console.log('setting xdomain')
+    console.log(val)
     if(axis === 'x'){
       // set x scale
       this.setState({

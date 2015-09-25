@@ -30,6 +30,10 @@ import {
   default as BrushLine,
 } from './src/brush_line';
 
+import {
+  default as BrushScatter,
+} from './src/brush_scatter';
+
 
 export {LineChart as LineChart};
 export {ScatterPlot as ScatterPlot}
@@ -39,3 +43,4 @@ export {BarGroupChart as BarGroupChart}
 export {BarStackChart as BarStackChart}
 export {PieChart as PieChart}
 export {BrushLine as BrushLine}
+export {BrushScatter as BrushScatter}

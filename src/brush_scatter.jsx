@@ -7,8 +7,8 @@ import {
 } from 'react';
 
 import {
-  default as LineChart
-} from './line';
+  default as Scatter
+} from './scatter';
 
 export default class BrushLine extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class BrushLine extends Component {
   render() {
     return (
       <div>
-        <LineChart {...this.props} showBrush={true} brushType="line"/>
+        <Scatter {...this.props} showBrush={true} brushType="scatter"/>
       </div>
     )
   }

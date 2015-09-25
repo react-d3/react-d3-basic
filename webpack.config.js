@@ -28,7 +28,9 @@ module.exports = [{
     bar_stack: js_root + '/bar_stack.jsx',
     pie: js_root + '/pie.jsx',
     donut: js_root + '/donut.jsx',
-    brush_line: js_root + '/brush_line.jsx'
+    brush_line: js_root + '/brush_line.jsx',
+    brush_line_multi: js_root + '/brush_line_multi.jsx',
+    brush_scatter: js_root + '/brush_scatter.jsx'
   },
 
   output: {

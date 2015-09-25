@@ -9,6 +9,9 @@ import {
 export default class Line extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      xDomain: this.props.xDomain
+    }
   }
 
   static defaultProps = {
@@ -16,6 +19,24 @@ export default class Line extends Component {
   }
 
   componentDidMount () {
+    this._mkLine();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      xDomainSet,
+    } = nextProps;
+
+    // when xDomainSet is update, xScaleSet is not update yet.
+    if(this.state.xDomain !== xDomainSet) {
+      this.setState({
+        xDomain: xDomainSet
+      })
+      this._mkLine();
+    }
+  }
+
+  _mkLine() {
     const { dataset, lineClass , showBrush} = this.props;
 
     // make lines
@@ -35,7 +56,6 @@ export default class Line extends Component {
       y,
       xScaleSet,
       yScaleSet,
-      height,
       interpolate
     } = this.props;
 

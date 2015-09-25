@@ -113,7 +113,10 @@ export default class LineChart extends xyChart {
         }
 
       }
-      var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
+
+      if(!showBrush){
+        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
+      }
 
       if(showScatter && !interpolate) {
         // show scatters in line chart

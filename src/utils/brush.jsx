@@ -21,6 +21,10 @@ import {
 } from '../components/area';
 
 import {
+  default as Scatter,
+} from '../components/scatter';
+
+import {
   default as xyChart
 } from '../inherit/xyPlot';
 
@@ -53,7 +57,7 @@ export default class Brush extends Component {
     }
   }
 
-  mkContent (nextState) {
+  _mkContent (nextState) {
     const {
       xBrushScaleSet,
       yBrushScaleSet,
@@ -94,8 +98,7 @@ export default class Brush extends Component {
       // x brush scale set is set
       // y brush scale set is set
       // and the brush is not set
-
-      this.mkContent(nextState);
+      this._mkContent(nextState);
 
       this.setState({
         brushSet: true
@@ -114,6 +117,7 @@ export default class Brush extends Component {
     const {
       brushHeight,
       yBrushRange,
+      brushType,
       margins,
       chartSeriesData
     } = this.props;
@@ -129,21 +133,27 @@ export default class Brush extends Component {
     } = this.props;
 
     if(xBrushScaleSet && yBrushScaleSet) {
-      var lines = chartSeriesData.map((d, i) => {
-        if(d.area) {
-          // area chart
-          return <AreaSimple dataset={d} key={i} height={brushHeight} yScaleSet={yBrushScaleSet} xScaleSet={xBrushScaleSet} {...otherProps}/>
-        } else {
-          // simple line chart
-          return <Line dataset={d} key={i} height={brushHeight} yScaleSet={yBrushScaleSet} xScaleSet={xBrushScaleSet} {...otherProps}/>
-        }
-      })
+      if(brushType === 'line') {
+        var brushChart = chartSeriesData.map((d, i) => {
+          if(d.area) {
+            // area chart
+            return <AreaSimple dataset={d} key={i} height={brushHeight} yScaleSet={yBrushScaleSet} xScaleSet={xBrushScaleSet} {...otherProps}/>
+          } else {
+            // simple line chart
+            return <Line dataset={d} key={i} height={brushHeight} yScaleSet={yBrushScaleSet} xScaleSet={xBrushScaleSet} {...otherProps}/>
+          }
+        })
+      }else if(brushType === 'scatter') {
+        var brushChart = chartSeriesData.map((d, i) => {
+          return <Scatter dataset={d} key={i} brushSymbol={true} height={brushHeight} yScaleSet={yBrushScaleSet} xScaleSet={xBrushScaleSet} {...otherProps} />
+        })
+      }
     }
 
     return (
       <Svg height={height} margins={margins}>
         <g ref="brushComponentGroup">
-          {lines}
+          {brushChart}
           <Xaxis height={brushHeight} {...otherProps} setScale={this.setBrushScale} />
           <Yaxis height={brushHeight} yRange={yBrushRange} showYAxis={false} yLabel={false} {...otherProps} setScale={this.setBrushScale}/>
           <g ref="brushRect" className="react-d3-basic__brush__rect"></g>

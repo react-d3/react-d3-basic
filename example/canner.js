@@ -101,4 +101,20 @@ module.exports = [{
     "type": "brush_line",
     "prefix": ENV? 'min': 'origin'
   }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/brush_line_multi.html",
+  "data": {
+    "title": "Brush Multipule Line Chart",
+    "type": "brush_line_multi",
+    "prefix": ENV? 'min': 'origin'
+  }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/brush_scatter.html",
+  "data": {
+    "title": "Brush Scatter Chart",
+    "type": "brush_scatter",
+    "prefix": ENV? 'min': 'origin'
+  }
 }]

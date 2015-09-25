@@ -11,6 +11,9 @@ require('../css/voronoi.css');
 export default class Voronoi extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      xDomainSet: null
+    }
   }
 
   static defaultProps = {
@@ -20,6 +23,25 @@ export default class Voronoi extends Component {
   }
 
   componentDidMount () {
+    this._mkVoronoi();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      xDomainSet
+    } = nextProps;
+
+    if(this.state.xDomainSet !== xDomainSet) {
+      this.setState({
+        xDomainSet: xDomainSet
+      })
+      d3.select(React.findDOMNode(this.refs.voronoi))
+        .html('');
+      this._mkVoronoi();
+    }
+  }
+
+  _mkVoronoi() {
     const {
       dataset,
       x,
@@ -42,6 +64,8 @@ export default class Voronoi extends Component {
 
     var voronoiPolygon = this._setGeomVoronoi().call(this, nestData)
 
+    if(focus)
+      var focusDom = this._mkFocus();
     // make voronoi
     var dom = React.findDOMNode(this.refs.voronoi);
     d3.select(dom)
@@ -52,32 +76,36 @@ export default class Voronoi extends Component {
       .datum((d) => { return d.point; })
       .on("mouseover",  (d) => { return focus? onMouseOver(d, focusDom, stack): onMouseOver(d)})
       .on("mouseout", (d) => { return focus? onMouseOut(d, focusDom, stack): onMouseOut(d)})
+  }
 
-    // build new focus dom
-    if(focus) {
-      var focusDom = d3.select(dom)
-        .append("g")
-          .attr("transform", "translate(-100,-100)")
-          .attr("class", "react-d3-basics__voronoi_utils__focus");
+  _mkFocus() {
+    const {
+      height
+    } = this.props;
 
-      focusDom.append("circle")
-        .attr("class", "focus__inner_circle")
-        .attr("r", 3);
+    var focusDom = d3.select(React.findDOMNode(this.refs.voronoi))
+      .append("g")
+        .attr("transform", "translate(-100,-100)")
+        .attr("class", "react-d3-basics__voronoi_utils__focus");
 
-      focusDom.append("circle")
-        .attr("class", "focus__outer_circle")
-        .attr("r", 7);
+    focusDom.append("circle")
+      .attr("class", "focus__inner_circle")
+      .attr("r", 3);
 
-      focusDom.append("line")
-        .attr("class", "focus__line")
-        .attr("x1", 0)
-        .attr("y1", -height)
-        .attr("x2", 0)
-        .attr("y2", height)
-        .style("stroke-width", 2)
-        .style("stroke-opacity", 0.5)
+    focusDom.append("circle")
+      .attr("class", "focus__outer_circle")
+      .attr("r", 7);
 
-    }
+    focusDom.append("line")
+      .attr("class", "focus__line")
+      .attr("x1", 0)
+      .attr("y1", -height)
+      .attr("x2", 0)
+      .attr("y2", height)
+      .style("stroke-width", 2)
+      .style("stroke-opacity", 0.5)
+
+    return focusDom;
   }
 
   _setGeomVoronoi () {
