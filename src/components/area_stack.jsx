@@ -38,7 +38,13 @@ export default class AreaStack extends Component {
   }
 
   _mkStack() {
-    const { dataset, areaClass, areaOpacity, showBrush } = this.props;
+    const {
+      dataset,
+      areaClass,
+      areaOpacity,
+      showBrush
+    } = this.props;
+
     const _setStack = this._setStack();
     const _setAxis = this._setAxes();
 
@@ -67,7 +73,15 @@ export default class AreaStack extends Component {
   }
 
   _setAxes () {
-    const { height, margins, initPlot, x, y, xScaleSet, yScaleSet, interpolate } = this.props;
+    const {
+      height,
+      margins,
+      x,
+      y,
+      xScaleSet,
+      yScaleSet,
+      interpolate
+    } = this.props;
 
     return d3.svg.area()
       .interpolate(interpolate)

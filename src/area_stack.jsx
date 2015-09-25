@@ -53,6 +53,7 @@ export default class AreaStackChart extends xyChart {
       yDomainSet,
       chartSeriesData,
     } = this.state;
+
     const {
       chartSeries,
       showLegend,
@@ -93,7 +94,7 @@ export default class AreaStackChart extends xyChart {
       }
 
       if(!showBrush){
-        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
+        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} stack={true} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
       }
 
       if(showLegend) {
