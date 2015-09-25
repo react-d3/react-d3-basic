@@ -30,6 +30,13 @@ import {
   default as Tooltip,
 } from './utils/tooltip';
 
+import {
+  default as Brush,
+} from './utils/brush';
+
+import {
+  default as BrushFocus,
+} from './utils/brush_focus';
 
 export default class AreaStackChart extends xyChart {
 
@@ -42,15 +49,27 @@ export default class AreaStackChart extends xyChart {
     const {
       xScaleSet,
       yScaleSet,
-      chartSeriesData
+      xDomainSet,
+      yDomainSet,
+      chartSeriesData,
     } = this.state;
     const {
       chartSeries,
       showLegend,
       showXGrid,
       showYGrid,
-      showTooltip
+      showTooltip,
+      showBrush,
     } = this.props;
+
+    var {
+      xDomain,
+      ...otherProps
+    } = this.props;
+
+    if(xDomainSet) {
+      xDomain = xDomainSet;
+    }
 
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />
@@ -65,9 +84,17 @@ export default class AreaStackChart extends xyChart {
       // if x and y scale is all set, doing plotting...
       if(chartSeries) {
         var areas = <AreaStack dataset={chartSeriesData} {...this.props} {...this.state} />
+
+        if(showBrush){
+          var focus = <BrushFocus {...this.props} />
+          var brush = <Brush {...this.props} {...this.state} chartSeriesData={chartSeriesData} setDomain={this.setDomain} />
+        }
+
       }
 
-      var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} stack={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
+      if(!showBrush){
+        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
+      }
 
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
@@ -82,6 +109,7 @@ export default class AreaStackChart extends xyChart {
       <div>
         {tooltip}
         <Chart {...this.props}>
+          {focus}
           {xgrid}
           {ygrid}
           <g ref= "plotGroup">
@@ -89,9 +117,10 @@ export default class AreaStackChart extends xyChart {
             {legends}
           </g>
           {voronoi}
-          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+          <Xaxis {...this.props} {...this.state} setScale={this.setScale} xDomain={xDomain}/>
           <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
         </Chart>
+        {brush}
       </div>
     )
   }

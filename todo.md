@@ -3,8 +3,5 @@
 - style
 - zoom axis
 
-- css
-  > clip-path
-
 - transition
 - duration

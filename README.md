@@ -21,6 +21,14 @@ Under Construction.
 
 See examples in [Gallery](http://react-d3.github.io/react-d3-basics/gallery.html)
 
+## Support Chart with Brush
+
+- Line Chart
+- Multipule Line Chart
+- Scatter Plot
+
+See examples in [Gallery](http://react-d3.github.io/react-d3-basics/brush_gallery.html)
+
 ## License
 
 Apache 2.0

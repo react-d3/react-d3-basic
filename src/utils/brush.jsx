@@ -25,6 +25,10 @@ import {
 } from '../components/scatter';
 
 import {
+  default as AreaStack,
+} from '../components/area_stack';
+
+import {
   default as xyChart
 } from '../inherit/xyPlot';
 
@@ -66,7 +70,8 @@ export default class Brush extends Component {
 
     const {
       brushHeight,
-      setDomain
+      setDomain,
+      margins
     } = this.props;
 
     var brush = d3.svg.brush()
@@ -80,7 +85,7 @@ export default class Brush extends Component {
       .call(brush)
     .selectAll('rect')
       .attr("y", -6)
-      .attr("height", brushHeight + 7)
+      .attr("height", brushHeight - margins.bottom - margins.top + 7)
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -147,6 +152,8 @@ export default class Brush extends Component {
         var brushChart = chartSeriesData.map((d, i) => {
           return <Scatter dataset={d} key={i} brushSymbol={true} height={brushHeight} yScaleSet={yBrushScaleSet} xScaleSet={xBrushScaleSet} {...otherProps} />
         })
+      }else if(brushType === 'area_stack') {
+        var brushChart = <AreaStack height={brushHeight} yScaleSet={yBrushScaleSet} xScaleSet={xBrushScaleSet} dataset={chartSeriesData} {...otherProps} />
       }
     }
 

@@ -138,4 +138,12 @@ module.exports = [{
     "type": "brush_scatter",
     "prefix": ENV? 'min': 'origin'
   }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./example/brush_area_stack.html",
+  "data": {
+    "title": "Brush Area Stack Chart",
+    "type": "brush_area_stack",
+    "prefix": ENV? 'min': 'origin'
+  }
 }]
