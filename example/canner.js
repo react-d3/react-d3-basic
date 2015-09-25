@@ -18,6 +18,7 @@ var brush_charts = [
   "brush_line",
   "brush_line_multi",
   "brush_scatter",
+  "brush_area_stack"
 ]
 
 var prod_link = charts.map(function(d) {
