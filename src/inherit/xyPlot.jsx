@@ -10,7 +10,12 @@ import {
 export default class xyChart extends Component {
   constructor(props) {
     super(props);
-    const {chartSeries, data} = this.props;
+    const {
+      chartSeries,
+      data,
+      xDomain,
+      yDomain,
+    } = this.props;
 
     this.setScale = this.setScale.bind(this);
     this.setDomain = this.setDomain.bind(this);
@@ -21,8 +26,8 @@ export default class xyChart extends Component {
       contentTooltip: null,
       xScaleSet: null,
       yScaleSet: null,
-      xDomainSet: null,
-      yDomainSet: null,
+      xDomainSet: xDomain,
+      yDomainSet: yDomain,
       dataSet: data,
       chartSeriesData: chartSeries? this.mkSeries(): null
     }
@@ -30,11 +35,11 @@ export default class xyChart extends Component {
 
   static defaultProps = {
     showLegend: true,
-    categoricalColors: d3.scale.category10(),
     showXGrid: true,
     showYGrid: true,
     showXAxis: true,
     showYAxis: true,
+    categoricalColors: d3.scale.category10(),
   }
 
   static propTypes = {

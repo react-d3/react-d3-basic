@@ -87,9 +87,9 @@ export default class LineChart extends xyChart {
       showYGrid,
       showTooltip,
       showBrush,
+      showLegend,
       interpolate,
       chartSeries,
-      showLegend
     } = this.props;
 
     var {
@@ -97,12 +97,9 @@ export default class LineChart extends xyChart {
       ...otherProps
     } = this.props;
 
-    if(xDomainSet) {
-      xDomain = xDomainSet;
-    }
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" key="xgrid" {...this.props} {...this.state} />
+      var xgrid = <Grid type="x" key="xgrid" {...otherProps} {...this.state} xDomain={xDomainSet}/>
     }
 
     if(showYGrid) {
@@ -163,7 +160,7 @@ export default class LineChart extends xyChart {
             {legends}
           </g>
           {voronoi}
-          <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomain} />
+          <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet}/>
           <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
         </Chart>
         {brush}

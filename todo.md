@@ -3,5 +3,5 @@
 - style
 - zoom axis
 
-- transition
-- duration
+
+- moving utilities out!

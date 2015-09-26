@@ -9,6 +9,7 @@ import {
 export default class Line extends Component {
   constructor (props) {
     super(props);
+    
     this.state = {
       xDomainSet: this.props.xDomain,
       dataSet: this.props.data
@@ -45,7 +46,12 @@ export default class Line extends Component {
   }
 
   _mkLine() {
-    const { dataset, lineClass , showBrush, duration} = this.props;
+    const {
+      dataset,
+      lineClass ,
+      showBrush,
+      duration
+    } = this.props;
 
     // make lines
     var lines = d3.select(React.findDOMNode(this.refs.linePath))

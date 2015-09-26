@@ -66,10 +66,6 @@ export default class ScatterPlot extends xyChart {
       ...otherProps
     } = this.props;
 
-    if(xDomainSet) {
-      xDomain = xDomainSet;
-    }
-
     if(showXGrid) {
       var xgrid = <Grid type="x" {...this.props} {...this.state} />
     }
@@ -116,7 +112,7 @@ export default class ScatterPlot extends xyChart {
             {legends}
           </g>
           {voronoi}
-          <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomain} />
+          <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet} />
           <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
         </Chart>
         {brush}

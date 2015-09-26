@@ -12,7 +12,8 @@ export default class Voronoi extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      xDomainSet: null
+      xDomainSet: this.props.xDomain,
+      dataSet: this.props.data
     }
   }
 
@@ -28,12 +29,20 @@ export default class Voronoi extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      xDomainSet
+      xDomainSet,
+      dataSet,
     } = nextProps;
 
     if(this.state.xDomainSet !== xDomainSet) {
       this.setState({
         xDomainSet: xDomainSet
+      })
+      d3.select(React.findDOMNode(this.refs.voronoi))
+        .html('');
+      this._mkVoronoi();
+    }else if(!Object.is(this.state.dataSet, dataSet)) {
+      this.setState({
+        dataSet: dataSet
       })
       d3.select(React.findDOMNode(this.refs.voronoi))
         .html('');

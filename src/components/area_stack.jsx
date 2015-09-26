@@ -10,14 +10,16 @@ export default class AreaStack extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      xDomain: this.props.xDomain
+      xDomainSet: this.props.xDomain,
+      dataSet: this.props.data
     }
   }
 
   static defaultProps = {
     areaClass: 'react-d3-basics__area_stack',
     interpolate: null,
-    areaOpacity: 1
+    areaOpacity: 1,
+    duration: 500
   }
 
   componentDidMount () {
@@ -26,14 +28,20 @@ export default class AreaStack extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      xDomainSet
+      xDomainSet,
+      dataSet
     } = nextProps;
 
-    if(this.state.xDomain !== xDomainSet) {
+    if(this.state.xDomainSet !== xDomainSet) {
       this.setState({
-        xDomain: xDomainSet
+        xDomainSet: xDomainSet
       })
       this._mkStack();
+    }else if(!Object.is(this.state.dataSet, dataSet)) {
+      this.setState({
+        dataSet: dataSet
+      })
+      this._mkArea();
     }
   }
 
@@ -42,7 +50,8 @@ export default class AreaStack extends Component {
       dataset,
       areaClass,
       areaOpacity,
-      showBrush
+      showBrush,
+      duration
     } = this.props;
 
     const _setStack = this._setStack();
@@ -57,9 +66,12 @@ export default class AreaStack extends Component {
 
     chart.append("path")
       .attr("class", "area")
-      .attr("d", (d) => { return _setAxis(d.data) })
       .style("fill", (d) => { return d.color} )
-      .style("fill-opacity", areaOpacity);
+      .style("fill-opacity", areaOpacity)
+    .transition()
+      .duration(duration)
+      .ease("linear")
+      .attr("d", (d) => { return _setAxis(d.data) })
 
     if(showBrush)
       chart.selectAll("path")

@@ -11,15 +11,11 @@ export default class Pie extends Component {
   }
 
   static defaultProps = {
-    initArc: d3.svg.arc(),
-    initPie: d3.layout.pie(),
     pieOpacity: 0.8
   }
 
   componentDidMount () {
     const {
-      initArc,
-      initPie,
       innerRadius,
       outerRadius,
       pieSort,

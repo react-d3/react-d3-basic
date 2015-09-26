@@ -46,7 +46,13 @@ export default class AreaSimple extends Component {
   }
 
   _mkArea() {
-    const { dataset, areaClass, areaOpacity, showBrush, duration } = this.props;
+    const {
+      dataset,
+      areaClass,
+      areaOpacity,
+      showBrush,
+      duration
+    } = this.props;
 
     // make areas
     var areas = d3.select(React.findDOMNode(this.refs.areaPath))
@@ -65,7 +71,15 @@ export default class AreaSimple extends Component {
   }
 
   _setAxes () {
-    const { height, margins, initPlot, x, y, xScaleSet, yScaleSet, interpolate } = this.props;
+    const {
+      height,
+      margins,
+      x,
+      y,
+      xScaleSet,
+      yScaleSet,
+      interpolate
+    } = this.props;
 
     return d3.svg.area()
       .interpolate(interpolate)
