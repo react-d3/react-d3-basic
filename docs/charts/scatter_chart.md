@@ -1,25 +1,14 @@
-# Line Chart
+# Bar Stack Chart
 
 ## Components
 
 ### Plotting
 
-- AreaSimple
-- Line
-- Scatter
+- BarStack
 
 ### Tooltip
 
 - tooltip
-
-### Brush
-
-- BrushFocus
-- Brush
-
-### Voronoi
-
-- Voronoi
 
 ## Core
 
@@ -51,9 +40,7 @@
 
 ### Show Implements
 
-- showScatter
 - showXGrid
 - showYGrid
 - showTooltip
-- showBrush
 - showLegend

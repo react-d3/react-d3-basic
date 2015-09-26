@@ -17,7 +17,13 @@ export default class PieLayout extends Component {
   }
 
   _mkSeries() {
-    const {data, chartSeries, value, name, categoricalColors} = this.props;
+    const {
+      data,
+      chartSeries,
+      value,
+      name,
+      categoricalColors
+    } = this.props;
 
     var chartSeriesData = chartSeries.map((f, i) => {
 

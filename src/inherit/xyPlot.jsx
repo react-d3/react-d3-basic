@@ -151,7 +151,13 @@ export default class xyChart extends Component {
   }
 
   mkSeries() {
-    const {data, chartSeries, x, y, categoricalColors} = this.props;
+    const {
+      data,
+      chartSeries,
+      x,
+      y,
+      categoricalColors
+    } = this.props;
 
     var chartSeriesData = chartSeries.map((f, i) => {
 

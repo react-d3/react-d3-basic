@@ -65,7 +65,6 @@ export default class PieChart extends PieLayout {
   render() {
     const {
       showLegend,
-      data,
       showTooltip
     } = this.props;
 
