@@ -10,7 +10,8 @@ export default class Scatter extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      xDomain: this.props.xDomain
+      xDomainSet: this.props.xDomain,
+      dataSet: this.props.data
     }
   }
 
@@ -25,12 +26,21 @@ export default class Scatter extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      xDomainSet
+      xDomainSet,
+      dataSet,
     } = nextProps;
 
-    if(this.state.xDomain !== xDomainSet) {
+    // when xDomainSet is update, xScaleSet is not update yet.
+    if(this.state.xDomainSet !== xDomainSet) {
       this.setState({
-        xDomain: xDomainSet
+        xDomainSet: xDomainSet
+      })
+      d3.select(React.findDOMNode(this.refs.scatterPlot))
+        .html('');
+      this._mkScatter();
+    }else if(!Object.is(this.state.dataSet, dataSet)) {
+      this.setState({
+        dataSet: dataSet
       })
       d3.select(React.findDOMNode(this.refs.scatterPlot))
         .html('');
@@ -52,8 +62,6 @@ export default class Scatter extends Component {
       brushSymbol
     } = this.props;
 
-
-
     var symbol = dataset.symbol? dataset.symbol: defaultSymbol;
     var symbolSize = dataset.symbolSize? dataset.symbolSize: defaultSymbolSize;
 
@@ -68,9 +76,14 @@ export default class Scatter extends Component {
       .data(dataset.data)
     .enter().append("path")
       .attr('class', 'react-d3-basic__scatter__path')
-      .attr("transform", (d) => { return "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")"; })
-      .attr("d", d3.svg.symbol().size((d) => { return symbolSize * symbolSize;}).type(symbol))
       .style('fill', dataset.color)
+      .attr("transform", (d) => { return "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")"; })
+      .style('fill-opacity', 0)
+    .transition()
+      .duration(1000)
+      .ease("linear")
+      .style('fill-opacity', 1)
+      .attr("d", d3.svg.symbol().size((d) => { return symbolSize * symbolSize;}).type(symbol))
 
     if(showBrush)
       d3.select(React.findDOMNode(this.refs.scatterPlot))

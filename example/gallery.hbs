@@ -4,8 +4,10 @@
       react-d3 Gallery examples
     </title>
     <meta property="og:image" content="https://avatars0.githubusercontent.com/u/14354544?v=3&s=300" />
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    {{#if mode}}
+      <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.indigo-pink.min.css"/>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    {{/if}}
   </head>
   <body>
     <div class="mdl-layout mdl-js-layout">
@@ -41,8 +43,10 @@
       </main>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    {{#if mode}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+      <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    {{/if}}
     {{#each link}}
       <script src="./dist/{{this}}.js"></script>
     {{/each}}

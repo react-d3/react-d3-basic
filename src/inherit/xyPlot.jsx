@@ -10,7 +10,7 @@ import {
 export default class xyChart extends Component {
   constructor(props) {
     super(props);
-    const {chartSeries} = this.props;
+    const {chartSeries, data} = this.props;
 
     this.setScale = this.setScale.bind(this);
     this.setDomain = this.setDomain.bind(this);
@@ -23,6 +23,7 @@ export default class xyChart extends Component {
       yScaleSet: null,
       xDomainSet: null,
       yDomainSet: null,
+      dataSet: data,
       chartSeriesData: chartSeries? this.mkSeries(): null
     }
   }

@@ -21,6 +21,10 @@ var brush_charts = [
   "brush_area_stack"
 ]
 
+var animate_charts = [
+  "animate_line"
+]
+
 var prod_link = charts.map(function(d) {
   return 'min/' + d + '.min'
 })
@@ -37,26 +41,46 @@ var dev_brush_link = brush_charts.map(function(d) {
   return 'origin/' + d
 })
 
+var prod_animate_link = animate_charts.map(function(d) {
+  return 'min/' + d + '.min'
+})
+
+var dev_animate_link = animate_charts.map(function(d) {
+  return 'origin/' + d
+})
+
+
 module.exports = [{
   "layout": "./gallery.hbs",
   "filename": "./example/gallery.html",
   "data": {
     "charts": charts,
-    "link": ENV? prod_link: dev_link
+    "link": ENV? prod_link: dev_link,
+    "mode": ENV
   }
 },{
   "layout": "./gallery.hbs",
   "filename": "./example/brush_gallery.html",
   "data": {
     "charts": brush_charts,
-    "link": ENV? prod_brush_link: dev_brush_link
+    "link": ENV? prod_brush_link: dev_brush_link,
+    "mode": ENV
   }
-}, {
+},{
   "layout": "./gallery.hbs",
   "filename": "./example/combine.html",
   "data": {
     "charts": ["combine"],
-    "link": ENV? ['min/combine.min']: ['origin/combine']
+    "link": ENV? ['min/combine.min']: ['origin/combine'],
+    "mode": ENV
+  }
+},{
+  "layout": "./gallery.hbs",
+  "filename": "./example/animate.html",
+  "data": {
+    "charts": animate_charts,
+    "link": ENV? prod_animate_link: dev_animate_link,
+    "mode": ENV
   }
 },{
   "layout": "./charts.hbs",

@@ -10,7 +10,8 @@ export default class Line extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      xDomain: this.props.xDomain
+      xDomainSet: this.props.xDomain,
+      dataSet: this.props.data
     }
   }
 
@@ -25,12 +26,18 @@ export default class Line extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       xDomainSet,
+      dataSet,
     } = nextProps;
 
     // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomain !== xDomainSet) {
+    if(this.state.xDomainSet !== xDomainSet) {
       this.setState({
-        xDomain: xDomainSet
+        xDomainSet: xDomainSet
+      })
+      this._mkLine();
+    }else if(!Object.is(this.state.dataSet, dataSet)) {
+      this.setState({
+        dataSet: dataSet
       })
       this._mkLine();
     }
@@ -42,9 +49,13 @@ export default class Line extends Component {
     // make lines
     var lines = d3.select(React.findDOMNode(this.refs.linePath))
       .datum(dataset.data)
+      .style("stroke", dataset.color)
+    .transition()
+      .duration(500)
+      .ease("linear")
       .attr("class", `${lineClass} line`)
       .attr("d", this._setAxes())
-      .style("stroke", dataset.color);
+
 
     if(showBrush)
       lines.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');

@@ -52,6 +52,21 @@ export default class LineChart extends xyChart {
     showScatter: false
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {
+      data,
+      chartSeries
+    } = nextProps;
+
+    // when xDomainSet is update, xScaleSet is not update yet.
+    if(!Object.is(this.state.dataSet, data)) {
+      this.setState({
+        dataSet: data,
+        chartSeriesData: chartSeries? this.mkSeries(): null
+      })
+    }
+  }
+
   render() {
 
     var lines;
