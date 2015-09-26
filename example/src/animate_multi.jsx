@@ -6,10 +6,10 @@ import {
 } from 'react';
 
 import {
-  LineChart as LineChart
+  LineChart
 } from '../../index';
 
-class UpdateLine extends Component {
+class UpdateMulti extends Component {
   constructor(props) {
     super(props);
     this.state = this.props;
@@ -27,9 +27,9 @@ class UpdateLine extends Component {
       i++;
 
       if(i % 2 == 1) {
-        var generalChartData = require('json!./data/user2.json')
+        var generalChartData = require('dsv?delimiter=\t!./data/temp2.tsv')
       }else {
-        var generalChartData = require('json!./data/user.json');
+        var generalChartData = require('dsv?delimiter=\t!./data/temp.tsv')
       }
 
       this._updateState(title_new, generalChartData)
@@ -52,49 +52,62 @@ class UpdateLine extends Component {
 }
 
 (() => {
-
-  var generalChartData = require('json!./data/user.json');
+  var generalChartData = require('dsv?delimiter=\t!./data/temp.tsv')
+  const parseDate = d3.time.format("%Y%m%d").parse;
 
   const width = 960,
     height = 500,
-    margins = {top: 20, right: 50, bottom: 30, left: 50},
+    margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "Simple Line Chart ReLoad Data",
+    title = "Multipule Line Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
+    legendClassName = "test-legend",
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
     chartSeries = [
       {
-        field: 'age',
-        name: 'Age',
+        field: 'New York',
+        name: 'New York Temp',
         color: '#ff7f0e'
+      },
+      {
+        field: 'San Francisco',
+        name: 'San Francisco Temp',
+        color: '#2ca02c'
+      },
+      {
+        field: 'Austin',
+        name: 'Austin Temp',
+        color: '#7777ff',
+        area: true
       }
     ],
+    interpolate = 'monotone',
     x = (d) => {
-      return d.index;
+      return parseDate(d.date);
     },
     xOrient = 'bottom',
-    xTickOrient = 'top',
-    xDomain = d3.extent(generalChartData, x),
+    xTickOrient = 'bottom',
+    xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
-    xScale = 'linear',
+    xScale = 'time',
     xAxisClassName = 'x-axis',
-    xLabel = "Index",
+    xLabel = "Date",
     y = (d) => {
       return d;
     },
-    yOrient = 'right',
+    yOrient = 'left',
     yTickOrient = 'left',
-    yDomain = d3.extent(generalChartData, (d) => {return d.age;}),
+    yDomain = [20, 100],
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Age";
+    yLabel = "Temperature (ºF)";
 
   React.render(
-    <UpdateLine
+    <UpdateMulti
       title= {title}
       data= {generalChartData}
       width= {width}
@@ -102,16 +115,22 @@ class UpdateLine extends Component {
       id= {id}
       margins= {margins}
       svgClassName= {svgClassName}
+      labelOffset = {30}
       titleClassName= {titleClassName}
       yAxisClassName= {yAxisClassName}
       xAxisClassName= {xAxisClassName}
-      chartSeries= {chartSeries}
+      legendClassName= {legendClassName}
+      legendPosition= 'right'
+      chartSeries = {chartSeries}
+      interpolate = {interpolate}
       lineClass = 'test-line-class'
       scatterClass = 'test-line-dot-class'
       showScatter = {true}
       showLegend= {showLegend}
       showXAxis= {showXAxis}
       showYAxis= {showYAxis}
+      showXGrid= {true}
+      showYGrid= {true}
       showTooltip= {true}
       x= {x}
       xDomain= {xDomain}
@@ -128,8 +147,8 @@ class UpdateLine extends Component {
       yScale= {yScale}
       yTickOrient= {yTickOrient}
       yLabel = {yLabel}
-      yLabelPosition = 'right'
+      yLabelPosition = 'left'
     />
-  , document.getElementById('data_animate_line')
+  , document.getElementById('data_animate_multi')
   )
 })()

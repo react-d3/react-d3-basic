@@ -17,7 +17,8 @@ export default class Scatter extends Component {
 
   static defaultProps = {
     defaultSymbol: 'circle',
-    defaultSymbolSize: 10
+    defaultSymbolSize: 10,
+    duration: 1000
   }
 
   componentDidMount () {
@@ -59,7 +60,8 @@ export default class Scatter extends Component {
       defaultSymbol,
       defaultSymbolSize,
       showBrush,
-      brushSymbol
+      brushSymbol,
+      duration
     } = this.props;
 
     var symbol = dataset.symbol? dataset.symbol: defaultSymbol;
@@ -80,7 +82,7 @@ export default class Scatter extends Component {
       .attr("transform", (d) => { return "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")"; })
       .style('fill-opacity', 0)
     .transition()
-      .duration(1000)
+      .duration(duration)
       .ease("linear")
       .style('fill-opacity', 1)
       .attr("d", d3.svg.symbol().size((d) => { return symbolSize * symbolSize;}).type(symbol))

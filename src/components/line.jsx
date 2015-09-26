@@ -16,7 +16,8 @@ export default class Line extends Component {
   }
 
   static defaultProps = {
-    interpolate: null
+    interpolate: null,
+    duration: 500
   }
 
   componentDidMount () {
@@ -44,14 +45,14 @@ export default class Line extends Component {
   }
 
   _mkLine() {
-    const { dataset, lineClass , showBrush} = this.props;
+    const { dataset, lineClass , showBrush, duration} = this.props;
 
     // make lines
     var lines = d3.select(React.findDOMNode(this.refs.linePath))
       .datum(dataset.data)
       .style("stroke", dataset.color)
     .transition()
-      .duration(500)
+      .duration(duration)
       .ease("linear")
       .attr("class", `${lineClass} line`)
       .attr("d", this._setAxes())

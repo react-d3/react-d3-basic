@@ -22,7 +22,8 @@ var brush_charts = [
 ]
 
 var animate_charts = [
-  "animate_line"
+  "animate_line",
+  "animate_multi"
 ]
 
 var prod_link = charts.map(function(d) {

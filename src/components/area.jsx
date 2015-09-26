@@ -10,13 +10,15 @@ export default class AreaSimple extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      xDomain: this.props.xDomain
+      xDomainSet: this.props.xDomain,
+      dataSet: this.props.data
     }
   }
 
   static defaultProps = {
     interpolate: null,
-    areaOpacity: 0.6
+    areaOpacity: 0.6,
+    duration: 500
   }
 
   componentDidMount () {
@@ -25,28 +27,38 @@ export default class AreaSimple extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      xDomainSet
+      xDomainSet,
+      dataSet,
     } = nextProps;
 
-    if(this.state.xDomain !== xDomainSet) {
+    // when xDomainSet is update, xScaleSet is not update yet.
+    if(this.state.xDomainSet !== xDomainSet) {
       this.setState({
-        xDomain: xDomainSet
+        xDomainSet: xDomainSet
+      })
+      this._mkArea();
+    }else if(!Object.is(this.state.dataSet, dataSet)) {
+      this.setState({
+        dataSet: dataSet
       })
       this._mkArea();
     }
   }
 
   _mkArea() {
-    const { dataset, areaClass, areaOpacity, showBrush } = this.props;
+    const { dataset, areaClass, areaOpacity, showBrush, duration } = this.props;
 
     // make areas
     var areas = d3.select(React.findDOMNode(this.refs.areaPath))
       .datum(dataset.data)
       .attr("class", `${areaClass} area`)
-      .attr("d", this._setAxes())
       .style("fill", dataset.color)
       .style("fill-opacity", areaOpacity)
-      .style("stroke", dataset.color);
+      .style("stroke", dataset.color)
+    .transition()
+      .duration(duration)
+      .ease("linear")
+      .attr("d", this._setAxes())
 
     if(showBrush)
       areas.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');

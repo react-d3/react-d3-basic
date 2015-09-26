@@ -33,7 +33,8 @@ module.exports = [{
     brush_scatter: js_root + '/brush_scatter.jsx',
     brush_area_stack: js_root + '/brush_area_stack.jsx',
     combine: js_root + '/combine.jsx',
-    animate_line: js_root + '/animate_line.jsx'
+    animate_line: js_root + '/animate_line.jsx',
+    animate_multi: js_root + '/animate_multi.jsx'
   },
 
   output: {

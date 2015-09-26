@@ -15,7 +15,9 @@
           <nav class="mdl-navigation mdl-layout--large-screen-only">
             <a class="mdl-navigation__link" href="/react-d3-basics/gallery.html">Basic Charts</a>
             <a class="mdl-navigation__link" href="/react-d3-basics/brush_gallery.html">Chart With Brush</a>
+            <a class="mdl-navigation__link" href="/react-d3-basics/animate.html">Update Chart Data</a>
             <a class="mdl-navigation__link" href="/react-d3-basics/combine.html">Brush Multiple charts at once</a>
+
             <a class="mdl-navigation__link" href="https://github.com/react-d3/react-d3-basics">Fork Me On Github</a>
           </nav>
         </div>
@@ -25,12 +27,17 @@
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="#animate_line">animate_line</a>
 
+            <a class="mdl-navigation__link" href="#animate_multi">animate_multi</a>
+
         </nav>
       </div>
       <main class="mdl-layout__content">
         <div style="margin: 30px;">
             <a name="animate_line"></a>
             <div id="data_animate_line"></div>
+            <hr>
+            <a name="animate_multi"></a>
+            <div id="data_animate_multi"></div>
             <hr>
         </div>
       </main>
@@ -39,6 +46,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
       <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
       <script src="./dist/min/animate_line.min.js"></script>
+      <script src="./dist/min/animate_multi.min.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
