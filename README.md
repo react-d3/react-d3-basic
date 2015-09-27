@@ -1,4 +1,4 @@
-# react-chart-component
+# react-d3-basics
 
 A solution for building reusable components for d3 charts.
 
