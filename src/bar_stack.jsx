@@ -26,32 +26,9 @@ export default class BarStackChart extends xyChart {
 
   static defaultProps = {
     showLegend: true,
+    onMouseOver: () => {},
+    onMouseOut: () => {}
   }
-
-  _mouseOver(d, dom) {
-
-    d3.select(dom)
-      .style("fill-opacity", 1);
-
-    this.setState({
-      xTooltip: d3.event.clientX,
-      yTooltip: d3.event.clientY,
-      contentTooltip: d
-    })
-  }
-
-  _mouseOut(d, dom, opacity) {
-
-    d3.select(dom)
-      .style("fill-opacity", opacity);
-
-    this.setState({
-      xTooltip: null,
-      yTooltip: null,
-      contentTooltip: null
-    })
-  }
-
 
   render() {
 
@@ -96,7 +73,7 @@ export default class BarStackChart extends xyChart {
             stackObj[dkey.name]= {y: d.data[i].y, y0: newVal}
           })
 
-          return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} {...this.state}  onMouseOver={this._mouseOver.bind(this)} onMouseOut={this._mouseOut.bind(this)}/>
+          return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
         })
       }
 

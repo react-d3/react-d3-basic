@@ -41,7 +41,7 @@ export default class AreaStack extends Component {
       this.setState({
         dataSet: dataSet
       })
-      this._mkArea();
+      this._mkStack();
     }
   }
 

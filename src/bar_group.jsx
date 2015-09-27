@@ -24,27 +24,9 @@ import {
 
 export default class BarGroupChart extends xyChart {
 
-  _mouseOver(d, dom) {
-
-    d3.select(dom)
-      .style("fill-opacity", 1);
-
-    this.setState({
-      xTooltip: d3.event.clientX,
-      yTooltip: d3.event.clientY,
-      contentTooltip: d
-    })
-  }
-
-  _mouseOut(d, dom, opacity) {
-    d3.select(dom)
-      .style("fill-opacity", opacity);
-
-    this.setState({
-      xTooltip: null,
-      yTooltip: null,
-      contentTooltip: null
-    })
+  static defaultProps = {
+    onMouseOver: () => {},
+    onMouseOut: () => {}
   }
 
   render() {
@@ -81,7 +63,7 @@ export default class BarGroupChart extends xyChart {
           .rangeRoundBands([0, xScaleSet.rangeBand()]);
 
         var bargroups = chartSeriesData.map((d, i) => {
-          return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} onMouseOver={this._mouseOver.bind(this)} onMouseOut={this._mouseOut.bind(this)} />
+          return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut} />
         })
       }
 

@@ -25,27 +25,9 @@ import {
 
 export default class BarChart extends xyChart {
 
-  _mouseOver(d, dom) {
-
-    d3.select(dom)
-      .style("fill-opacity", 1);
-
-    this.setState({
-      xTooltip: d3.event.clientX,
-      yTooltip: d3.event.clientY,
-      contentTooltip: d
-    })
-  }
-
-  _mouseOut(d, dom, opacity) {
-    d3.select(dom)
-      .style("fill-opacity", opacity);
-
-    this.setState({
-      xTooltip: null,
-      yTooltip: null,
-      contentTooltip: null
-    })
+  static defaultProps = {
+    onMouseOver: () => {},
+    onMouseOut: () => {}
   }
 
   render() {
@@ -75,7 +57,7 @@ export default class BarChart extends xyChart {
       // if x and y scale is all set, doing plotting...
       if(chartSeries) {
         var bars = chartSeriesData.map((d, i) => {
-          return <Bar dataset={d} key={i} {...this.props} {...this.state} onMouseOver={this._mouseOver.bind(this)} onMouseOut={this._mouseOut.bind(this)} />
+          return <Bar dataset={d} key={i} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
         })
       }
 
