@@ -92,15 +92,15 @@ For instance, if we want to build a new chart on top of `react-d3` it is super e
 
 There are many main reasons using react as a basic structure.
 
-- PropType Check: React build-in `PropTypes` for checking props. So now if you pass the wrong format your console will tell you to change to proper prop.
+- **PropType Check** : React build-in `PropTypes` for checking props. So now if you pass the wrong format your console will tell you to change to proper prop.
 
-- Props: React props make you know your data better. Because props are like Immutable data in react components. So you can track your data more easily.
+- **Props** : React props make you know your data better. Because props are like Immutable data in react components. So you can track your data more easily.
 
-- State: State make d3 much more powerful. Because when state change react will re-render your component with the optimal speed. And also it can make you
+- **State** : State make d3 much more powerful. Because when state change react will re-render your component with the optimal speed. And also it can make you
 
-- Components: Components make it easy to reuse your charts again and again.
+- **Components** : Components make it easy to reuse your charts again and again.
 
-- Rendering: By default react re-render your component when every props and states change, which make d3 more awesome. Because we can have less problem on making sure if the data is up-to-date or not.
+- **Rendering** : By default react re-render your component when every props and states change, which make d3 more awesome. Because we can have less problem on making sure if the data is up-to-date or not.
 
 
 ## License
