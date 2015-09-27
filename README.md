@@ -79,13 +79,13 @@ For instance, if we want to build a new chart on top of `react-d3` it is super e
 
 #### Q2: What are some other common problems that building d3 charts?
 
-- Reusability: You have to build your chart over and over again. `react-d3` is using `react`, `ES6` technologies make you easily to import and export your components.
+- **Reusability** : You have to build your chart over and over again. `react-d3` is using `react`, `ES6` technologies make you easily to import and export your components.
 
-- Difficult to track data flow: It is so easy to mess up with your data, because most of the time you are manipulating data.
+- **Difficult to track data flow** : It is so easy to mess up with your data, because most of the time you are manipulating data.
 
-- Sync your data to the svgs: When you finally change your data to a specific format, it's also cause many problems when updating data to your svgs.  Where should I update? Did it update? What data is now? `react-d3` help you solve the problems.
+- **Sync your data to the svgs** : When you finally change your data to a specific format, it's also cause many problems when updating data to your svgs.  Where should I update? Did it update? What data is now? `react-d3` help you solve the problems.
 
-- Checking your input data: Inputting the wrong data, will break your chart easily without knowing the reason.
+- **Checking your input data** : Inputting the wrong data, will break your chart easily without knowing the reason.
 
 
 #### Q3: Why react?
