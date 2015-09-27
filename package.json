@@ -1,6 +1,6 @@
 {
   "name": "react-d3-basics",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "react chart component",
   "main": "webpack.config.js",
   "directories": {
