@@ -1,3 +1,11 @@
+// Export utils
+
+import {
+  series
+} from './src/utils/series';
+
+export {series as series};
+
 // Export inherit components
 import {
   default as XYPlot
@@ -52,8 +60,6 @@ export {BarGroup as BarGroup}
 export {BarStack as BarStack}
 export {Pie as Pie}
 export {Scatter as Scatter}
-
-
 
 // Export high level charts
 import {
