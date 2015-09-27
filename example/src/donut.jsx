@@ -6,6 +6,10 @@ import {
 } from 'react';
 
 import {
+  Chart as Chart,
+} from 'react-d3-core';
+
+import {
   PieChart
 } from '../../index';
 
@@ -60,29 +64,36 @@ import {
   **
   */
   React.render(
-    <PieChart
-      title= {title}
-      data= {generalChartData}
-      width= {width}
-      height= {height}
-      radius= {radius}
-      id= {id}
-      margins= {margins}
-      chartSeries= {chartSeries}
-      svgClassName= {svgClassName}
-      titleClassName= {titleClassName}
-      legendClassName= {legendClassName}
-      legendPosition= 'right'
-      categoricalColors= {d3.scale.category10()}
-      showLegend= {showLegend}
-      showTooltip= {true}
-      value = {value}
-      name = {name}
-      outerRadius= {radius - 10}
-      innerRadius= {40}
-      pieSort = {d3.descending}
+    <Chart
+      title={title}
+      id={id}
+      width={width}
+      height={height}
+      >
+      <PieChart
+        title= {title}
+        data= {generalChartData}
+        width= {width}
+        height= {height}
+        radius= {radius}
+        id= {id}
+        margins= {margins}
+        chartSeries= {chartSeries}
+        svgClassName= {svgClassName}
+        titleClassName= {titleClassName}
+        legendClassName= {legendClassName}
+        legendPosition= 'right'
+        categoricalColors= {d3.scale.category10()}
+        showLegend= {showLegend}
+        showTooltip= {true}
+        value = {value}
+        name = {name}
+        outerRadius= {radius - 10}
+        innerRadius= {40}
+        pieSort = {d3.descending}
 
-    />
+      />
+    </Chart>
   , document.getElementById('data_donut')
   )
 })()

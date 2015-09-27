@@ -22,22 +22,6 @@ import {
   default as AreaStack,
 } from './components/area_stack';
 
-import {
-  default as Voronoi,
-} from './utils/voronoi';
-
-import {
-  default as Tooltip,
-} from './utils/tooltip';
-
-import {
-  default as Brush,
-} from './utils/brush';
-
-import {
-  default as BrushFocus,
-} from './utils/brush_focus';
-
 export default class AreaStackChart extends xyChart {
 
   static defaultProps = {
@@ -81,44 +65,24 @@ export default class AreaStackChart extends xyChart {
       // if x and y scale is all set, doing plotting...
       if(chartSeries) {
         var areas = <AreaStack dataset={chartSeriesData} {...this.props} {...this.state} />
-
-        if(showBrush){
-          var focus = <BrushFocus {...this.props} />
-          var brush = <Brush {...this.props} {...this.state} chartSeriesData={chartSeriesData} setDomain={this.setDomain} />
-        }
-
-      }
-
-      if(!showBrush){
-        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} stack={true} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
       }
 
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
-
-      if(showTooltip) {
-        var tooltip = <Tooltip {...this.props} {...this.state}/>
-      }
     }
 
     return (
-      <div>
-        {tooltip}
-        <Chart {...this.props}>
-          {focus}
-          {xgrid}
-          {ygrid}
-          <g ref= "plotGroup">
-            {areas}
-            {legends}
-          </g>
-          {voronoi}
-          <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet}/>
-          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-        </Chart>
-        {brush}
-      </div>
+      <g>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {areas}
+          {legends}
+        </g>
+        <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet}/>
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </g>
     )
   }
 }

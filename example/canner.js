@@ -61,14 +61,6 @@ module.exports = [{
   }
 },{
   "layout": "./gallery.hbs",
-  "filename": "./example/brush_gallery.html",
-  "data": {
-    "charts": brush_charts,
-    "link": ENV? prod_brush_link: dev_brush_link,
-    "mode": ENV
-  }
-},{
-  "layout": "./gallery.hbs",
   "filename": "./example/combine.html",
   "data": {
     "charts": ["combine"],

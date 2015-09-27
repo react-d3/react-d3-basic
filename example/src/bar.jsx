@@ -6,6 +6,10 @@ import {
 } from 'react';
 
 import {
+  Chart as Chart,
+} from 'react-d3-core';
+
+import {
   BarChart
 } from '../../index';
 
@@ -51,48 +55,55 @@ import {
     yLabel = "Frequency";
 
   React.render(
-    <BarChart
-      title= {title}
-      data= {generalChartData}
-      width= {width}
-      height= {height}
-      id= {id}
-      margins= {margins}
-      svgClassName= {svgClassName}
-      labelOffset = {30}
-      titleClassName= {titleClassName}
-      yAxisClassName= {yAxisClassName}
-      xAxisClassName= {xAxisClassName}
-      legendClassName= {legendClassName}
-      legendPosition= 'right'
-      categoricalColors= {d3.scale.category10()}
-      chartSeries = {chartSeries}
-      lineClass = 'test-line-class'
-      barClass= 'test-bar-class'
-      scatterClass = 'test-line-dot-class'
-      showScatter = {true}
-      showLegend= {showLegend}
-      showXAxis= {showXAxis}
-      showYAxis= {showYAxis}
-      showTooltip= {true}
-      x= {x}
-      xDomain= {xDomain}
-      xRangeRoundBands= {xRangeRoundBands}
-      xScale= {xScale}
-      xOrient= {xOrient}
-      xTickOrient= {xTickOrient}
-      xLabel = {xLabel}
-      xLabelPosition = 'bottom'
-      y= {y}
-      yOrient= {yOrient}
-      yRange= {yRange}
-      yDomain= {yDomain}
-      yScale= {yScale}
-      yTickOrient= {yTickOrient}
-      yTicks= {[10, "%"]}
-      yLabel = {yLabel}
-      yLabelPosition = 'left'
-    />
+    <Chart
+      title={title}
+      id={id}
+      width={width}
+      height={height}
+      >
+      <BarChart
+        title= {title}
+        data= {generalChartData}
+        width= {width}
+        height= {height}
+        id= {id}
+        margins= {margins}
+        svgClassName= {svgClassName}
+        labelOffset = {30}
+        titleClassName= {titleClassName}
+        yAxisClassName= {yAxisClassName}
+        xAxisClassName= {xAxisClassName}
+        legendClassName= {legendClassName}
+        legendPosition= 'right'
+        categoricalColors= {d3.scale.category10()}
+        chartSeries = {chartSeries}
+        lineClass = 'test-line-class'
+        barClass= 'test-bar-class'
+        scatterClass = 'test-line-dot-class'
+        showScatter = {true}
+        showLegend= {showLegend}
+        showXAxis= {showXAxis}
+        showYAxis= {showYAxis}
+        showTooltip= {true}
+        x= {x}
+        xDomain= {xDomain}
+        xRangeRoundBands= {xRangeRoundBands}
+        xScale= {xScale}
+        xOrient= {xOrient}
+        xTickOrient= {xTickOrient}
+        xLabel = {xLabel}
+        xLabelPosition = 'bottom'
+        y= {y}
+        yOrient= {yOrient}
+        yRange= {yRange}
+        yDomain= {yDomain}
+        yScale= {yScale}
+        yTickOrient= {yTickOrient}
+        yTicks= {[10, "%"]}
+        yLabel = {yLabel}
+        yLabelPosition = 'left'
+      />
+    </Chart>
   , document.getElementById('data_bar')
   )
 })()

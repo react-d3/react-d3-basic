@@ -22,10 +22,6 @@ import {
   default as BarGroup,
 } from './components/bar_group';
 
-import {
-  default as Tooltip,
-} from './utils/tooltip';
-
 export default class BarGroupChart extends xyChart {
 
   _mouseOver(d, dom) {
@@ -63,7 +59,6 @@ export default class BarGroupChart extends xyChart {
       showLegend,
       showXGrid,
       showYGrid,
-      showTooltip
     } = this.props;
 
     if(showXGrid) {
@@ -93,30 +88,19 @@ export default class BarGroupChart extends xyChart {
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
-
-      if(showTooltip) {
-        var tooltip = <Tooltip {...this.props} {...this.state}/>
-      }
     }
 
     return (
-      <div>
-        {tooltip}
-        <Chart {...this.props}>
-          {xgrid}
-          {ygrid}
-          <g ref= "plotGroup">
-            {legends}
-            {bargroups}
-          </g>
-          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-        </Chart>
-      </div>
+      <g>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {legends}
+          {bargroups}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </g>
     )
   }
-}
-
-BarGroupChart.defaultProps = {
-  showLegend: true
 }

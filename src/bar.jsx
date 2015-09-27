@@ -22,10 +22,6 @@ import {
   default as Bar,
 } from './components/bar';
 
-import {
-  default as Tooltip,
-} from './utils/tooltip';
-
 
 export default class BarChart extends xyChart {
 
@@ -65,7 +61,6 @@ export default class BarChart extends xyChart {
       showLegend,
       showXGrid,
       showYGrid,
-      showTooltip
     } = this.props;
 
     if(showXGrid) {
@@ -87,30 +82,19 @@ export default class BarChart extends xyChart {
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
-
-      if(showTooltip) {
-        var tooltip = <Tooltip {...this.props} {...this.state}/>
-      }
     }
 
     return (
-      <div>
-        {tooltip}
-        <Chart {...this.props}>
-          {xgrid}
-          {ygrid}
-          <g ref= "plotGroup">
-            {legends}
-            {bars}
-          </g>
-          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-        </Chart>
-      </div>
+      <g>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {legends}
+          {bars}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </g>
     )
   }
-}
-
-BarChart.defaultProps = {
-  showLegend: true
 }

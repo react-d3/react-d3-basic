@@ -36,7 +36,7 @@ export default class Pie extends Component {
       .outerRadius(outerRadius + 10)
       .innerRadius(innerRadius);
 
-    var pie = initPie
+    var pie = d3.layout.pie()
       .sort((a, b) => { return pieSort(a.value, b.value)})
       .value((d) => { return d.value; })
 

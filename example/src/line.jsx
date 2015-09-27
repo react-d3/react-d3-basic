@@ -6,6 +6,10 @@ import {
 } from 'react';
 
 import {
+  Chart as Chart,
+} from 'react-d3-core';
+
+import {
   LineChart as LineChart
 } from '../../index';
 
@@ -52,42 +56,49 @@ import {
     yLabel = "Age";
 
   React.render(
-    <LineChart
-      title= {title}
-      data= {generalChartData}
-      width= {width}
-      height= {height}
-      id= {id}
-      margins= {margins}
-      svgClassName= {svgClassName}
-      titleClassName= {titleClassName}
-      yAxisClassName= {yAxisClassName}
-      xAxisClassName= {xAxisClassName}
-      chartSeries= {chartSeries}
-      lineClass = 'test-line-class'
-      scatterClass = 'test-line-dot-class'
-      showScatter = {true}
-      showLegend= {showLegend}
-      showXAxis= {showXAxis}
-      showYAxis= {showYAxis}
-      showTooltip= {true}
-      x= {x}
-      xDomain= {xDomain}
-      xRange= {xRange}
-      xScale= {xScale}
-      xOrient= {xOrient}
-      xTickOrient= {xTickOrient}
-      xLabel = {xLabel}
-      xLabelPosition = 'bottom'
-      y= {y}
-      yOrient= {yOrient}
-      yDomain= {yDomain}
-      yRange= {yRange}
-      yScale= {yScale}
-      yTickOrient= {yTickOrient}
-      yLabel = {yLabel}
-      yLabelPosition = 'right'
-    />
+    <Chart
+      title={title}
+      id={id}
+      width={width}
+      height={height}
+      >
+      <LineChart
+        title= {title}
+        data= {generalChartData}
+        width= {width}
+        height= {height}
+        id= {id}
+        margins= {margins}
+        svgClassName= {svgClassName}
+        titleClassName= {titleClassName}
+        yAxisClassName= {yAxisClassName}
+        xAxisClassName= {xAxisClassName}
+        chartSeries= {chartSeries}
+        lineClass = 'test-line-class'
+        scatterClass = 'test-line-dot-class'
+        showScatter = {true}
+        showLegend= {showLegend}
+        showXAxis= {showXAxis}
+        showYAxis= {showYAxis}
+        showTooltip= {true}
+        x= {x}
+        xDomain= {xDomain}
+        xRange= {xRange}
+        xScale= {xScale}
+        xOrient= {xOrient}
+        xTickOrient= {xTickOrient}
+        xLabel = {xLabel}
+        xLabelPosition = 'bottom'
+        y= {y}
+        yOrient= {yOrient}
+        yDomain= {yDomain}
+        yRange= {yRange}
+        yScale= {yScale}
+        yTickOrient= {yTickOrient}
+        yLabel = {yLabel}
+        yLabelPosition = 'right'
+      />
+    </Chart>
   , document.getElementById('data_line')
   )
 })()

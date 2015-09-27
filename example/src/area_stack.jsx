@@ -6,6 +6,10 @@ import {
 } from 'react';
 
 import {
+  Chart as Chart,
+} from 'react-d3-core';
+
+import {
   AreaStackChart
 } from '../../index';
 
@@ -69,47 +73,54 @@ import {
     yLabel = "Browser rate (%)";
 
   React.render(
-    <AreaStackChart
-      title= {title}
-      data= {generalChartData}
-      width= {width}
-      height= {height}
-      id= {id}
-      margins= {margins}
-      svgClassName= {svgClassName}
-      labelOffset = {30}
-      titleClassName= {titleClassName}
-      yAxisClassName= {yAxisClassName}
-      xAxisClassName= {xAxisClassName}
-      legendClassName= {legendClassName}
-      legendPosition= 'right'
-      categoricalColors= {d3.scale.category10()}
-      chartSeries = {chartSeries}
-      interpolate = {interpolate}
-      lineClass = 'test-line-class'
-      scatterClass = 'test-line-dot-class'
-      showScatter = {true}
-      showLegend= {showLegend}
-      showXAxis= {showXAxis}
-      showYAxis= {showYAxis}
-      showTooltip= {true}
-      x= {x}
-      xDomain= {xDomain}
-      xRange= {xRange}
-      xScale= {xScale}
-      xOrient= {xOrient}
-      xTickOrient= {xTickOrient}
-      xLabel = {xLabel}
-      xLabelPosition = 'bottom'
-      y= {y}
-      yOrient= {yOrient}
-      yRange= {yRange}
-      yScale= {yScale}
-      yTickOrient= {yTickOrient}
-      yTickFormat= {formatPercent}
-      yLabel = {yLabel}
-      yLabelPosition = 'left'
-    />
+    <Chart
+      title={title}
+      id={id}
+      width={width}
+      height={height}
+      >
+      <AreaStackChart
+        title= {title}
+        data= {generalChartData}
+        width= {width}
+        height= {height}
+        id= {id}
+        margins= {margins}
+        svgClassName= {svgClassName}
+        labelOffset = {30}
+        titleClassName= {titleClassName}
+        yAxisClassName= {yAxisClassName}
+        xAxisClassName= {xAxisClassName}
+        legendClassName= {legendClassName}
+        legendPosition= 'right'
+        categoricalColors= {d3.scale.category10()}
+        chartSeries = {chartSeries}
+        interpolate = {interpolate}
+        lineClass = 'test-line-class'
+        scatterClass = 'test-line-dot-class'
+        showScatter = {true}
+        showLegend= {showLegend}
+        showXAxis= {showXAxis}
+        showYAxis= {showYAxis}
+        showTooltip= {true}
+        x= {x}
+        xDomain= {xDomain}
+        xRange= {xRange}
+        xScale= {xScale}
+        xOrient= {xOrient}
+        xTickOrient= {xTickOrient}
+        xLabel = {xLabel}
+        xLabelPosition = 'bottom'
+        y= {y}
+        yOrient= {yOrient}
+        yRange= {yRange}
+        yScale= {yScale}
+        yTickOrient= {yTickOrient}
+        yTickFormat= {formatPercent}
+        yLabel = {yLabel}
+        yLabelPosition = 'left'
+      />
+    </Chart>
   , document.getElementById('data_area_stack')
   )
 })()

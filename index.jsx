@@ -10,28 +10,6 @@ import {
 export {XYPlot as XYPlot};
 export {PieLayout as PieLayout};
 
-// Export utils component
-import {
-  default as Brush
-} from './src/utils/brush';
-
-import {
-  default as BrushFocus
-} from './src/utils/brush_focus';
-
-import {
-  default as Tooltip
-} from './src/utils/tooltip';
-
-import {
-  default as Voronoi
-} from './src/utils/voronoi';
-
-export {Brush as Brush};
-export {BrushFocus as BrushFocus};
-export {Tooltip as Tooltip};
-export {Voronoi as Voronoi};
-
 
 // Export basic component of charts
 import {
@@ -106,18 +84,6 @@ import {
   default as PieChart
 } from './src/pie';
 
-import {
-  default as BrushLine,
-} from './src/brush_line';
-
-import {
-  default as BrushScatter,
-} from './src/brush_scatter';
-
-import {
-  default as BrushAreaStack,
-} from './src/brush_area_stack';
-
 
 export {LineChart as LineChart};
 export {ScatterPlot as ScatterPlot}
@@ -126,6 +92,3 @@ export {BarChart as BarChart}
 export {BarGroupChart as BarGroupChart}
 export {BarStackChart as BarStackChart}
 export {PieChart as PieChart}
-export {BrushLine as BrushLine}
-export {BrushScatter as BrushScatter}
-export {BrushAreaStack as BrushAreaStack}

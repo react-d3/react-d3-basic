@@ -22,12 +22,6 @@ import {
   default as BarStack,
 } from './components/bar_stack';
 
-
-import {
-  default as Tooltip,
-} from './utils/tooltip';
-
-
 export default class BarStackChart extends xyChart {
 
   static defaultProps = {
@@ -72,7 +66,6 @@ export default class BarStackChart extends xyChart {
       showLegend,
       showXGrid,
       showYGrid,
-      showTooltip
     } = this.props;
 
     if(showXGrid) {
@@ -110,26 +103,19 @@ export default class BarStackChart extends xyChart {
       if(showLegend) {
         var legends = <Legend {...this.props} {...this.state} />
       }
-
-      if(showTooltip) {
-        var tooltip = <Tooltip {...this.props} {...this.state}/>
-      }
     }
 
     return (
-      <div>
-        {tooltip}
-        <Chart {...this.props}>
-          {xgrid}
-          {ygrid}
-          <g ref= "plotGroup">
-            {bargroups}
-            {legends}
-          </g>
-          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-        </Chart>
-      </div>
+      <g>
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {bargroups}
+          {legends}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+      </g>
     )
   }
 }

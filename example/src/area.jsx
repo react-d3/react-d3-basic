@@ -6,6 +6,10 @@ import {
 } from 'react';
 
 import {
+  Chart as Chart,
+} from 'react-d3-core';
+
+import {
   LineChart
 } from '../../index';
 
@@ -68,46 +72,53 @@ import {
   ** - yScale
   */
   React.render(
-    <LineChart
-      title= {title}
-      data= {generalChartData}
-      width= {width}
-      height= {height}
-      id= {id}
-      margins= {margins}
-      svgClassName= {svgClassName}
-      labelOffset = {50}
-      areaOpacity = {0.3}
-      titleClassName= {titleClassName}
-      yAxisClassName= {yAxisClassName}
-      xAxisClassName= {xAxisClassName}
-      legendClassName= {legendClassName}
-      lineClass = 'test-line-class'
-      areaClass = 'test-area-class'
-      scatterClass = 'test-line-dot-class'
-      showScatter = {false}
-      showLegend= {showLegend}
-      showXAxis= {showXAxis}
-      showYAxis= {showYAxis}
-      showTooltip= {true}
-      chartSeries= {chartSeries}
-      x= {x}
-      xDomain= {xDomain}
-      xRange= {xRange}
-      xScale= {xScale}
-      xOrient= {xOrient}
-      xTickOrient= {xTickOrient}
-      xLabel = {xLabel}
-      xLabelPosition = 'bottom'
-      y= {y}
-      yOrient= {yOrient}
-      yDomain= {yDomain}
-      yRange= {yRange}
-      yScale= {yScale}
-      yTickOrient= {yTickOrient}
-      yLabel = {yLabel}
-      yLabelPosition = 'right'
-    />
+    <Chart
+      title={title}
+      id={id}
+      width={width}
+      height={height}
+      >
+      <LineChart
+        title= {title}
+        data= {generalChartData}
+        width= {width}
+        height= {height}
+        id= {id}
+        margins= {margins}
+        svgClassName= {svgClassName}
+        labelOffset = {50}
+        areaOpacity = {0.3}
+        titleClassName= {titleClassName}
+        yAxisClassName= {yAxisClassName}
+        xAxisClassName= {xAxisClassName}
+        legendClassName= {legendClassName}
+        lineClass = 'test-line-class'
+        areaClass = 'test-area-class'
+        scatterClass = 'test-line-dot-class'
+        showScatter = {false}
+        showLegend= {showLegend}
+        showXAxis= {showXAxis}
+        showYAxis= {showYAxis}
+        showTooltip= {true}
+        chartSeries= {chartSeries}
+        x= {x}
+        xDomain= {xDomain}
+        xRange= {xRange}
+        xScale= {xScale}
+        xOrient= {xOrient}
+        xTickOrient= {xTickOrient}
+        xLabel = {xLabel}
+        xLabelPosition = 'bottom'
+        y= {y}
+        yOrient= {yOrient}
+        yDomain= {yDomain}
+        yRange= {yRange}
+        yScale= {yScale}
+        yTickOrient= {yTickOrient}
+        yLabel = {yLabel}
+        yLabelPosition = 'right'
+      />
+    </Chart>
   , document.getElementById('data_area')
   )
 })()

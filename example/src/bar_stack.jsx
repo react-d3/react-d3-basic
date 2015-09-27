@@ -6,6 +6,10 @@ import {
 } from 'react';
 
 import {
+  Chart as Chart,
+} from 'react-d3-core';
+
+import {
   BarStackChart
 } from '../../index';
 
@@ -85,57 +89,64 @@ import {
     yTickFormat = d3.format(".2s");
 
   React.render(
-    <BarStackChart
-      title= {title}
-      data= {generalChartData}
-      width= {width}
-      height= {height}
-      id= {id}
-      margins= {margins}
-      svgClassName= {svgClassName}
-      labelOffset = {30}
-      titleClassName= {titleClassName}
-      yAxisClassName= {yAxisClassName}
-      xAxisClassName= {xAxisClassName}
-      legendClassName= {legendClassName}
-      legendPosition= 'right'
-      categoricalColors= {d3.scale.category10()}
-      chartSeries = {chartSeries}
-      lineClass = 'test-line-class'
-      barClass= 'test-bar-class'
-      scatterClass = 'test-line-dot-class'
-      gridAxisClassName = 'grid-axis-class'
-      showScatter = {true}
-      showLegend= {showLegend}
-      showXAxis= {showXAxis}
-      showYAxis= {showYAxis}
-      showTooltip= {true}
-      x= {x}
-      showXGrid= {false}
-      xDomain= {xDomain}
-      xRangeRoundBands= {xRangeRoundBands}
-      xScale= {xScale}
-      xOrient= {xOrient}
-      xTickOrient= {xTickOrient}
-      xTickPadding = {3}
-      xInnerTickSize = {6}
-      xOuterTickSize = {6}
-      xLabel = {xLabel}
-      xLabelPosition = 'bottom'
-      y= {y}
-      showYGrid= {true}
-      yOrient= {yOrient}
-      yRange= {yRange}
-      yDomain= {yDomain}
-      yScale= {yScale}
-      yTickOrient= {yTickOrient}
-      yTickPadding = {4}
-      yInnerTickSize = {6}
-      yOuterTickSize = {6}
-      yTickFormat= {yTickFormat}
-      yLabel = {yLabel}
-      yLabelPosition = 'left'
-    />
+    <Chart
+      title={title}
+      id={id}
+      width={width}
+      height={height}
+      >
+      <BarStackChart
+        title= {title}
+        data= {generalChartData}
+        width= {width}
+        height= {height}
+        id= {id}
+        margins= {margins}
+        svgClassName= {svgClassName}
+        labelOffset = {30}
+        titleClassName= {titleClassName}
+        yAxisClassName= {yAxisClassName}
+        xAxisClassName= {xAxisClassName}
+        legendClassName= {legendClassName}
+        legendPosition= 'right'
+        categoricalColors= {d3.scale.category10()}
+        chartSeries = {chartSeries}
+        lineClass = 'test-line-class'
+        barClass= 'test-bar-class'
+        scatterClass = 'test-line-dot-class'
+        gridAxisClassName = 'grid-axis-class'
+        showScatter = {true}
+        showLegend= {showLegend}
+        showXAxis= {showXAxis}
+        showYAxis= {showYAxis}
+        showTooltip= {true}
+        x= {x}
+        showXGrid= {false}
+        xDomain= {xDomain}
+        xRangeRoundBands= {xRangeRoundBands}
+        xScale= {xScale}
+        xOrient= {xOrient}
+        xTickOrient= {xTickOrient}
+        xTickPadding = {3}
+        xInnerTickSize = {6}
+        xOuterTickSize = {6}
+        xLabel = {xLabel}
+        xLabelPosition = 'bottom'
+        y= {y}
+        showYGrid= {true}
+        yOrient= {yOrient}
+        yRange= {yRange}
+        yDomain= {yDomain}
+        yScale= {yScale}
+        yTickOrient= {yTickOrient}
+        yTickPadding = {4}
+        yInnerTickSize = {6}
+        yOuterTickSize = {6}
+        yTickFormat= {yTickFormat}
+        yLabel = {yLabel}
+        yLabelPosition = 'left'
+      />
+    </Chart>
   , document.getElementById('data_bar_stack')
   )
 })()

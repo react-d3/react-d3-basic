@@ -30,22 +30,6 @@ import {
   default as Scatter,
 } from './components/scatter';
 
-import {
-  default as Voronoi,
-} from './utils/voronoi';
-
-import {
-  default as Tooltip,
-} from './utils/tooltip';
-
-import {
-  default as Brush,
-} from './utils/brush';
-
-import {
-  default as BrushFocus,
-} from './utils/brush_focus';
-
 export default class LineChart extends xyChart {
 
   static defaultProps = {
@@ -85,8 +69,6 @@ export default class LineChart extends xyChart {
       showScatter,
       showXGrid,
       showYGrid,
-      showTooltip,
-      showBrush,
       showLegend,
       interpolate,
       chartSeries,
@@ -118,16 +100,6 @@ export default class LineChart extends xyChart {
             return <Line dataset={d} key={i} {...this.props} {...this.state} />
           }
         })
-
-        if(showBrush){
-          var focus = <BrushFocus {...this.props} />
-          var brush = <Brush {...this.props} {...this.state} chartSeriesData={chartSeriesData} setDomain={this.setDomain} />
-        }
-
-      }
-
-      if(!showBrush){
-        var voronoi = <Voronoi dataset={chartSeriesData} {...this.props} {...this.state} focus={true} onMouseOver= {this.voronoiMouseOver.bind(this)} onMouseOut= {this.voronoiMouseOut.bind(this)}/>
       }
 
       if(showScatter && !interpolate) {
@@ -141,17 +113,10 @@ export default class LineChart extends xyChart {
         var legends = <Legend {...this.props} {...this.state} />
       }
 
-      if(showTooltip) {
-        var tooltip = <Tooltip {...this.props} {...this.state}/>
-      }
-
     }
 
     return (
-      <div>
-        {tooltip}
-        <Chart {...this.props}>
-          {focus}
+      <g>
           {xgrid}
           {ygrid}
           <g ref= "plotGroup">
@@ -159,12 +124,9 @@ export default class LineChart extends xyChart {
             {scatters}
             {legends}
           </g>
-          {voronoi}
           <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet}/>
           <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
-        </Chart>
-        {brush}
-      </div>
+      </g>
     )
   }
 }

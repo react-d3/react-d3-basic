@@ -18,10 +18,6 @@ import {
   default as Pie,
 } from './components/pie';
 
-import {
-  default as Tooltip,
-} from './utils/tooltip';
-
 require('./css/pie.css')
 
 export default class PieChart extends PieLayout {
@@ -65,7 +61,6 @@ export default class PieChart extends PieLayout {
   render() {
     const {
       showLegend,
-      showTooltip
     } = this.props;
 
     var chartSeriesData = this._mkSeries();
@@ -74,22 +69,13 @@ export default class PieChart extends PieLayout {
       var legends = <Legend {...this.props} />
     }
 
-    if(showTooltip) {
-      var tooltip = <Tooltip {...this.props} {...this.state}/>
-    }
-
     var pie = <Pie chartSeriesData= {chartSeriesData} {...this.props} onMouseOver={this._mouseOver.bind(this)} onMouseOut={this._mouseOut.bind(this)}/>
 
     return (
-      <div>
-        {tooltip}
-        <Chart {...this.props}>
-          <g ref="plotGroup">
-            {pie}
-            {legends}
-          </g>
-        </Chart>
-      </div>
+      <g ref="plotGroup">
+        {pie}
+        {legends}
+      </g>
     )
   }
 }
