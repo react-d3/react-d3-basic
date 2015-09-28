@@ -14,13 +14,6 @@ var charts = [
   "donut"
 ];
 
-var brush_charts = [
-  "brush_line",
-  "brush_line_multi",
-  "brush_scatter",
-  "brush_area_stack"
-]
-
 var animate_charts = [
   "animate_line",
   "animate_multi"
@@ -31,14 +24,6 @@ var prod_link = charts.map(function(d) {
 })
 
 var dev_link = charts.map(function(d) {
-  return 'origin/' + d
-})
-
-var prod_brush_link = brush_charts.map(function(d) {
-  return 'min/' + d + '.min'
-})
-
-var dev_brush_link = brush_charts.map(function(d) {
   return 'origin/' + d
 })
 
@@ -57,7 +42,8 @@ module.exports = [{
   "data": {
     "charts": charts,
     "link": ENV? prod_link: dev_link,
-    "mode": ENV
+    "mode": ENV,
+    "title": "react-d3-basic"
   }
 },{
   "layout": "./gallery.hbs",
@@ -137,38 +123,6 @@ module.exports = [{
   "data": {
     "title": "Donut Chart",
     "type": "donut",
-    "prefix": ENV? 'min': 'origin'
-  }
-},{
-  "layout": "./charts.hbs",
-  "filename": "./example/brush_line.html",
-  "data": {
-    "title": "Brush Line Chart",
-    "type": "brush_line",
-    "prefix": ENV? 'min': 'origin'
-  }
-},{
-  "layout": "./charts.hbs",
-  "filename": "./example/brush_line_multi.html",
-  "data": {
-    "title": "Brush Multipule Line Chart",
-    "type": "brush_line_multi",
-    "prefix": ENV? 'min': 'origin'
-  }
-},{
-  "layout": "./charts.hbs",
-  "filename": "./example/brush_scatter.html",
-  "data": {
-    "title": "Brush Scatter Chart",
-    "type": "brush_scatter",
-    "prefix": ENV? 'min': 'origin'
-  }
-},{
-  "layout": "./charts.hbs",
-  "filename": "./example/brush_area_stack.html",
-  "data": {
-    "title": "Brush Area Stack Chart",
-    "type": "brush_area_stack",
     "prefix": ENV? 'min': 'origin'
   }
 }]

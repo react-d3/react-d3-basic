@@ -2,6 +2,3 @@
 - legend add background
 - style
 - zoom axis
-
-
-- moving utilities out!

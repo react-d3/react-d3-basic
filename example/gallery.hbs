@@ -13,20 +13,20 @@
     <div class="mdl-layout mdl-js-layout">
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">React-d3</span>
+          <span class="mdl-layout-title">{{title}}</span>
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="/react-d3-basics/gallery.html">Basic Charts</a>
-            <a class="mdl-navigation__link" href="/react-d3-basics/brush_gallery.html">Chart With Brush</a>
-            <a class="mdl-navigation__link" href="/react-d3-basics/animate.html">Update Chart Data</a>
-            <a class="mdl-navigation__link" href="/react-d3-basics/combine.html">Brush Multiple charts at once</a>
+            <a class="mdl-navigation__link" href="http://basic.reactd3.org">Basic Charts</a>
+            <a class="mdl-navigation__link" href="http://core.reactd3.org">Core Components</a>
+            <a class="mdl-navigation__link" href="http://tooltip.reactd3.org">Chart With Tooltip</a>
+            <a class="mdl-navigation__link" href="http://brush.reactd3.org">Chart With Brush</a>
 
-            <a class="mdl-navigation__link" href="https://github.com/react-d3/react-d3-basics">Fork Me On Github</a>
+            <a class="mdl-navigation__link" href="https://github.com/react-d3"> Github</a>
           </nav>
         </div>
       </header>
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">React-d3</span>
+        <span class="mdl-layout-title">{{title}}</span>
         <nav class="mdl-navigation">
           {{#each charts}}
             <a class="mdl-navigation__link" href="#{{this}}">{{this}}</a>
@@ -35,6 +35,7 @@
         </nav>
       </div>
       <main class="mdl-layout__content">
+        <h1>{{title}}</h1>
         <div style="margin: 30px;">
           {{#each charts}}
             <a name="{{this}}"></a>
