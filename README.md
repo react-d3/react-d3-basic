@@ -5,7 +5,7 @@ A solution for building reusable components for d3 charts.
 ## Install
 
 ```
-npm install --save react-d3-core
+npm install --save react-d3-basic
 ```
 
 ## Support Charts
