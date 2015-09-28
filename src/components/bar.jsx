@@ -8,6 +8,11 @@ import {
 export default class Bar extends Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      xDomainSet: this.props.xDomain,
+      dataSet: this.props.data
+    }
   }
 
   static defaultProps = {
@@ -18,10 +23,39 @@ export default class Bar extends Component {
   }
 
   componentDidMount () {
+    this._mkBar();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      xDomain,
+      dataSet,
+    } = nextProps;
+
+    // when xDomainSet is update, xScaleSet is not update yet.
+    if(this.state.xDomainSet !== xDomain) {
+      this.setState({
+        xDomainSet: xDomain
+      })
+      d3.select(React.findDOMNode(this.refs.barGroup))
+        .html('');
+      this._mkBar();
+    }else if(!Object.is(this.state.dataSet, dataSet)) {
+      this.setState({
+        dataSet: dataSet
+      })
+      d3.select(React.findDOMNode(this.refs.barGroup))
+        .html('');
+      this._mkBar();
+    }
+  }
+
+  _mkBar() {
     const {
       height,
       margins,
       dataset,
+      showBrush,
       barClass,
       barOpacity,
       xScaleSet,
@@ -36,7 +70,7 @@ export default class Bar extends Component {
       .data(dataset.data)
     .enter().append("rect")
       .attr("class", `${barClass} bar`)
-      .attr("x", (d) => { return xScaleSet(d.x); })
+      .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x) : -10000 })
       .attr("width", xScaleSet.rangeBand())
       .attr("y", (d) => { return yScaleSet(d.y); })
       .attr("height", (d) => { return height - margins.top - margins.bottom - yScaleSet(d.y); })
@@ -46,6 +80,10 @@ export default class Bar extends Component {
       // https://github.com/mbostock/d3/issues/2246
       .on("mouseover", function(d) { return onMouseOver(d, this); })
       .on("mouseout", function(d) { return onMouseOut(d, this, barOpacity); })
+
+    if(showBrush)
+      chart.selectAll("rect")
+        .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
 
   }
 

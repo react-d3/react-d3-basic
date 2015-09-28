@@ -103,15 +103,15 @@ export default class LineChart extends xyChart {
 
     return (
       <g>
-          {xgrid}
-          {ygrid}
-          <g ref= "plotGroup">
-            {lines}
-            {scatters}
-            {legends}
-          </g>
-          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-          <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        {xgrid}
+        {ygrid}
+        <g ref= "plotGroup">
+          {lines}
+          {scatters}
+          {legends}
+        </g>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
       </g>
     )
   }

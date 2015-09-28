@@ -8,6 +8,11 @@ import {
 export default class BarStack extends Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      xDomainSet: this.props.xDomain,
+      dataSet: this.props.data
+    }
   }
 
   static defaultProps = {
@@ -17,6 +22,34 @@ export default class BarStack extends Component {
   }
 
   componentDidMount () {
+    this._mkBarStack();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      xDomain,
+      dataSet,
+    } = nextProps;
+
+    // when xDomainSet is update, xScaleSet is not update yet.
+    if(this.state.xDomainSet !== xDomain) {
+      this.setState({
+        xDomainSet: xDomain
+      })
+      d3.select(React.findDOMNode(this.refs.barGroup))
+        .html('');
+      this._mkBarStack();
+    }else if(!Object.is(this.state.dataSet, dataSet)) {
+      this.setState({
+        dataSet: dataSet
+      })
+      d3.select(React.findDOMNode(this.refs.barGroup))
+        .html('');
+      this._mkBarStack();
+    }
+  }
+
+  _mkBarStack() {
     const {
       height,
       margins,
@@ -40,7 +73,7 @@ export default class BarStack extends Component {
       .data(dataset.data)
     .enter().append("rect")
       .attr("width", xScaleSet.rangeBand())
-      .attr("x", (d) => { return xScaleSet(d.x); })
+      .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x): -10000 })
       .attr("y", (d, i) => {
         return yScaleSet(stackVal[d.x].y0 + stackVal[d.x].y)
       })
@@ -53,8 +86,6 @@ export default class BarStack extends Component {
       // https://github.com/mbostock/d3/issues/2246
       .on("mouseover", function(d) { return onMouseOver(d, this); })
       .on("mouseout", function(d) { return onMouseOut(d, this, barOpacity); })
-
-
   }
 
   render() {
