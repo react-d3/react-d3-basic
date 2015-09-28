@@ -56,17 +56,14 @@ export default class ScatterPlot extends xyChart {
       var ygrid = <Grid type="y" {...this.props} {...this.state} />
     }
 
-    if (xScaleSet && yScaleSet) {
-      // if x and y scale is all set, doing plotting...
-      if(chartSeries) {
-        var scatters = chartSeriesData.map((d, i) => {
-          return <Scatter dataset={d} key={i} {...this.props} {...this.state} />
-        })
-      }
+    if(chartSeries) {
+      var scatters = chartSeriesData.map((d, i) => {
+        return <Scatter dataset={d} key={i} {...this.props} {...this.state} />
+      })
+    }
 
-      if(showLegend) {
-        var legends = <Legend {...this.props} {...this.state} />
-      }
+    if(showLegend) {
+      var legends = <Legend {...this.props} {...this.state} />
     }
 
     return (

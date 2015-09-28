@@ -51,25 +51,22 @@ export default class BarGroupChart extends xyChart {
       var ygrid = <Grid type="y" {...this.props} {...this.state} />
     }
 
-    if (xScaleSet && yScaleSet) {
-      // if x and y scale is all set, doing plotting...
-      if(chartSeries) {
+    if(chartSeries) {
 
-        // settings x1
-        var x1 = d3.scale.ordinal();
+      // settings x1
+      var x1 = d3.scale.ordinal();
 
-        // mapping x1, inner x axis
-        x1.domain(chartSeriesData.map((d) => { return d.field}))
-          .rangeRoundBands([0, xScaleSet.rangeBand()]);
+      // mapping x1, inner x axis
+      x1.domain(chartSeriesData.map((d) => { return d.field}))
+        .rangeRoundBands([0, xScaleSet.rangeBand()]);
 
-        var bargroups = chartSeriesData.map((d, i) => {
-          return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut} />
-        })
-      }
+      var bargroups = chartSeriesData.map((d, i) => {
+        return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut} />
+      })
+    }
 
-      if(showLegend) {
-        var legends = <Legend {...this.props} {...this.state} />
-      }
+    if(showLegend) {
+      var legends = <Legend {...this.props} {...this.state} />
     }
 
     return (

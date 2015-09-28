@@ -53,33 +53,30 @@ export default class BarStackChart extends xyChart {
       var ygrid = <Grid type="y" {...this.props} {...this.state} />
     }
 
-    if (xScaleSet && yScaleSet) {
-      // if x and y scale is all set, doing plotting...
-      if(chartSeries) {
-        var stackVal = chartSeriesData[0].data.map(d => {
-          return {name: d.x, y0: 0};
+    if(chartSeries) {
+      var stackVal = chartSeriesData[0].data.map(d => {
+        return {name: d.x, y0: 0};
+      })
+
+      var bargroups = chartSeriesData.map((d, j) => {
+
+        var stackObj = {};
+
+        stackVal.forEach((dkey, i) => {
+
+          var prev = (j === 0)? 0: chartSeriesData[j - 1].data[i].y;
+          var newVal = dkey.y0 + prev;
+          stackVal[i].y0 = newVal;
+
+          stackObj[dkey.name]= {y: d.data[i].y, y0: newVal}
         })
 
-        var bargroups = chartSeriesData.map((d, j) => {
+        return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
+      })
+    }
 
-          var stackObj = {};
-
-          stackVal.forEach((dkey, i) => {
-
-            var prev = (j === 0)? 0: chartSeriesData[j - 1].data[i].y;
-            var newVal = dkey.y0 + prev;
-            stackVal[i].y0 = newVal;
-
-            stackObj[dkey.name]= {y: d.data[i].y, y0: newVal}
-          })
-
-          return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
-        })
-      }
-
-      if(showLegend) {
-        var legends = <Legend {...this.props} {...this.state} />
-      }
+    if(showLegend) {
+      var legends = <Legend {...this.props} {...this.state} />
     }
 
     return (

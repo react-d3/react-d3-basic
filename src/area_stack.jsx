@@ -60,16 +60,12 @@ export default class AreaStackChart extends xyChart {
       var ygrid = <Grid type="y" {...this.props} {...this.state} />
     }
 
+    if(chartSeries) {
+      var areas = <AreaStack dataset={chartSeriesData} {...this.props} {...this.state} />
+    }
 
-    if (xScaleSet && yScaleSet) {
-      // if x and y scale is all set, doing plotting...
-      if(chartSeries) {
-        var areas = <AreaStack dataset={chartSeriesData} {...this.props} {...this.state} />
-      }
-
-      if(showLegend) {
-        var legends = <Legend {...this.props} {...this.state} />
-      }
+    if(showLegend) {
+      var legends = <Legend {...this.props} {...this.state} />
     }
 
     return (

@@ -10,6 +10,9 @@ import {
   series
 } from '../utils/series'
 
+import {
+  scale as scale
+} from 'react-d3-core';
 
 export default class xyChart extends Component {
   constructor(props) {
@@ -21,15 +24,26 @@ export default class xyChart extends Component {
       yDomain,
     } = this.props;
 
+    var xScale = {
+      scale: props.xScale,
+      range: props.xRange,
+      domain: props.xDomain,
+      rangeRoundBands: props.xRangeRoundBands
+    }
+
+    var yScale = {
+      scale: props.yScale,
+      range: props.yRange,
+      domain: props.yDomain,
+      rangeRoundBands: props.yRangeRoundBands
+    }
+
     this.setScale = this.setScale.bind(this);
     this.setDomain = this.setDomain.bind(this);
 
     this.state = {
-      xTooltip: null,
-      yTooltip: null,
-      contentTooltip: null,
-      xScaleSet: null,
-      yScaleSet: null,
+      xScaleSet: scale(xScale),
+      yScaleSet: scale(yScale),
       xDomainSet: xDomain,
       yDomainSet: yDomain,
       dataSet: data,

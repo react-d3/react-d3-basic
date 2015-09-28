@@ -53,17 +53,14 @@ export default class BarChart extends xyChart {
       var ygrid = <Grid type="y" {...this.props} {...this.state} />
     }
 
-    if (xScaleSet && yScaleSet) {
-      // if x and y scale is all set, doing plotting...
-      if(chartSeries) {
-        var bars = chartSeriesData.map((d, i) => {
-          return <Bar dataset={d} key={i} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
-        })
-      }
+    if(chartSeries) {
+      var bars = chartSeriesData.map((d, i) => {
+        return <Bar dataset={d} key={i} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
+      })
+    }
 
-      if(showLegend) {
-        var legends = <Legend {...this.props} {...this.state} />
-      }
+    if(showLegend) {
+      var legends = <Legend {...this.props} {...this.state} />
     }
 
     return (
