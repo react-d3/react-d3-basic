@@ -28,13 +28,13 @@ export default class AreaStack extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      xDomainSet,
+      xDomain,
       dataSet
     } = nextProps;
 
-    if(this.state.xDomainSet !== xDomainSet) {
+    if(this.state.xDomain !== xDomain) {
       this.setState({
-        xDomainSet: xDomainSet
+        xDomainSet: xDomain
       })
       this._mkStack();
     }else if(!Object.is(this.state.dataSet, dataSet)) {

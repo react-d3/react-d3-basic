@@ -30,22 +30,14 @@ export default class ScatterPlot extends xyChart {
     var legends;
 
     const {
-      xScaleSet,
-      yScaleSet,
-      xDomainSet,
-      yDomainSet,
       chartSeriesData,
     } = this.state;
+
     const {
       chartSeries,
       showLegend,
       showXGrid,
       showYGrid
-    } = this.props;
-
-    var {
-      xDomain,
-      ...otherProps
     } = this.props;
 
     if(showXGrid) {
@@ -74,7 +66,7 @@ export default class ScatterPlot extends xyChart {
           {scatters}
           {legends}
         </g>
-        <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet} />
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
         <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
       </g>
     )

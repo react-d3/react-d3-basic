@@ -32,10 +32,10 @@ export default class BarGroupChart extends xyChart {
   render() {
 
     const {
-      xScaleSet,
-      yScaleSet,
-      chartSeriesData
+      chartSeriesData,
+      xScaleSet
     } = this.state;
+
     const {
       chartSeries,
       showLegend,

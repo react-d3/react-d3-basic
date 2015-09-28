@@ -34,10 +34,9 @@ export default class BarChart extends xyChart {
 
     const {
       x,
-      xScaleSet,
-      yScaleSet,
       chartSeriesData
     } = this.state;
+
     const {
       chartSeries,
       showLegend,

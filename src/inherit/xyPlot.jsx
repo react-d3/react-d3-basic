@@ -20,32 +20,35 @@ export default class xyChart extends Component {
     const {
       chartSeries,
       data,
+      xScale,
+      xRange,
       xDomain,
+      xRangeRoundBands,
+      yScale,
+      yRange,
       yDomain,
+      yRangeRoundBands
     } = this.props;
 
-    var xScale = {
-      scale: props.xScale,
-      range: props.xRange,
-      domain: props.xDomain,
-      rangeRoundBands: props.xRangeRoundBands
+    var xScaleInit = {
+      scale: xScale,
+      range: xRange,
+      domain: xDomain,
+      rangeRoundBands: xRangeRoundBands
     }
 
-    var yScale = {
-      scale: props.yScale,
-      range: props.yRange,
-      domain: props.yDomain,
-      rangeRoundBands: props.yRangeRoundBands
+    var yScaleInit = {
+      scale: yScale,
+      range: yRange,
+      domain: yDomain,
+      rangeRoundBands: yRangeRoundBands
     }
 
     this.setScale = this.setScale.bind(this);
-    this.setDomain = this.setDomain.bind(this);
 
     this.state = {
-      xScaleSet: scale(xScale),
-      yScaleSet: scale(yScale),
-      xDomainSet: xDomain,
-      yDomainSet: yDomain,
+      xScaleSet: scale(xScaleInit),
+      yScaleSet: scale(yScaleInit),
       dataSet: data,
       chartSeriesData: chartSeries? this.mkSeries(): null
     }
@@ -109,20 +112,6 @@ export default class xyChart extends Component {
       // set y scale
       this.setState({
         yScaleSet: func
-      })
-    }
-  }
-
-  setDomain(axis, val) {
-    if(axis === 'x'){
-      // set x scale
-      this.setState({
-        xDomainSet: val
-      })
-    }else if(axis === 'y'){
-      // set y scale
-      this.setState({
-        yDomainSet: val
       })
     }
   }

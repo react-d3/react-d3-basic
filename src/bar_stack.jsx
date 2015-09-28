@@ -33,8 +33,6 @@ export default class BarStackChart extends xyChart {
   render() {
 
     const {
-      xScaleSet,
-      yScaleSet,
       chartSeriesData
     } = this.state;
 

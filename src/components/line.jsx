@@ -9,7 +9,7 @@ import {
 export default class Line extends Component {
   constructor (props) {
     super(props);
-    
+
     this.state = {
       xDomainSet: this.props.xDomain,
       dataSet: this.props.data
@@ -27,14 +27,14 @@ export default class Line extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      xDomainSet,
+      xDomain,
       dataSet,
     } = nextProps;
 
     // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomainSet !== xDomainSet) {
+    if(this.state.xDomainSet !== xDomain) {
       this.setState({
-        xDomainSet: xDomainSet
+        xDomainSet: xDomain
       })
       this._mkLine();
     }else if(!Object.is(this.state.dataSet, dataSet)) {

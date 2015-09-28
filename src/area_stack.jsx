@@ -31,10 +31,6 @@ export default class AreaStackChart extends xyChart {
   render() {
 
     const {
-      xScaleSet,
-      yScaleSet,
-      xDomainSet,
-      yDomainSet,
       chartSeriesData,
     } = this.state;
 
@@ -45,11 +41,6 @@ export default class AreaStackChart extends xyChart {
       showYGrid,
       showTooltip,
       showBrush,
-    } = this.props;
-
-    var {
-      xDomain,
-      ...otherProps
     } = this.props;
 
     if(showXGrid) {
@@ -76,7 +67,7 @@ export default class AreaStackChart extends xyChart {
           {areas}
           {legends}
         </g>
-        <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet}/>
+        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
         <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
       </g>
     )

@@ -27,14 +27,14 @@ export default class AreaSimple extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      xDomainSet,
+      xDomain,
       dataSet,
     } = nextProps;
 
     // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomainSet !== xDomainSet) {
+    if(this.state.xDomainSet !== xDomain) {
       this.setState({
-        xDomainSet: xDomainSet
+        xDomainSet: xDomain
       })
       this._mkArea();
     }else if(!Object.is(this.state.dataSet, dataSet)) {

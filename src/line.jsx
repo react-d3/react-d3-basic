@@ -58,10 +58,6 @@ export default class LineChart extends xyChart {
     var legends;
 
     const {
-      xScaleSet,
-      yScaleSet,
-      xDomainSet,
-      yDomainSet,
       chartSeriesData,
     } = this.state;
 
@@ -74,14 +70,8 @@ export default class LineChart extends xyChart {
       chartSeries,
     } = this.props;
 
-    var {
-      xDomain,
-      ...otherProps
-    } = this.props;
-
-
     if(showXGrid) {
-      var xgrid = <Grid type="x" key="xgrid" {...otherProps} {...this.state} xDomain={xDomainSet}/>
+      var xgrid = <Grid type="x" key="xgrid" {...this.props} {...this.state} />
     }
 
     if(showYGrid) {
@@ -120,7 +110,7 @@ export default class LineChart extends xyChart {
             {scatters}
             {legends}
           </g>
-          <Xaxis {...otherProps} {...this.state} setScale={this.setScale} xDomain={xDomainSet}/>
+          <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
           <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
       </g>
     )
