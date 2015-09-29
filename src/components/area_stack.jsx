@@ -51,6 +51,7 @@ export default class AreaStack extends Component {
       areaClass,
       areaOpacity,
       showBrush,
+      showZoom,
       duration
     } = this.props;
 
@@ -76,6 +77,11 @@ export default class AreaStack extends Component {
     if(showBrush)
       chart.selectAll("path")
         .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+
+    if(showZoom)
+      chart.selectAll("path")
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+
 
   }
 

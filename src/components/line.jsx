@@ -50,6 +50,7 @@ export default class Line extends Component {
       dataset,
       lineClass ,
       showBrush,
+      showZoom,
       duration
     } = this.props;
 
@@ -66,6 +67,9 @@ export default class Line extends Component {
 
     if(showBrush)
       lines.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+
+    if(showZoom)
+      lines.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
   }
 
   _setAxes () {

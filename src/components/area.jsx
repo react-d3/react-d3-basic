@@ -51,6 +51,7 @@ export default class AreaSimple extends Component {
       areaClass,
       areaOpacity,
       showBrush,
+      showZoom,
       duration
     } = this.props;
 
@@ -68,6 +69,9 @@ export default class AreaSimple extends Component {
 
     if(showBrush)
       areas.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+
+    if(showZoom)
+      areas.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
   }
 
   _setAxes () {

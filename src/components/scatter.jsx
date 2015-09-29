@@ -60,6 +60,7 @@ export default class Scatter extends Component {
       defaultSymbol,
       defaultSymbolSize,
       showBrush,
+      showZoom,
       brushSymbol,
       duration
     } = this.props;
@@ -90,6 +91,11 @@ export default class Scatter extends Component {
     if(showBrush)
       d3.select(React.findDOMNode(this.refs.scatterPlot))
         .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+
+    if(showZoom)
+      d3.select(React.findDOMNode(this.refs.scatterPlot))
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+
   }
 
   render() {
