@@ -56,6 +56,10 @@ Building Charts.
 - [Pie Chart](./docs/charts/pie_chart.md)
 - [Donut Chart](./docs/charts/donut_chart.md)
 
+## Gallery
+
+![img](http://www.reactd3.org/img/basic/cover.png)
+
 ## License
 
 Apache 2.0
