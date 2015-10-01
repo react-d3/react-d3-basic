@@ -38,7 +38,7 @@ var dev_animate_link = animate_charts.map(function(d) {
 
 module.exports = [{
   "layout": "./gallery.hbs",
-  "filename": "./example/gallery.html",
+  "filename": "./gallery.html",
   "data": {
     "charts": charts,
     "link": ENV? prod_link: dev_link,
@@ -47,7 +47,7 @@ module.exports = [{
   }
 },{
   "layout": "./gallery.hbs",
-  "filename": "./example/combine.html",
+  "filename": "./combine.html",
   "data": {
     "charts": ["combine"],
     "link": ENV? ['min/combine.min']: ['origin/combine'],
@@ -55,7 +55,7 @@ module.exports = [{
   }
 },{
   "layout": "./gallery.hbs",
-  "filename": "./example/animate.html",
+  "filename": "./animate.html",
   "data": {
     "charts": animate_charts,
     "link": ENV? prod_animate_link: dev_animate_link,
@@ -63,7 +63,7 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/line.html",
+  "filename": "./line.html",
   "data": {
     "title": "Line Chart",
     "type": "line",
@@ -71,7 +71,7 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/line_multi.html",
+  "filename": "./line_multi.html",
   "data": {
     "title": "Multipule Line Chart",
     "type": "line_multi",
@@ -79,7 +79,7 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/area_stack.html",
+  "filename": "./area_stack.html",
   "data": {
     "title": "Area Stack Chart",
     "type": "area_stack",
@@ -87,7 +87,7 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/bar.html",
+  "filename": "./bar.html",
   "data": {
     "title": "Bar Chart",
     "type": "bar",
@@ -95,7 +95,7 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/bar_group.html",
+  "filename": "./bar_group.html",
   "data": {
     "title": "Bar Group Chart",
     "type": "bar_group",
@@ -103,7 +103,7 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/bar_stack.html",
+  "filename": "./bar_stack.html",
   "data": {
     "title": "Bar Stack Chart",
     "type": "bar_stack",
@@ -111,7 +111,7 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/pie.html",
+  "filename": "./pie.html",
   "data": {
     "title": "Pie Chart",
     "type": "pie",
@@ -119,10 +119,18 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
-  "filename": "./example/donut.html",
+  "filename": "./donut.html",
   "data": {
     "title": "Donut Chart",
     "type": "donut",
     "prefix": ENV? 'min': 'origin'
+  }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./line_es5.html",
+  "data": {
+    "title": "Line ES5 Chart",
+    "type": "line",
+    "prefix": 'origin_es5'
   }
 }]

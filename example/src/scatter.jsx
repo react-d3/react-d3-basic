@@ -11,7 +11,7 @@ import {
 
 import {
   ScatterPlot
-} from '../../index';
+} from '../../src/index';
 
 (() => {
   var generalChartData = require('dsv?delimiter=\t!./data/temp.tsv')

@@ -7,7 +7,7 @@ import {
 
 import {
   LineChart
-} from '../../index';
+} from '../../src/index';
 
 class UpdateMulti extends Component {
   constructor(props) {

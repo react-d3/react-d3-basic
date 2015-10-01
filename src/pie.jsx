@@ -18,7 +18,7 @@ import {
   default as Pie,
 } from './components/pie';
 
-require('./css/pie.css')
+require('../css/pie.css')
 
 export default class PieChart extends PieLayout {
   constructor(props) {

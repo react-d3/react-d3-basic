@@ -11,7 +11,7 @@ import {
 
 import {
   PieChart
-} from '../../index';
+} from '../../src/index';
 
 (() => {
   var generalChartData = require('dsv?delimiter=,!./data/age_pie.csv')

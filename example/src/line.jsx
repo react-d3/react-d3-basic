@@ -11,7 +11,7 @@ import {
 
 import {
   LineChart as LineChart
-} from '../../index';
+} from '../../src/index';
 
 (() => {
 

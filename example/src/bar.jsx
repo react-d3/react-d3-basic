@@ -11,7 +11,7 @@ import {
 
 import {
   BarChart
-} from '../../index';
+} from '../../src/index';
 
 (() => {
   var generalChartData = require('dsv?delimiter=\t!./data/letter.tsv')

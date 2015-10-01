@@ -11,7 +11,7 @@ import {
 
 import {
   LineChart
-} from '../../index';
+} from '../../src/index';
 
 (() => {
   var generalChartData = require('dsv?delimiter=\t!./data/stock.tsv')

@@ -64,4 +64,47 @@ module.exports = [{
       'd3': 'd3'
     })
   ]
+}, {
+  name: 'chartes5Component',
+  devtool: ENV ? "source-map": '',
+  entry: {
+    line: js_root + '_es5/line.jsx',
+  },
+
+  output: {
+    path: ENV ? js_dist_min + '_es5'  : js_dist + '_es5',
+    filename: ENV ? '[name].min.js': '[name].js'
+  },
+
+  module: {
+    loaders: [
+      {
+        test: [/\.jsx$/],
+        loaders: ["jsx-loader?insertPragma=React.DOM&harmony"],
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.json$/,
+        loader: "json-loader"
+      }
+    ],
+  },
+
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
+  },
+
+  plugins: ENV ? [
+    new webpack.optimize.UglifyJsPlugin({minimize: true}),
+    new webpack.ProvidePlugin({
+      'd3': 'd3'
+    })
+  ]: [
+    new webpack.ProvidePlugin({
+      'd3': 'd3'
+    })
+  ]
 }];

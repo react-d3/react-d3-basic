@@ -11,7 +11,7 @@ import {
 
 import {
   BarStackChart
-} from '../../index';
+} from '../../src/index';
 
 (() => {
   var generalChartData = require('dsv?delimiter=,!./data/age.csv')
