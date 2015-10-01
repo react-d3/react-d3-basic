@@ -1,5 +1,7 @@
 # react-d3-basic
 
+[![Dependency Status](https://gemnasium.com/react-d3/react-d3-basic.svg)](https://gemnasium.com/react-d3/react-d3-basic)
+
 react-d3 basic charts, charts that we support:
 
 - Line Chart
