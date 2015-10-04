@@ -48,7 +48,7 @@ export default class Line extends Component {
   _mkLine() {
     const {
       dataset,
-      lineClass ,
+      lineClassName,
       showBrush,
       showZoom,
       duration
@@ -61,7 +61,7 @@ export default class Line extends Component {
     .transition()
       .duration(duration)
       .ease("linear")
-      .attr("class", `${lineClass} line`)
+      .attr("class", `${lineClassName} line`)
       .attr("d", this._setAxes())
 
 

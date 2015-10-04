@@ -60,8 +60,7 @@ var AreaStackChart = require('../../lib').AreaStackChart;
     yTickOrient = 'right',
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
-    yAxisClassName = 'y-axis',
-    yLabel = "Browser rate (%)";
+    yAxisClassName = 'y-axis';
 
   React.render(
     <Chart
@@ -78,22 +77,16 @@ var AreaStackChart = require('../../lib').AreaStackChart;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {30}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        legendPosition= 'right'
         categoricalColors= {d3.scale.category10()}
         chartSeries = {chartSeries}
         interpolate = {interpolate}
-        lineClass = 'test-line-class'
-        scatterClass = 'test-line-dot-class'
-        showScatter = {true}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
-        showTooltip= {true}
         x= {x}
         xDomain= {xDomain}
         xRange= {xRange}
@@ -101,15 +94,12 @@ var AreaStackChart = require('../../lib').AreaStackChart;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
         y= {y}
         yOrient= {yOrient}
         yRange= {yRange}
         yScale= {yScale}
         yTickOrient= {yTickOrient}
         yTickFormat= {formatPercent}
-        yLabel = {yLabel}
-        yLabelPosition = 'left'
       />
     </Chart>
   , document.getElementById('data_area_stack')

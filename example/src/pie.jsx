@@ -72,7 +72,6 @@ var PieChart = require('../../lib').PieChart;
         legendPosition= 'right'
         categoricalColors= {d3.scale.category10()}
         showLegend= {showLegend}
-        showTooltip= {true}
         value = {value}
         name = {name}
         outerRadius= {radius - 10}

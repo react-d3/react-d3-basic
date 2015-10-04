@@ -67,6 +67,7 @@ var BarStackChart = require('../../lib').BarStackChart;
     xScale = 'ordinal',
     xAxisClassName = 'x-axis',
     xLabel = "Age",
+    xLabelPosition = 'bottom',
     y = function(d) {
       return +d;
     },
@@ -77,7 +78,9 @@ var BarStackChart = require('../../lib').BarStackChart;
     yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Population",
-    yTickFormat = d3.format(".2s");
+    yTickFormat = d3.format(".2s")
+    yLabelPosition = 'left'
+
 
   React.render(
     <Chart
@@ -94,25 +97,17 @@ var BarStackChart = require('../../lib').BarStackChart;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {30}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        legendPosition= 'right'
         categoricalColors= {d3.scale.category10()}
         chartSeries = {chartSeries}
-        lineClass = 'test-line-class'
-        barClass= 'test-bar-class'
-        scatterClass = 'test-line-dot-class'
-        gridAxisClassName = 'grid-axis-class'
-        showScatter = {true}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
-        showTooltip= {true}
         x= {x}
-        showXGrid= {false}
+        showXGrid= {true}
         xDomain= {xDomain}
         xRangeRoundBands= {xRangeRoundBands}
         xScale= {xScale}
@@ -122,7 +117,7 @@ var BarStackChart = require('../../lib').BarStackChart;
         xInnerTickSize = {6}
         xOuterTickSize = {6}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
+        xLabelPosition = {xLabelPosition}
         y= {y}
         showYGrid= {true}
         yOrient= {yOrient}
@@ -135,7 +130,7 @@ var BarStackChart = require('../../lib').BarStackChart;
         yOuterTickSize = {6}
         yTickFormat= {yTickFormat}
         yLabel = {yLabel}
-        yLabelPosition = 'left'
+        yLabelPosition = {yLabelPosition}
       />
     </Chart>
   , document.getElementById('data_bar_stack')

@@ -17,6 +17,7 @@ var LineChart = require('../../lib').LineChart;
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
+    areaClassName = 'test-area-class',
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
@@ -42,12 +43,15 @@ var LineChart = require('../../lib').LineChart;
       return d;
     },
     yOrient = 'right',
-    yTickOrient = 'right',
+    yTickOrient = 'left',
     yDomain = [0, d3.max(generalChartData, function(d) { return +d.close; })],
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Price";
+    yLabel = "Price",
+    labelOffset = 50,
+    areaOpacity = 0.3
+
 
   React.render(
     <Chart
@@ -64,15 +68,13 @@ var LineChart = require('../../lib').LineChart;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {50}
-        areaOpacity = {0.3}
+        labelOffset = {labelOffset}
+        areaOpacity = {areaOpacity}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        lineClass = 'test-line-class'
-        areaClass = 'test-area-class'
-        showScatter = {false}
+        areaClassName = {areaClassName}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
@@ -84,7 +86,6 @@ var LineChart = require('../../lib').LineChart;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
         y= {y}
         yOrient= {yOrient}
         yDomain= {yDomain}
@@ -92,7 +93,6 @@ var LineChart = require('../../lib').LineChart;
         yScale= {yScale}
         yTickOrient= {yTickOrient}
         yLabel = {yLabel}
-        yLabelPosition = 'right'
       />
     </Chart>
   , document.getElementById('data_area')

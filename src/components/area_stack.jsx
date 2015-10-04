@@ -48,7 +48,7 @@ export default class AreaStack extends Component {
   _mkStack() {
     const {
       dataset,
-      areaClass,
+      areaClassName,
       areaOpacity,
       showBrush,
       showZoom,
@@ -60,10 +60,10 @@ export default class AreaStack extends Component {
 
     // make areas
     var chart = d3.select(React.findDOMNode(this.refs.areaGroup))
-      .selectAll(`${areaClass}`)
+      .selectAll(`${areaClassName}`)
       .data(_setStack(dataset))
     .enter().append("g")
-      .attr("class", `${areaClass} area-group`)
+      .attr("class", `${areaClassName} area-group`)
 
     chart.append("path")
       .attr("class", "area")

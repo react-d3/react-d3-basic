@@ -56,7 +56,7 @@ export default class Bar extends Component {
       margins,
       dataset,
       showBrush,
-      barClass,
+      barClassName,
       barOpacity,
       xScaleSet,
       yScaleSet,
@@ -69,7 +69,7 @@ export default class Bar extends Component {
       .selectAll("rect")
       .data(dataset.data)
     .enter().append("rect")
-      .attr("class", `${barClass} bar`)
+      .attr("class", `${barClassName} bar`)
       .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x) : -10000 })
       .attr("width", xScaleSet.rangeBand())
       .attr("y", (d) => { return yScaleSet(d.y); })

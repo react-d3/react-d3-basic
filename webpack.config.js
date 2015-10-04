@@ -8,11 +8,6 @@ var path            = require('path'),
 var js_root = './example/src';
 var js_dist = path.join(__dirname, './example/dist/origin');
 
-// 0 stands for development, 1 stands for production
-// for development mode: NODE_ENV=0 webpack
-// for production mode: NODE_ENV=1 webpack
-var ENV = !!(+process.env.NODE_ENV || 0);
-
 module.exports = [{
   name: 'chartes5Component',
   entry: {
@@ -54,12 +49,7 @@ module.exports = [{
     extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
   },
 
-  plugins: ENV ? [
-    new webpack.optimize.UglifyJsPlugin({minimize: true}),
-    new webpack.ProvidePlugin({
-      'd3': 'd3'
-    })
-  ]: [
+  plugins: [
     new webpack.ProvidePlugin({
       'd3': 'd3'
     })

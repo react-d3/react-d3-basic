@@ -21,6 +21,9 @@ var BarGroupChart = require('../../lib').BarGroupChart;
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
+    legendPosition = 'right',
+    labelOffset = 30,
+
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
@@ -65,6 +68,7 @@ var BarGroupChart = require('../../lib').BarGroupChart;
     xScale = 'ordinal',
     xAxisClassName = 'x-axis',
     xLabel = "Age",
+    xLabelPosition = 'bottom',
     y = function(d) {
       return +d;
     },
@@ -74,7 +78,9 @@ var BarGroupChart = require('../../lib').BarGroupChart;
     yDomain = [0, d3.max(generalChartData, function(d) { return d3.max(d.ages, (d) => { return d.value; }); })],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Population";
+    yLabel = "Population",
+    yTickFormat = d3.format(".2s"),
+    yLabelPosition = 'left'
 
 
   React.render(
@@ -92,22 +98,17 @@ var BarGroupChart = require('../../lib').BarGroupChart;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {30}
+        labelOffset = {labelOffset}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        legendPosition= 'right'
+        legendPosition= {legendPosition}
         categoricalColors= {d3.scale.category10()}
         chartSeries = {chartSeries}
-        lineClass = 'test-line-class'
-        barClass= 'test-bar-class'
-        scatterClass = 'test-line-dot-class'
-        showScatter = {true}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
-        showTooltip= {true}
         x= {x}
         xDomain= {xDomain}
         xRangeRoundBands= {xRangeRoundBands}
@@ -115,16 +116,16 @@ var BarGroupChart = require('../../lib').BarGroupChart;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
+        xLabelPosition = {xLabelPosition}
         y= {y}
         yOrient= {yOrient}
         yRange= {yRange}
         yDomain= {yDomain}
         yScale= {yScale}
         yTickOrient= {yTickOrient}
-        yTickFormat= {d3.format(".2s")}
+        yTickFormat= {yTickFormat}
         yLabel = {yLabel}
-        yLabelPosition = 'left'
+        yLabelPosition = {yLabelPosition}
       />
     </Chart>
   , document.getElementById('data_bar_group')

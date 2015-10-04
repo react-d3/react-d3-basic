@@ -52,7 +52,7 @@ export default class Scatter extends Component {
   _mkScatter() {
     const {
       dataset,
-      scatterClass,
+      scatterClassName,
       x,
       xScaleSet,
       y,
@@ -75,7 +75,7 @@ export default class Scatter extends Component {
     }
 
     var dots = d3.select(React.findDOMNode(this.refs.scatterPlot))
-      .selectAll(`${scatterClass}`)
+      .selectAll(`${scatterClassName}`)
       .data(dataset.data)
     .enter().append("path")
       .attr('class', 'react-d3-basic__scatter__path')

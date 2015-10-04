@@ -48,7 +48,7 @@ export default class AreaSimple extends Component {
   _mkArea() {
     const {
       dataset,
-      areaClass,
+      areaClassName,
       areaOpacity,
       showBrush,
       showZoom,
@@ -58,7 +58,7 @@ export default class AreaSimple extends Component {
     // make areas
     var areas = d3.select(React.findDOMNode(this.refs.areaPath))
       .datum(dataset.data)
-      .attr("class", `${areaClass} area`)
+      .attr("class", `${areaClassName} area`)
       .style("fill", dataset.color)
       .style("fill-opacity", areaOpacity)
       .style("stroke", dataset.color)

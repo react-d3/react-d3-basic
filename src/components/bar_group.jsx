@@ -54,7 +54,7 @@ export default class BarGroup extends Component {
       height,
       margins,
       dataset,
-      barClass,
+      barClassName,
       barOpacity,
       xScaleSet,
       yScaleSet,
@@ -67,11 +67,12 @@ export default class BarGroup extends Component {
     // make areas
     var chart = d3.select(React.findDOMNode(this.refs.barGroup))
       .datum(dataset)
-      .attr("class", "g")
+      .attr("class", "bargroup")
 
     chart.selectAll("rect")
       .data(dataset.data)
     .enter().append("rect")
+      .attr("class", `${barClassName} bar`)
       .attr("width", x1.rangeBand())
       .attr("x", function(d) { return xScaleSet(d.x)? (xScaleSet(d.x) + x1.rangeBand() * count) : -10000})
       .attr("y", function(d) { return yScaleSet(d.y); })

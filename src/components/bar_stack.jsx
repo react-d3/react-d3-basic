@@ -54,7 +54,7 @@ export default class BarStack extends Component {
       height,
       margins,
       dataset,
-      barClass,
+      barClassName,
       barOpacity,
       xScaleSet,
       yScaleSet,
@@ -72,6 +72,7 @@ export default class BarStack extends Component {
     chart.selectAll("rect")
       .data(dataset.data)
     .enter().append("rect")
+      .attr("class", `${barClassName} bar`)
       .attr("width", xScaleSet.rangeBand())
       .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x): -10000 })
       .attr("y", (d, i) => {

@@ -15,6 +15,7 @@ var BarChart = require('../../lib').BarChart;
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
+    legendPosition = "right",
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
@@ -34,6 +35,7 @@ var BarChart = require('../../lib').BarChart;
     xScale = 'ordinal',
     xAxisClassName = 'x-axis',
     xLabel = "Letter",
+    xLabelPosition = 'bottom',
     y = function(d) {
       return +d;
     },
@@ -43,7 +45,9 @@ var BarChart = require('../../lib').BarChart;
     yDomain = [0, +d3.max(generalChartData, function(d) { return d.frequency; })],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Frequency";
+    yLabel = "Frequency",
+    yTicks = [10, "%"],
+    yLabelPosition = 'left';
 
   React.render(
     <Chart
@@ -60,16 +64,13 @@ var BarChart = require('../../lib').BarChart;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {30}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        legendPosition= 'right'
+        legendPosition= {legendPosition}
         categoricalColors= {d3.scale.category10()}
         chartSeries = {chartSeries}
-        lineClass = 'test-line-class'
-        barClass= 'test-bar-class'
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
@@ -80,16 +81,15 @@ var BarChart = require('../../lib').BarChart;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
         y= {y}
         yOrient= {yOrient}
         yRange= {yRange}
         yDomain= {yDomain}
         yScale= {yScale}
         yTickOrient= {yTickOrient}
-        yTicks= {[10, "%"]}
+        yTicks= {yTicks}
         yLabel = {yLabel}
-        yLabelPosition = 'left'
+        yLabelPosition = {yLabelPosition}
       />
     </Chart>
   , document.getElementById('data_bar')
