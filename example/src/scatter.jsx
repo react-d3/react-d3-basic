@@ -1,24 +1,16 @@
 "use strict";
 
-import {
-  default as React,
-  Component,
-} from 'react';
 
-import {
-  Chart as Chart,
-} from 'react-d3-core';
+var React = require('react');
+var Chart = require('react-d3-core').Chart;
+var ScatterPlot = require('../../lib').ScatterPlot;
 
-import {
-  ScatterPlot
-} from '../../src/index';
-
-(() => {
+(function() {
   var generalChartData = require('dsv?delimiter=\t!./data/temp.tsv')
 
-  const parseDate = d3.time.format("%Y%m%d").parse;
+  var parseDate = d3.time.format("%Y%m%d").parse;
 
-  const width = 960,
+  var width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
@@ -49,8 +41,7 @@ import {
         symbol: 'triangle-down'
       }
     ],
-    interpolate = 'monotone',
-    x = (d) => {
+    x = function(d) {
       return parseDate(d.date);
     },
     xOrient = 'bottom',
@@ -60,7 +51,7 @@ import {
     xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
-    y = (d) => {
+    y = function(d) {
       return d;
     },
     yOrient = 'left',
@@ -94,14 +85,10 @@ import {
         legendClassName= {legendClassName}
         legendPosition= 'right'
         chartSeries = {chartSeries}
-        interpolate = {interpolate}
-        lineClass = 'test-line-class'
         scatterClass = 'test-line-dot-class'
-        showScatter = {true}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
-        showTooltip= {true}
         x= {x}
         xDomain= {xDomain}
         xRange= {xRange}

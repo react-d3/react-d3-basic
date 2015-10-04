@@ -1,24 +1,15 @@
 "use strict";
 
-import {
-  default as React,
-  Component,
-} from 'react';
+var React = require('react');
+var Chart = require('react-d3-core').Chart;
+var LineChart = require('../../lib').LineChart;
 
-import {
-  Chart as Chart,
-} from 'react-d3-core';
-
-import {
-  LineChart
-} from '../../src/index';
-
-(() => {
+(function() {
   var generalChartData = require('dsv?delimiter=\t!./data/stock.tsv')
 
-  const parseDate = d3.time.format("%d-%b-%y").parse;
+  var parseDate = d3.time.format("%d-%b-%y").parse;
 
-  const width = 960,
+  var width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
@@ -37,40 +28,27 @@ import {
         area: true
       }
     ],
-    x = (d) => {
+    x = function(d) {
       return parseDate(d.date);
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = d3.extent(generalChartData, (d) => x(d)),
+    xDomain = d3.extent(generalChartData, function(d) { return x(d)}),
     xRange = [0, width - margins.left - margins.right],
     xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
-    y = (d) => {
+    y = function(d) {
       return d;
     },
     yOrient = 'right',
     yTickOrient = 'right',
-    yDomain = [0, d3.max(generalChartData, (d) => { return +d.close; })],
+    yDomain = [0, d3.max(generalChartData, function(d) { return +d.close; })],
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Price";
 
-  /*
-  ** Inherit variables:
-  **
-  ** - id
-  ** - x
-  ** - xDomain
-  ** - xRange
-  ** - xScale
-  ** - y
-  ** - yDomain
-  ** - yRange
-  ** - yScale
-  */
   React.render(
     <Chart
       title={title}
@@ -94,12 +72,10 @@ import {
         legendClassName= {legendClassName}
         lineClass = 'test-line-class'
         areaClass = 'test-area-class'
-        scatterClass = 'test-line-dot-class'
         showScatter = {false}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
-        showTooltip= {true}
         chartSeries= {chartSeries}
         x= {x}
         xDomain= {xDomain}

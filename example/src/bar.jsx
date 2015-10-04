@@ -1,22 +1,13 @@
 "use strict";
 
-import {
-  default as React,
-  Component,
-} from 'react';
+var React = require('react');
+var Chart = require('react-d3-core').Chart;
+var BarChart = require('../../lib').BarChart;
 
-import {
-  Chart as Chart,
-} from 'react-d3-core';
-
-import {
-  BarChart
-} from '../../src/index';
-
-(() => {
+(function() {
   var generalChartData = require('dsv?delimiter=\t!./data/letter.tsv')
 
-  const width = 960,
+  var width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
@@ -33,23 +24,23 @@ import {
         name: 'Frequency'
       }
     ],
-    x = (d) => {
+    x = function(d) {
       return d.letter;
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = generalChartData.map((d) => { return d.letter; }),
+    xDomain = generalChartData.map(function(d) { return d.letter; }),
     xRangeRoundBands = {interval: [0, width - margins.left - margins.right], padding: .1},
     xScale = 'ordinal',
     xAxisClassName = 'x-axis',
     xLabel = "Letter",
-    y = (d) => {
+    y = function(d) {
       return +d;
     },
     yOrient = 'left',
     yTickOrient = 'right',
     yRange = [height - margins.top - margins.bottom, 0],
-    yDomain = [0, +d3.max(generalChartData, (d) => { return d.frequency; })],
+    yDomain = [0, +d3.max(generalChartData, function(d) { return d.frequency; })],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Frequency";
@@ -79,12 +70,9 @@ import {
         chartSeries = {chartSeries}
         lineClass = 'test-line-class'
         barClass= 'test-bar-class'
-        scatterClass = 'test-line-dot-class'
-        showScatter = {true}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
-        showTooltip= {true}
         x= {x}
         xDomain= {xDomain}
         xRangeRoundBands= {xRangeRoundBands}

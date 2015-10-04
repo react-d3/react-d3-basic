@@ -1,22 +1,13 @@
 "use strict";
 
-import {
-  default as React,
-  Component,
-} from 'react';
+var React = require('react');
+var Chart = require('react-d3-core').Chart;
+var PieChart = require('../../lib').PieChart;
 
-import {
-  Chart as Chart,
-} from 'react-d3-core';
-
-import {
-  PieChart
-} from '../../src/index';
-
-(() => {
+(function() {
   var generalChartData = require('dsv?delimiter=,!./data/age_pie.csv')
 
-  const width = 960,
+  var width = 960,
     height = 500,
     radius = Math.min(width, height - 120) / 2,
     margins = {top: 50, right: 50, bottom: 20, left: 50},
@@ -26,10 +17,10 @@ import {
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
     showLegend = true,
-    value = (d) => {
+    value = function(d) {
       return +d.population;
     },
-    name = (d) => {
+    name = function(d) {
       return d.age;
     },
     chartSeries = [
@@ -59,10 +50,6 @@ import {
       }
     ]
 
-  /*
-  ** Inherit variables:
-  **
-  */
   React.render(
     <Chart
       title={title}
@@ -91,7 +78,6 @@ import {
         outerRadius= {radius - 10}
         innerRadius= {40}
         pieSort = {d3.descending}
-
       />
     </Chart>
   , document.getElementById('data_donut')

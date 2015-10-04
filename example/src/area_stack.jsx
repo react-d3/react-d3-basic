@@ -1,25 +1,16 @@
 "use strict";
 
-import {
-  default as React,
-  Component,
-} from 'react';
+var React = require('react');
+var Chart = require('react-d3-core').Chart;
+var AreaStackChart = require('../../lib').AreaStackChart;
 
-import {
-  Chart as Chart,
-} from 'react-d3-core';
-
-import {
-  AreaStackChart
-} from '../../src/index';
-
-(() => {
+(function() {
   var generalChartData = require('dsv?delimiter=\t!./data/browser.tsv')
 
-  const parseDate = d3.time.format("%y-%b-%d").parse;
-  const formatPercent = d3.format(".0%");
+  var parseDate = d3.time.format("%y-%b-%d").parse;
+  var formatPercent = d3.format(".0%");
 
-  const width = 960,
+  var width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
@@ -52,17 +43,17 @@ import {
         name: 'Opera browser'
       }
     ],
-    x = (d) => {
+    x = function(d) {
       return parseDate(d.date);
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
+    xDomain = d3.extent(generalChartData, function(d) { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
     xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
-    y = (d) => {
+    y = function(d) {
       return d / 100;
     },
     yOrient = 'left',

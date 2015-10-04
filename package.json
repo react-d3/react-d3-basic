@@ -1,6 +1,6 @@
 {
   "name": "react-d3-basic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "react chart component",
   "main": "./lib/index.js",
   "directories": {
@@ -9,10 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "NODE_ENV=0 webpack -w",
-    "es5": "rm -rf ./lib && babel --stage 0 src --out-dir lib",
-    "site-build": "NODE_ENV=1 webpack && NODE_ENV=1 canner-core build ./example/canner.js",
-    "site": "git subtree push --prefix example origin gh-pages && git push origin master",
-    "dev": "NODE_ENV=0 canner-core build ./example/canner.js && npm run watch"
+    "build": "rm -rf ./lib && babel -w --stage 0 src --out-dir lib"
   },
   "author": "ElixirDoc team",
   "license": "Apache 2.0",
@@ -32,6 +29,6 @@
   "dependencies": {
     "d3": "^3.5.6",
     "react": "^0.13.3",
-    "react-d3-core": "^0.1.0"
+    "react-d3-core": "^0.2.1"
   }
 }

@@ -1,23 +1,14 @@
 "use strict";
 
-import {
-  default as React,
-  Component,
-} from 'react';
+var React = require('react');
+var Chart = require('react-d3-core').Chart;
+var LineChart = require('../../lib').LineChart;
 
-import {
-  Chart as Chart,
-} from 'react-d3-core';
+(function() {
 
-import {
-  LineChart as LineChart
-} from '../../src/index';
+  var generalChartData = require('./data/user.json');
 
-(() => {
-
-  var generalChartData = require('json!./data/user.json');
-
-  const width = 960,
+  var width = 960,
     height = 500,
     margins = {top: 20, right: 50, bottom: 30, left: 50},
     id = "test-chart",
@@ -34,7 +25,7 @@ import {
         color: '#ff7f0e'
       }
     ],
-    x = (d) => {
+    x = function(d) {
       return d.index;
     },
     xOrient = 'bottom',
@@ -44,12 +35,12 @@ import {
     xScale = 'linear',
     xAxisClassName = 'x-axis',
     xLabel = "Index",
-    y = (d) => {
+    y = function(d) {
       return d;
     },
     yOrient = 'right',
     yTickOrient = 'left',
-    yDomain = d3.extent(generalChartData, (d) => {return d.age;}),
+    yDomain = d3.extent(generalChartData, function(d) {return d.age;}),
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
