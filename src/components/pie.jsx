@@ -51,6 +51,7 @@ export default class Pie extends Component {
       .attr("d", arc)
       .style("fill", (d) => { return d.data.color; })
       .style("fill-opacity", pieOpacity)
+      .style("stroke", "#FFF")
       // not using ES6 fat arrow syntax, cause it will cause 'this' variable not passing issue see details in here:
       // https://github.com/mbostock/d3/issues/2246
       .on("mouseover", function(d) { return onMouseOver(d, this, arcOver); })
