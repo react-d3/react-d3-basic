@@ -24,7 +24,23 @@ npm install --save react-d3-basic
 
 ## Docs
 
-### Components
+
+### Charts
+
+Building Charts.
+
+- [Line Chart](./docs/charts/line_chart.md)
+- [Area Chart](./docs/charts/area_chart.md)
+- [Area Stack Chart](./docs/charts/area_stack_chart.md)
+- [Bar Chart](./docs/charts/bar_chart.md)
+- [Bar Group Chart](./docs/charts/bar_group_chart.md)
+- [Bar Stack Chart](./docs/charts/bar_stack_chart.md)
+- [Scatter Plot](./docs/charts/scatter_chart.md)
+- [Pie Chart](./docs/charts/pie_chart.md)
+- [Donut Chart](./docs/charts/donut_chart.md)
+
+
+### Detail Components
 
 Chart shapes components
 
@@ -43,20 +59,6 @@ Inherit initial props, state, functions...
 
 - [pieLayout](./docs/inherit/pie.md)
 - [xyPlot](./docs/inherit/xyplot.md)
-
-### Charts
-
-Building Charts.
-
-- [Line Chart](./docs/charts/line_chart.md)
-- [Area Chart](./docs/charts/area_chart.md)
-- [Area Stack Chart](./docs/charts/area_stack_chart.md)
-- [Bar Chart](./docs/charts/bar_chart.md)
-- [Bar Group Chart](./docs/charts/bar_group_chart.md)
-- [Bar Stack Chart](./docs/charts/bar_stack_chart.md)
-- [Scatter Plot](./docs/charts/scatter_chart.md)
-- [Pie Chart](./docs/charts/pie_chart.md)
-- [Donut Chart](./docs/charts/donut_chart.md)
 
 ## Gallery
 
