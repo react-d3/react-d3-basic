@@ -7,8 +7,7 @@ Whenever you need to build a line chart. `Line Component` is where you generate 
 ### Basic Props
 
 - dataset
-- lineClass
-- showBrush
+- lineClassName
 - duration
 - x
 - y

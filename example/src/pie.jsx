@@ -48,7 +48,11 @@ var PieChart = require('../../lib').PieChart;
         "field": "45-64",
         "name": "45 to 64"
       }
-    ]
+    ],
+    legendPosition = 'right',
+    outerRadius = radius - 10,
+    innerRadius = 0;
+
 
   React.render(
     <Chart
@@ -69,13 +73,13 @@ var PieChart = require('../../lib').PieChart;
         svgClassName= {svgClassName}
         titleClassName= {titleClassName}
         legendClassName= {legendClassName}
-        legendPosition= 'right'
+        legendPosition= {legendPosition}
         categoricalColors= {d3.scale.category10()}
         showLegend= {showLegend}
         value = {value}
         name = {name}
-        outerRadius= {radius - 10}
-        innerRadius= {0}
+        outerRadius= {outerRadius}
+        innerRadius= {innerRadius}
         pieSort = {d3.descending}
       />
     </Chart>

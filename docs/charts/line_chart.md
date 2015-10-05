@@ -1,45 +1,107 @@
 # Line Chart
 
-## Components
+```js
+"use strict";
 
-### Plotting
+var React = require('react');
+var Chart = require('react-d3-core').Chart;
+var LineChart = require('react-d3-basic').LineChart;
 
-- AreaSimple
-- Line
-- Scatter
+(function() {
 
-### Tooltip
+  var generalChartData = require('./data/user.json');
 
-- tooltip
+  var width = 960,
+    height = 500,
+    margins = {top: 20, right: 50, bottom: 30, left: 50},
+    id = "test-chart",
+    title = "Simple Line Chart",
+    svgClassName = "test-chart-class",
+    titleClassName = "test-chart-title-class",
+    lineClassName = 'test-line-class',
+    scatterClassName = 'test-line-dot-class',
+    showLegend = true,
+    showXAxis = true,
+    showYAxis = true,
+    showScatter = true,
+    chartSeries = [
+      {
+        field: 'age',
+        name: 'Age',
+        color: '#ff7f0e'
+      }
+    ],
+    x = function(d) {
+      return d.index;
+    },
+    xOrient = 'bottom',
+    xTickOrient = 'top',
+    xDomain = d3.extent(generalChartData, x),
+    xRange = [0, width - margins.left - margins.right],
+    xScale = 'linear',
+    xAxisClassName = 'x-axis',
+    xLabelPosition = 'bottom',
+    xLabel = "Index",
+    y = function(d) {
+      return d;
+    },
+    yOrient = 'right',
+    yTickOrient = 'left',
+    yDomain = d3.extent(generalChartData, function(d) {return d.age;}),
+    yRange = [height - margins.top - margins.bottom, 0],
+    yScale = 'linear',
+    yAxisClassName = 'y-axis',
+    yLabel = "Age",
+    yLabelPosition = 'right'
 
-### Brush
+  React.render(
+    <Chart
+      title={title}
+      id={id}
+      width={width}
+      height={height}
+      >
+      <LineChart
+        title= {title}
+        data= {generalChartData}
+        width= {width}
+        height= {height}
+        id= {id}
+        margins= {margins}
+        svgClassName= {svgClassName}
+        titleClassName= {titleClassName}
+        yAxisClassName= {yAxisClassName}
+        xAxisClassName= {xAxisClassName}
+        chartSeries= {chartSeries}
+        lineClassName = {lineClassName}
+        scatterClassName = {scatterClassName}
+        showScatter = {showScatter}
+        showLegend= {showLegend}
+        showXAxis= {showXAxis}
+        showYAxis= {showYAxis}
+        x= {x}
+        xDomain= {xDomain}
+        xRange= {xRange}
+        xScale= {xScale}
+        xOrient= {xOrient}
+        xTickOrient= {xTickOrient}
+        xLabel = {xLabel}
+        xLabelPosition = {xLabelPosition}
+        y= {y}
+        yOrient= {yOrient}
+        yDomain= {yDomain}
+        yRange= {yRange}
+        yScale= {yScale}
+        yTickOrient= {yTickOrient}
+        yLabel = {yLabel}
+        yLabelPosition = {yLabelPosition}
+      />
+    </Chart>
+  , document.getElementById('data_line')
+  )
+})()
 
-- BrushFocus
-- Brush
-
-### Voronoi
-
-- Voronoi
-
-## Core
-
-### Container
-
-- Chart
-
-### Axis
-
-- Xaxis
-- Yaxis
-
-### Grid
-
-- Grid
-
-### Legend
-
-- legend
-
+```
 
 ## Settings
 
@@ -60,6 +122,34 @@
 - showScatter
 - showXGrid
 - showYGrid
-- showTooltip
-- showBrush
 - showLegend
+
+---
+
+## Components
+
+### Plotting
+
+- AreaSimple
+- Line
+- Scatter
+
+
+### Core
+
+#### Container
+
+- Chart
+
+#### Axis
+
+- Xaxis
+- Yaxis
+
+#### Grid
+
+- Grid
+
+#### Legend
+
+- legend

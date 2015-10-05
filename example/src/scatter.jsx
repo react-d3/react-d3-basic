@@ -18,6 +18,8 @@ var ScatterPlot = require('../../lib').ScatterPlot;
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
+    legendPosition = 'right',
+    labelOffset = 30,
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
@@ -51,6 +53,7 @@ var ScatterPlot = require('../../lib').ScatterPlot;
     xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
+    xLabelPosition = 'bottom',
     y = function(d) {
       return d;
     },
@@ -60,7 +63,10 @@ var ScatterPlot = require('../../lib').ScatterPlot;
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Temperature (ºF)";
+    yLabel = "Temperature (ºF)",
+    yLabelPosition = 'left',
+    scatterClassName = 'test-line-dot-class';
+
 
 
   React.render(
@@ -78,14 +84,14 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {30}
+        labelOffset = {labelOffset}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        legendPosition= 'right'
+        legendPosition= {legendPosition}
         chartSeries = {chartSeries}
-        scatterClass = 'test-line-dot-class'
+        scatterClassName = {scatterClassName}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
@@ -96,7 +102,7 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
+        xLabelPosition = {xLabelPosition}
         y= {y}
         yOrient= {yOrient}
         yDomain= {yDomain}
@@ -104,7 +110,7 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         yScale= {yScale}
         yTickOrient= {yTickOrient}
         yLabel = {yLabel}
-        yLabelPosition = 'left'
+        yLabelPosition = {yLabelPosition}
       />
     </Chart>
   , document.getElementById('data_scatter')

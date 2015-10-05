@@ -26,6 +26,8 @@ var BarStackChart = require('../../lib').BarStackChart;
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
+    showXGrid = true,
+    showYGrid = true,
     chartSeries = [
       {
         field: 'Under 5 Years',
@@ -68,6 +70,9 @@ var BarStackChart = require('../../lib').BarStackChart;
     xAxisClassName = 'x-axis',
     xLabel = "Age",
     xLabelPosition = 'bottom',
+    xTickPadding = 3,
+    xInnerTickSize = 6,
+    xOuterTickSize = 6,
     y = function(d) {
       return +d;
     },
@@ -79,7 +84,10 @@ var BarStackChart = require('../../lib').BarStackChart;
     yAxisClassName = 'y-axis',
     yLabel = "Population",
     yTickFormat = d3.format(".2s")
-    yLabelPosition = 'left'
+    yLabelPosition = 'left',
+    yTickPadding = 4,
+    yInnerTickSize = 6,
+    yOuterTickSize = 6
 
 
   React.render(
@@ -107,27 +115,27 @@ var BarStackChart = require('../../lib').BarStackChart;
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
         x= {x}
-        showXGrid= {true}
+        showXGrid= {showXGrid}
         xDomain= {xDomain}
         xRangeRoundBands= {xRangeRoundBands}
         xScale= {xScale}
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
-        xTickPadding = {3}
-        xInnerTickSize = {6}
-        xOuterTickSize = {6}
+        xTickPadding = {xTickPadding}
+        xInnerTickSize = {xInnerTickSize}
+        xOuterTickSize = {xOuterTickSize}
         xLabel = {xLabel}
         xLabelPosition = {xLabelPosition}
         y= {y}
-        showYGrid= {true}
+        showYGrid= {showYGrid}
         yOrient= {yOrient}
         yRange= {yRange}
         yDomain= {yDomain}
         yScale= {yScale}
         yTickOrient= {yTickOrient}
-        yTickPadding = {4}
-        yInnerTickSize = {6}
-        yOuterTickSize = {6}
+        yTickPadding = {yTickPadding}
+        yInnerTickSize = {yInnerTickSize}
+        yOuterTickSize = {yOuterTickSize}
         yTickFormat= {yTickFormat}
         yLabel = {yLabel}
         yLabelPosition = {yLabelPosition}

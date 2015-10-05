@@ -15,9 +15,12 @@ var LineChart = require('../../lib').LineChart;
     title = "Simple Line Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
+    lineClassName = 'test-line-class',
+    scatterClassName = 'test-line-dot-class',
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
+    showScatter = true,
     chartSeries = [
       {
         field: 'age',
@@ -34,6 +37,7 @@ var LineChart = require('../../lib').LineChart;
     xRange = [0, width - margins.left - margins.right],
     xScale = 'linear',
     xAxisClassName = 'x-axis',
+    xLabelPosition = 'bottom',
     xLabel = "Index",
     y = function(d) {
       return d;
@@ -44,7 +48,8 @@ var LineChart = require('../../lib').LineChart;
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Age";
+    yLabel = "Age",
+    yLabelPosition = 'right'
 
   React.render(
     <Chart
@@ -65,9 +70,9 @@ var LineChart = require('../../lib').LineChart;
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         chartSeries= {chartSeries}
-        lineClass = 'test-line-class'
-        scatterClass = 'test-line-dot-class'
-        showScatter = {true}
+        lineClassName = {lineClassName}
+        scatterClassName = {scatterClassName}
+        showScatter = {showScatter}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
@@ -78,7 +83,7 @@ var LineChart = require('../../lib').LineChart;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
+        xLabelPosition = {xLabelPosition}
         y= {y}
         yOrient= {yOrient}
         yDomain= {yDomain}
@@ -86,7 +91,7 @@ var LineChart = require('../../lib').LineChart;
         yScale= {yScale}
         yTickOrient= {yTickOrient}
         yLabel = {yLabel}
-        yLabelPosition = 'right'
+        yLabelPosition = {yLabelPosition}
       />
     </Chart>
   , document.getElementById('data_line')

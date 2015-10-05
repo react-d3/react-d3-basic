@@ -7,11 +7,10 @@ Whenever you need to build a pie chart. `Pie Component` is where you generate it
 ### Basic Props
 
 - dataset
-- scatterClass
+- scatterClassName
 - x
 - y
 - xScaleSet
 - yScaleSet
-- showBrush
 - brushSymbol
 - duration

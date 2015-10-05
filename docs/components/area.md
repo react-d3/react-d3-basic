@@ -7,9 +7,8 @@ Whenever you need to build a area chart. `Area Component` is where you generate 
 ### Basic Props
 
 - dataset
-- areaClass
+- areaClassName
 - areaOpacity
-- showBrush
 - duration
 - height
 - margins

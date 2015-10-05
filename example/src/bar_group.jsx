@@ -80,7 +80,8 @@ var BarGroupChart = require('../../lib').BarGroupChart;
     yAxisClassName = 'y-axis',
     yLabel = "Population",
     yTickFormat = d3.format(".2s"),
-    yLabelPosition = 'left'
+    yLabelPosition = 'left',
+    categoricalColors = d3.scale.category10();
 
 
   React.render(
@@ -104,7 +105,7 @@ var BarGroupChart = require('../../lib').BarGroupChart;
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
         legendPosition= {legendPosition}
-        categoricalColors= {d3.scale.category10()}
+        categoricalColors= {categoricalColors}
         chartSeries = {chartSeries}
         showLegend= {showLegend}
         showXAxis= {showXAxis}

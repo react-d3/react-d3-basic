@@ -57,7 +57,13 @@ var LineChart = require('../../lib').LineChart;
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Temperature (ºF)";
+    yLabel = "Temperature (ºF)",
+    labelOffset = 30,
+    legendPosition= 'right',
+    showXGrid= true,
+    showYGrid= true,
+    xLabelPosition = 'bottom',
+    yLabelPosition = 'left';
 
   React.render(
     <Chart
@@ -74,22 +80,19 @@ var LineChart = require('../../lib').LineChart;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {30}
+        labelOffset = {labelOffset}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        legendPosition= 'right'
+        legendPosition= {legendPosition}
         chartSeries = {chartSeries}
         interpolate = {interpolate}
-        lineClass = 'test-line-class'
-        scatterClass = 'test-line-dot-class'
-        showScatter = {true}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
-        showXGrid= {true}
-        showYGrid= {true}
+        showXGrid= {showXGrid}
+        showYGrid= {showYGrid}
         x= {x}
         xDomain= {xDomain}
         xRange= {xRange}
@@ -97,7 +100,7 @@ var LineChart = require('../../lib').LineChart;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = 'bottom'
+        xLabelPosition = {xLabelPosition}
         y= {y}
         yOrient= {yOrient}
         yDomain= {yDomain}
@@ -105,7 +108,7 @@ var LineChart = require('../../lib').LineChart;
         yScale= {yScale}
         yTickOrient= {yTickOrient}
         yLabel = {yLabel}
-        yLabelPosition = 'left'
+        yLabelPosition = {yLabelPosition}
       />
     </Chart>
 

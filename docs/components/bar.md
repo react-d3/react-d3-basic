@@ -7,9 +7,8 @@ Whenever you need to build a bar chart. `Bar Component` is where you generate it
 ### Basic Props
 
 - dataset
-- barClass
+- barClassName
 - barOpacity
-- showBrush
 - duration
 - height
 - margins

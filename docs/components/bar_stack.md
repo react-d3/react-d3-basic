@@ -7,9 +7,8 @@ Whenever you need to build a bar stack chart. `Bar Stack Component` is where you
 ### Basic Props
 
 - dataset
-- barClass
+- barClassName
 - barOpacity
-- showBrush
 - duration
 - height
 - margins
