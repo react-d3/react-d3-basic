@@ -22,6 +22,10 @@ react-d3 basic charts, charts that we support:
 npm install --save react-d3-basic
 ```
 
+## LIVE DEMO
+
+http://reactd3.org/docs/basic
+
 ## Docs
 
 
