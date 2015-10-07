@@ -5,6 +5,14 @@ import {
   Component,
 } from 'react';
 
+import {
+  default as d3
+} from 'd3';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
 export default class Pie extends Component {
   constructor (props) {
     super(props);
@@ -14,7 +22,7 @@ export default class Pie extends Component {
     pieOpacity: 0.8
   }
 
-  componentDidMount () {
+  _mkPie (dom) {
     const {
       innerRadius,
       outerRadius,
@@ -40,7 +48,7 @@ export default class Pie extends Component {
       .sort((a, b) => { return pieSort(a.value, b.value)})
       .value((d) => { return d.value; })
 
-    var pieDom = d3.select(React.findDOMNode(this.refs.pieChart));
+    var pieDom = d3.select(dom);
 
     var g = pieDom.selectAll('.arc')
               .data(pie(chartSeriesData))
@@ -77,6 +85,7 @@ export default class Pie extends Component {
       })
       .text((d) => { return d.data.name; });
 
+    return pieDom;
   }
 
   render() {
@@ -89,12 +98,10 @@ export default class Pie extends Component {
 
     var t = `translate(${(width - margins.left - margins.right) / 2},  ${(height - margins.top - margins.bottom) / 2})`;
 
-    return (
-      <g
-        transform= {t}
-        ref= "pieChart"
-        >
-      </g>
-    )
+    var pieChart = ReactFauxDOM.createElement('g');
+    pieChart.setAttribute("transform", t)
+    var pie = this._mkPie(pieChart);
+
+    return pie.node().toReact();
   }
 }

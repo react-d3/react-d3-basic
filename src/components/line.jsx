@@ -6,46 +6,26 @@ import {
   PropTypes,
 } from 'react';
 
+import {
+  default as d3
+} from 'd3';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
 export default class Line extends Component {
   constructor (props) {
     super(props);
-
-    this.state = {
-      xDomainSet: this.props.xDomain,
-      dataSet: this.props.data
-    }
   }
 
   static defaultProps = {
     interpolate: null,
-    duration: 500
+    duration: 500,
+    lineClassName: 'react-d3-basic__line'
   }
 
-  componentDidMount () {
-    this._mkLine();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      xDomain,
-      dataSet,
-    } = nextProps;
-
-    // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomainSet !== xDomain) {
-      this.setState({
-        xDomainSet: xDomain
-      })
-      this._mkLine();
-    }else if(!Object.is(this.state.dataSet, dataSet)) {
-      this.setState({
-        dataSet: dataSet
-      })
-      this._mkLine();
-    }
-  }
-
-  _mkLine() {
+  _mkLine(dom) {
     const {
       dataset,
       lineClassName,
@@ -54,22 +34,22 @@ export default class Line extends Component {
       duration
     } = this.props;
 
-    // make lines
-    var lines = d3.select(React.findDOMNode(this.refs.linePath))
-      .datum(dataset.data)
+    // make line
+    var line = d3.select(dom);
+
+    line.datum(dataset.data)
       .style("stroke", dataset.color)
-    .transition()
-      .duration(duration)
-      .ease("linear")
       .attr("class", `${lineClassName} line`)
       .attr("d", this._setAxes())
 
 
     if(showBrush)
-      lines.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+      line.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
 
     if(showZoom)
-      lines.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+      line.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+
+    return line;
   }
 
   _setAxes () {
@@ -88,11 +68,9 @@ export default class Line extends Component {
   }
 
   render() {
-    return (
-      <path
-        ref= "linePath"
-        >
-      </path>
-    )
+    var linePath = ReactFauxDOM.createElement('path');
+    var line = this._mkLine(linePath);
+
+    return line.node().toReact();
   }
 }

@@ -8,12 +8,6 @@ import {
 export default class PieLayout extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      xTooltip: null,
-      yTooltip: null,
-      contentTooltip: null
-    }
   }
 
   _mkSeries() {

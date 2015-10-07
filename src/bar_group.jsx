@@ -32,23 +32,22 @@ export default class BarGroupChart extends xyChart {
   render() {
 
     const {
-      chartSeriesData,
-      xScaleSet
-    } = this.state;
-
-    const {
       chartSeries,
       showLegend,
       showXGrid,
       showYGrid,
     } = this.props;
 
+    const xScaleSet = this.mkXScale();
+    const yScaleSet = this.mkYScale();
+    const chartSeriesData = this.mkSeries();
+
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+      var xgrid = <Grid type="x" {...this.props} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+      var ygrid = <Grid type="y" {...this.props} />
     }
 
     if(chartSeries) {
@@ -61,12 +60,25 @@ export default class BarGroupChart extends xyChart {
         .rangeRoundBands([0, xScaleSet.rangeBand()]);
 
       var bargroups = chartSeriesData.map((d, i) => {
-        return <BarGroup x1={x1} dataset={d} key={i} count={i} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut} />
+        return (
+          <BarGroup
+            x1={x1}
+            dataset={d}
+            key={i}
+            count={i}
+            onMouseOver={this.props.onMouseOver}
+            onMouseOut={this.props.onMouseOut}
+            {...this.props}
+            xScaleSet= {xScaleSet}
+            yScaleSet= {yScaleSet}
+            chartSeriesData= {chartSeriesData}
+          />
+        )
       })
     }
 
     if(showLegend) {
-      var legends = <Legend {...this.props} {...this.state} />
+      var legends = <Legend {...this.props} />
     }
 
     return (
@@ -77,8 +89,8 @@ export default class BarGroupChart extends xyChart {
           {legends}
           {bargroups}
         </g>
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Xaxis {...this.props} />
+        <Yaxis {...this.props} />
       </g>
     )
   }

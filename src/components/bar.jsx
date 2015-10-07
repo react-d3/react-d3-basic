@@ -5,52 +5,28 @@ import {
   Component,
 } from 'react';
 
+import {
+  default as d3
+} from 'd3';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
 export default class Bar extends Component {
   constructor (props) {
     super(props);
-
-    this.state = {
-      xDomainSet: this.props.xDomain,
-      dataSet: this.props.data
-    }
   }
 
   static defaultProps = {
     interpolate: null,
     barOpacity: 0.8,
     onMouseOver: (d) => {},
-    onMouseOut: (d) => {}
+    onMouseOut: (d) => {},
+    barClassName: 'react-d3-basic__bar'
   }
 
-  componentDidMount () {
-    this._mkBar();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      xDomain,
-      dataSet,
-    } = nextProps;
-
-    // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomainSet !== xDomain) {
-      this.setState({
-        xDomainSet: xDomain
-      })
-      d3.select(React.findDOMNode(this.refs.barGroup))
-        .html('');
-      this._mkBar();
-    }else if(!Object.is(this.state.dataSet, dataSet)) {
-      this.setState({
-        dataSet: dataSet
-      })
-      d3.select(React.findDOMNode(this.refs.barGroup))
-        .html('');
-      this._mkBar();
-    }
-  }
-
-  _mkBar() {
+  _mkBar(dom) {
     const {
       height,
       margins,
@@ -65,8 +41,9 @@ export default class Bar extends Component {
     } = this.props;
 
     // make areas
-    var chart = d3.select(React.findDOMNode(this.refs.barGroup))
-      .selectAll("rect")
+    var chart = d3.select(dom)
+
+    chart.selectAll("rect")
       .data(dataset.data)
     .enter().append("rect")
       .attr("class", `${barClassName} bar`)
@@ -85,15 +62,13 @@ export default class Bar extends Component {
       chart.selectAll("rect")
         .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
 
+    return chart;
   }
 
   render() {
-    return (
-      <g
-        ref= "barGroup"
-        >
+    var barChart = ReactFauxDOM.createElement('g');
+    var bar = this._mkBar(barChart);
 
-      </g>
-    )
+    return bar.node().toReact();
   }
 }

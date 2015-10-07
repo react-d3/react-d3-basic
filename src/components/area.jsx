@@ -6,46 +6,27 @@ import {
   PropTypes,
 } from 'react';
 
+import {
+  default as d3
+} from 'd3';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
 export default class AreaSimple extends Component {
   constructor (props) {
     super(props);
-    this.state = {
-      xDomainSet: this.props.xDomain,
-      dataSet: this.props.data
-    }
   }
 
   static defaultProps = {
     interpolate: null,
     areaOpacity: 0.6,
-    duration: 500
+    duration: 500,
+    areaClassName: 'react-d3-basic__area'
   }
 
-  componentDidMount () {
-    this._mkArea();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      xDomain,
-      dataSet,
-    } = nextProps;
-
-    // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomainSet !== xDomain) {
-      this.setState({
-        xDomainSet: xDomain
-      })
-      this._mkArea();
-    }else if(!Object.is(this.state.dataSet, dataSet)) {
-      this.setState({
-        dataSet: dataSet
-      })
-      this._mkArea();
-    }
-  }
-
-  _mkArea() {
+  _mkArea(dom) {
     const {
       dataset,
       areaClassName,
@@ -55,23 +36,23 @@ export default class AreaSimple extends Component {
       duration
     } = this.props;
 
-    // make areas
-    var areas = d3.select(React.findDOMNode(this.refs.areaPath))
-      .datum(dataset.data)
+    // make area
+    var area = d3.select(dom);
+
+    area.datum(dataset.data)
       .attr("class", `${areaClassName} area`)
       .style("fill", dataset.color)
       .style("fill-opacity", areaOpacity)
       .style("stroke", dataset.color)
-    .transition()
-      .duration(duration)
-      .ease("linear")
       .attr("d", this._setAxes())
 
     if(showBrush)
-      areas.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+      area.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
 
     if(showZoom)
-      areas.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+      area.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+
+    return area;
   }
 
   _setAxes () {
@@ -93,11 +74,9 @@ export default class AreaSimple extends Component {
   }
 
   render() {
-    return (
-      <path
-        ref= "areaPath"
-        >
-      </path>
-    )
+    var areaPath = ReactFauxDOM.createElement('path');
+    var area = this._mkArea(areaPath);
+
+    return area.node().toReact();
   }
 }

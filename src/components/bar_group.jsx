@@ -5,51 +5,27 @@ import {
   Component,
 } from 'react';
 
+import {
+  default as d3
+} from 'd3';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
 export default class BarGroup extends Component {
   constructor (props) {
     super(props);
-
-    this.state = {
-      xDomainSet: this.props.xDomain,
-      dataSet: this.props.data
-    }
   }
 
   static defaultProps = {
     barOpacity: 0.8,
     onMouseOver: (d) => {},
-    onMouseOut: (d) => {}
+    onMouseOut: (d) => {},
+    barClassName: 'react-d3-basic__bar_group'
   }
 
-  componentDidMount () {
-    this._mkBarGroup();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      xDomain,
-      dataSet,
-    } = nextProps;
-
-    // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomainSet !== xDomain) {
-      this.setState({
-        xDomainSet: xDomain
-      })
-      d3.select(React.findDOMNode(this.refs.barGroup))
-        .html('');
-      this._mkBarGroup();
-    }else if(!Object.is(this.state.dataSet, dataSet)) {
-      this.setState({
-        dataSet: dataSet
-      })
-      d3.select(React.findDOMNode(this.refs.barGroup))
-        .html('');
-      this._mkBarGroup();
-    }
-  }
-
-  _mkBarGroup() {
+  _mkBarGroup(dom) {
     const {
       height,
       margins,
@@ -65,7 +41,7 @@ export default class BarGroup extends Component {
     } = this.props;
 
     // make areas
-    var chart = d3.select(React.findDOMNode(this.refs.barGroup))
+    var chart = d3.select(dom)
       .datum(dataset)
       .attr("class", "bargroup")
 
@@ -84,15 +60,13 @@ export default class BarGroup extends Component {
       .on("mouseover", function(d) { return onMouseOver(d, this); })
       .on("mouseout", function(d) { return onMouseOut(d, this, barOpacity); })
 
+    return chart;
   }
 
   render() {
-    return (
-      <g
-        ref= "barGroup"
-        >
+    var barChart = ReactFauxDOM.createElement('g');
+    var bar = this._mkBarGroup(barChart);
 
-      </g>
-    )
+    return bar.node().toReact();
   }
 }

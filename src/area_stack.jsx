@@ -7,6 +7,10 @@ import {
 } from 'react';
 
 import {
+  default as d3
+} from 'd3';
+
+import {
   Chart as Chart,
   Xaxis as Xaxis,
   Yaxis as Yaxis,
@@ -31,10 +35,6 @@ export default class AreaStackChart extends xyChart {
   render() {
 
     const {
-      chartSeriesData,
-    } = this.state;
-
-    const {
       chartSeries,
       showLegend,
       showXGrid,
@@ -43,20 +43,24 @@ export default class AreaStackChart extends xyChart {
       showBrush,
     } = this.props;
 
+    const xScaleSet = this.mkXScale();
+    const yScaleSet = this.mkYScale();
+    const chartSeriesData = this.mkSeries();
+
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+      var xgrid = <Grid type="x" {...this.props}/>
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+      var ygrid = <Grid type="y" {...this.props}/>
     }
 
     if(chartSeries) {
-      var areas = <AreaStack dataset={chartSeriesData} {...this.props} {...this.state} />
+      var areas = <AreaStack dataset={chartSeriesData} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} />
     }
 
     if(showLegend) {
-      var legends = <Legend {...this.props} {...this.state} />
+      var legends = <Legend {...this.props}  />
     }
 
     return (
@@ -67,8 +71,8 @@ export default class AreaStackChart extends xyChart {
           {areas}
           {legends}
         </g>
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Xaxis {...this.props} />
+        <Yaxis {...this.props} />
       </g>
     )
   }

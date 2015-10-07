@@ -7,6 +7,10 @@ import {
 } from 'react';
 
 import {
+  default as d3
+} from 'd3';
+
+import {
   Chart as Chart,
   Xaxis as Xaxis,
   Yaxis as Yaxis,
@@ -36,30 +40,11 @@ export default class LineChart extends xyChart {
     showScatter: false
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      data,
-      chartSeries
-    } = nextProps;
-
-    // when xDomainSet is update, xScaleSet is not update yet.
-    if(!Object.is(this.state.dataSet, data)) {
-      this.setState({
-        dataSet: data,
-        chartSeriesData: chartSeries? this.mkSeries(): null
-      })
-    }
-  }
-
   render() {
 
     var lines;
     var scatters;
     var legends;
-
-    const {
-      chartSeriesData,
-    } = this.state;
 
     const {
       showScatter,
@@ -70,22 +55,26 @@ export default class LineChart extends xyChart {
       chartSeries,
     } = this.props;
 
+    const xScaleSet = this.mkXScale();
+    const yScaleSet = this.mkYScale();
+    const chartSeriesData = this.mkSeries();
+
     if(showXGrid) {
-      var xgrid = <Grid type="x" key="xgrid" {...this.props} {...this.state} />
+      var xgrid = <Grid type="x" key="xgrid" {...this.props} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" key="ygrid" {...this.props} {...this.state} />
+      var ygrid = <Grid type="y" key="ygrid" {...this.props} />
     }
 
     if(chartSeries) {
       var lines = chartSeriesData.map((d, i) => {
         if(d.area) {
           // area chart
-          return <AreaSimple dataset={d} key={i} {...this.props} {...this.state} />
+          return <AreaSimple dataset={d} key={i} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} />
         } else {
           // simple line chart
-          return <Line dataset={d} key={i} {...this.props} {...this.state} />
+          return <Line dataset={d} key={i} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} />
         }
       })
     }
@@ -93,12 +82,12 @@ export default class LineChart extends xyChart {
     if(showScatter && !interpolate) {
       // show scatters in line chart
       var scatters = chartSeriesData.map((d, i) => {
-        return <Scatter dataset={d} key={i} {...this.props} {...this.state} />
+        return <Scatter dataset={d} key={i} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} />
       })
     }
 
     if(showLegend) {
-      var legends = <Legend {...this.props} {...this.state} />
+      var legends = <Legend {...this.props} />
     }
 
     return (
@@ -110,8 +99,8 @@ export default class LineChart extends xyChart {
           {scatters}
           {legends}
         </g>
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Xaxis {...this.props} />
+        <Yaxis {...this.props} />
       </g>
     )
   }

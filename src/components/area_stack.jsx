@@ -6,46 +6,28 @@ import {
   PropTypes,
 } from 'react';
 
+import {
+  default as d3
+} from 'd3';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
 export default class AreaStack extends Component {
   constructor (props) {
     super(props);
-    this.state = {
-      xDomainSet: this.props.xDomain,
-      dataSet: this.props.data
-    }
   }
 
   static defaultProps = {
     areaClass: 'react-d3-basics__area_stack',
     interpolate: null,
     areaOpacity: 1,
-    duration: 500
+    duration: 500,
+    areaClassName: 'react-d3-basic__area_stack'
   }
 
-  componentDidMount () {
-    this._mkStack();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      xDomain,
-      dataSet
-    } = nextProps;
-
-    if(this.state.xDomain !== xDomain) {
-      this.setState({
-        xDomainSet: xDomain
-      })
-      this._mkStack();
-    }else if(!Object.is(this.state.dataSet, dataSet)) {
-      this.setState({
-        dataSet: dataSet
-      })
-      this._mkStack();
-    }
-  }
-
-  _mkStack() {
+  _mkStack(dom) {
     const {
       dataset,
       areaClassName,
@@ -59,8 +41,9 @@ export default class AreaStack extends Component {
     const _setAxis = this._setAxes();
 
     // make areas
-    var chart = d3.select(React.findDOMNode(this.refs.areaGroup))
-      .selectAll(`${areaClassName}`)
+    var chart = d3.select(dom);
+
+    chart.selectAll(`${areaClassName}`)
       .data(_setStack(dataset))
     .enter().append("g")
       .attr("class", `${areaClassName} area-group`)
@@ -82,7 +65,7 @@ export default class AreaStack extends Component {
       chart.selectAll("path")
         .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
 
-
+    return chart;
   }
 
   _setStack () {
@@ -109,13 +92,9 @@ export default class AreaStack extends Component {
   }
 
   render() {
+    var areaPath = ReactFauxDOM.createElement('path');
+    var area = this._mkStack(areaPath);
 
-    return (
-      <g
-        ref= "areaGroup"
-        >
-
-      </g>
-    )
+    return area.node().toReact();
   }
 }

@@ -6,50 +6,27 @@ import {
   PropTypes,
 } from 'react';
 
+import {
+  default as d3
+} from 'd3';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
 export default class Scatter extends Component {
   constructor (props) {
     super(props);
-    this.state = {
-      xDomainSet: this.props.xDomain,
-      dataSet: this.props.data
-    }
   }
 
   static defaultProps = {
     defaultSymbol: 'circle',
     defaultSymbolSize: 10,
-    duration: 1000
+    duration: 1000,
+    scatterClassName: 'react-d3-basic__scatter'
   }
 
-  componentDidMount () {
-    this._mkScatter();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      xDomain,
-      dataSet,
-    } = nextProps;
-
-    // when xDomainSet is update, xScaleSet is not update yet.
-    if(this.state.xDomainSet !== xDomain) {
-      this.setState({
-        xDomainSet: xDomain
-      })
-      d3.select(React.findDOMNode(this.refs.scatterPlot))
-        .html('');
-      this._mkScatter();
-    }else if(!Object.is(this.state.dataSet, dataSet)) {
-      this.setState({
-        dataSet: dataSet
-      })
-      d3.select(React.findDOMNode(this.refs.scatterPlot))
-        .html('');
-      this._mkScatter();
-    }
-  }
-
-  _mkScatter() {
+  _mkScatter(dom) {
     const {
       dataset,
       scatterClassName,
@@ -74,17 +51,15 @@ export default class Scatter extends Component {
       symbolSize = 4
     }
 
-    var dots = d3.select(React.findDOMNode(this.refs.scatterPlot))
-      .selectAll(`${scatterClassName}`)
+    var dots = d3.select(dom);
+
+    dots.selectAll(`${scatterClassName}`)
       .data(dataset.data)
     .enter().append("path")
       .attr('class', 'react-d3-basic__scatter__path')
       .style('fill', dataset.color)
       .attr("transform", (d) => { return "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")"; })
       .style('fill-opacity', 0)
-    .transition()
-      .duration(duration)
-      .ease("linear")
       .style('fill-opacity', 1)
       .attr("d", d3.svg.symbol().size((d) => { return symbolSize * symbolSize;}).type(symbol))
 
@@ -96,14 +71,13 @@ export default class Scatter extends Component {
       d3.select(React.findDOMNode(this.refs.scatterPlot))
         .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
 
+    return dots;
   }
 
   render() {
-    return (
-      <g
-        ref= "scatterPlot"
-        >
-      </g>
-    )
+    var scatterPlot = ReactFauxDOM.createElement('g');
+    var scatter = this._mkScatter(scatterPlot);
+
+    return scatter.node().toReact();
   }
 }

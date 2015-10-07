@@ -33,22 +33,22 @@ export default class BarStackChart extends xyChart {
   render() {
 
     const {
-      chartSeriesData
-    } = this.state;
-
-    const {
       chartSeries,
       showLegend,
       showXGrid,
       showYGrid,
     } = this.props;
 
+    const xScaleSet = this.mkXScale();
+    const yScaleSet = this.mkYScale();
+    const chartSeriesData = this.mkSeries();
+
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props} {...this.state} />
+      var xgrid = <Grid type="x" {...this.props} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props} {...this.state} />
+      var ygrid = <Grid type="y" {...this.props} />
     }
 
     if(chartSeries) {
@@ -69,12 +69,12 @@ export default class BarStackChart extends xyChart {
           stackObj[dkey.name]= {y: d.data[i].y, y0: newVal}
         })
 
-        return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} {...this.state} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
+        return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
       })
     }
 
     if(showLegend) {
-      var legends = <Legend {...this.props} {...this.state} />
+      var legends = <Legend {...this.props} />
     }
 
     return (
@@ -85,8 +85,8 @@ export default class BarStackChart extends xyChart {
           {bargroups}
           {legends}
         </g>
-        <Xaxis {...this.props} {...this.state} setScale={this.setScale} />
-        <Yaxis {...this.props} {...this.state} setScale={this.setScale} />
+        <Xaxis {...this.props} />
+        <Yaxis {...this.props} />
       </g>
     )
   }

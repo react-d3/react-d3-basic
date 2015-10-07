@@ -17,41 +17,6 @@ import {
 export default class xyChart extends Component {
   constructor(props) {
     super(props);
-    const {
-      chartSeries,
-      data,
-      xScale,
-      xRange,
-      xDomain,
-      xRangeRoundBands,
-      yScale,
-      yRange,
-      yDomain,
-      yRangeRoundBands
-    } = this.props;
-
-    var xScaleInit = {
-      scale: xScale,
-      range: xRange,
-      domain: xDomain,
-      rangeRoundBands: xRangeRoundBands
-    }
-
-    var yScaleInit = {
-      scale: yScale,
-      range: yRange,
-      domain: yDomain,
-      rangeRoundBands: yRangeRoundBands
-    }
-
-    this.setScale = this.setScale.bind(this);
-
-    this.state = {
-      xScaleSet: scale(xScaleInit),
-      yScaleSet: scale(yScaleInit),
-      dataSet: data,
-      chartSeriesData: chartSeries? this.mkSeries(): null
-    }
   }
 
   static defaultProps = {
@@ -102,18 +67,42 @@ export default class xyChart extends Component {
     yLabel: PropTypes.string,
   }
 
-  setScale(axis, func) {
-    if(axis === 'x'){
-      // set x scale
-      this.setState({
-        xScaleSet: func
-      })
-    }else if(axis === 'y'){
-      // set y scale
-      this.setState({
-        yScaleSet: func
-      })
+  mkXScale() {
+    const {
+      data,
+      xScale,
+      xRange,
+      xDomain,
+      xRangeRoundBands,
+    } = this.props;
+
+    var newXScale = {
+      scale: xScale,
+      range: xRange,
+      domain: xDomain,
+      rangeRoundBands: xRangeRoundBands
     }
+
+    return scale(newXScale);
+  }
+
+  mkYScale() {
+    const {
+      data,
+      yScale,
+      yRange,
+      yDomain,
+      yRangeRoundBands,
+    } = this.props;
+
+    var newYScale = {
+      scale: yScale,
+      range: yRange,
+      domain: yDomain,
+      rangeRoundBands: yRangeRoundBands
+    }
+
+    return scale(newYScale);
   }
 
   mkSeries() {
