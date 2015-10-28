@@ -46,6 +46,12 @@ export default class AreaSimple extends Component {
       .style("stroke", dataset.color)
       .attr("d", this._setAxes())
 
+    if(dataset.style) {
+      for(var key in dataset.style) {
+        line.style(key, dataset.style[key]);
+      }
+    }
+
     if(showBrush)
       area.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
 

@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var LineChart = require('../../lib').LineChart;
 
@@ -10,7 +11,7 @@ var LineChart = require('../../lib').LineChart;
 
   var width = 960,
     height = 500,
-    margins = {top: 50, right: 50, bottom: 50, left: 50},
+    margins = {top: 70, right: 70, bottom: 70, left: 100},
     id = "test-chart",
     title = "Multipule Line Chart",
     svgClassName = "test-chart-class",
@@ -58,19 +59,21 @@ var LineChart = require('../../lib').LineChart;
     yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Temperature (ºF)",
-    labelOffset = 30,
+    labelOffset = 60,
     legendPosition= 'right',
     showXGrid= true,
     showYGrid= true,
     xLabelPosition = 'bottom',
     yLabelPosition = 'left';
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}
       width={width}
       height={height}
+      margins= {margins}
+      chartSeries = {chartSeries}
       >
       <LineChart
         title= {title}

@@ -99,7 +99,7 @@ export default class Pie extends Component {
     var t = `translate(${(width - margins.left - margins.right) / 2},  ${(height - margins.top - margins.bottom) / 2})`;
 
     var pieChart = ReactFauxDOM.createElement('g');
-    pieChart.setAttribute("transform", t)
+    pieChart.setAttribute("transform", t);
     var pie = this._mkPie(pieChart);
 
     return pie.node().toReact();

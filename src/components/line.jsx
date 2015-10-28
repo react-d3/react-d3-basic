@@ -42,6 +42,11 @@ export default class Line extends Component {
       .attr("class", `${lineClassName} line`)
       .attr("d", this._setAxes())
 
+    if(dataset.style) {
+      for(var key in dataset.style) {
+        line.style(key, dataset.style[key]);
+      }
+    }
 
     if(showBrush)
       line.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');

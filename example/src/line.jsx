@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var LineChart = require('../../lib').LineChart;
 
@@ -10,7 +11,7 @@ var LineChart = require('../../lib').LineChart;
 
   var width = 960,
     height = 500,
-    margins = {top: 20, right: 50, bottom: 30, left: 50},
+    margins = {top: 10, right: 50, bottom: 50, left: 50},
     id = "test-chart",
     title = "Simple Line Chart",
     svgClassName = "test-chart-class",
@@ -25,7 +26,12 @@ var LineChart = require('../../lib').LineChart;
       {
         field: 'age',
         name: 'Age',
-        color: '#ff7f0e'
+        color: '#ff7f0e',
+        style: {
+          "stroke-width": 2,
+          "stroke-opacity": .2,
+          "fill-opacity": .2
+        }
       }
     ],
     x = function(d) {
@@ -51,12 +57,14 @@ var LineChart = require('../../lib').LineChart;
     yLabel = "Age",
     yLabelPosition = 'right'
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}
       width={width}
       height={height}
+      margins= {margins}
+      chartSeries= {chartSeries}
       >
       <LineChart
         title= {title}

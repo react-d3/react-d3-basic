@@ -59,9 +59,13 @@ export default class Scatter extends Component {
       .attr('class', 'react-d3-basic__scatter__path')
       .style('fill', dataset.color)
       .attr("transform", (d) => { return "translate(" + xScaleSet(d.x) + "," + yScaleSet(d.y) + ")"; })
-      .style('fill-opacity', 0)
-      .style('fill-opacity', 1)
       .attr("d", d3.svg.symbol().size((d) => { return symbolSize * symbolSize;}).type(symbol))
+
+    if(dataset.style) {
+      for(var key in dataset.style) {
+        dots.style(key, dataset.style[key]);
+      }
+    }
 
     if(showBrush)
       d3.select(React.findDOMNode(this.refs.scatterPlot))

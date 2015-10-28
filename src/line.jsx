@@ -14,7 +14,6 @@ import {
   Chart as Chart,
   Xaxis as Xaxis,
   Yaxis as Yaxis,
-  Legend as Legend,
   Grid as Grid,
 } from 'react-d3-core';
 
@@ -44,13 +43,11 @@ export default class LineChart extends xyChart {
 
     var lines;
     var scatters;
-    var legends;
 
     const {
       showScatter,
       showXGrid,
       showYGrid,
-      showLegend,
       interpolate,
       chartSeries,
     } = this.props;
@@ -86,10 +83,6 @@ export default class LineChart extends xyChart {
       })
     }
 
-    if(showLegend) {
-      var legends = <Legend {...this.props} />
-    }
-
     return (
       <g>
         {xgrid}
@@ -97,7 +90,6 @@ export default class LineChart extends xyChart {
         <g ref= "plotGroup">
           {lines}
           {scatters}
-          {legends}
         </g>
         <Xaxis {...this.props} />
         <Yaxis {...this.props} />
