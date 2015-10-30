@@ -30,21 +30,15 @@ export default class PieChart extends PieLayout {
 
   render() {
     const {
-      showLegend,
     } = this.props;
 
     var chartSeriesData = this._mkSeries();
-
-    if(showLegend) {
-      var legends = <Legend {...this.props} />
-    }
 
     var pie = <Pie chartSeriesData= {chartSeriesData} {...this.props} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
 
     return (
       <g ref="plotGroup">
         {pie}
-        {legends}
       </g>
     )
   }

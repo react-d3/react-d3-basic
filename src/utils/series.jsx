@@ -1,7 +1,7 @@
 "use strict";
 
 export function series(props) {
-  const {
+  var {
     data,
     chartSeries,
     x,
@@ -9,15 +9,15 @@ export function series(props) {
     categoricalColors
   } = props;
 
+  categoricalColors = categoricalColors || d3.scale.category10();
+
   var chartSeriesData = chartSeries.map((f, i) => {
 
     // set a color if not set
-    if(!f.color)
-      f.color = categoricalColors(i);
+    f.color = f.color || categoricalColors(i);
 
     // set name if not set
-    if(!f.name)
-      f.name = f.field;
+    f.name = f.name || f.field;
 
     // mapping throught data set x, y data
     var mapping = data.map(d => {

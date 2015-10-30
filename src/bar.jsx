@@ -10,8 +10,7 @@ import {
   Chart as Chart,
   Xaxis as Xaxis,
   Yaxis as Yaxis,
-  Legend as Legend,
-  Grid as Grid,
+  Grid as Grid
 } from 'react-d3-core';
 
 import {
@@ -34,7 +33,6 @@ export default class BarChart extends xyChart {
 
     const {
       chartSeries,
-      showLegend,
       showXGrid,
       showYGrid,
     } = this.props;
@@ -57,16 +55,11 @@ export default class BarChart extends xyChart {
       })
     }
 
-    if(showLegend) {
-      var legends = <Legend {...this.props} />
-    }
-
     return (
       <g>
         {xgrid}
         {ygrid}
         <g ref= "plotGroup">
-          {legends}
           {bars}
         </g>
         <Xaxis {...this.props} />

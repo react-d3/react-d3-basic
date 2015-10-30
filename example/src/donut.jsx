@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var PieChart = require('../../lib').PieChart;
 
@@ -38,7 +39,10 @@ var PieChart = require('../../lib').PieChart;
       },
       {
         "field": "18-24",
-        "name": "18 to 24"
+        "name": "18 to 24",
+        style: {
+          "fill-opacity": .5
+        }
       },
       {
         "field": "25-44",
@@ -53,7 +57,7 @@ var PieChart = require('../../lib').PieChart;
     outerRadius = radius - 10,
     innerRadius = 0;
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}

@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var BarChart = require('../../lib').BarChart;
 
@@ -22,7 +23,10 @@ var BarChart = require('../../lib').BarChart;
     chartSeries = [
       {
         field: 'frequency',
-        name: 'Frequency'
+        name: 'Frequency',
+        style: {
+          'fill-opacity': .5
+        }
       }
     ],
     x = function(d) {
@@ -49,12 +53,13 @@ var BarChart = require('../../lib').BarChart;
     yTicks = [10, "%"],
     yLabelPosition = 'left';
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}
       width={width}
       height={height}
+      chartSeries = {chartSeries}
       >
       <BarChart
         title= {title}
@@ -69,7 +74,6 @@ var BarChart = require('../../lib').BarChart;
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
         legendPosition= {legendPosition}
-        categoricalColors= {d3.scale.category10()}
         chartSeries = {chartSeries}
         showLegend= {showLegend}
         showXAxis= {showXAxis}

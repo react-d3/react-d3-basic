@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var AreaStackChart = require('../../lib').AreaStackChart;
 
@@ -12,7 +13,7 @@ var AreaStackChart = require('../../lib').AreaStackChart;
 
   var width = 960,
     height = 500,
-    margins = {top: 50, right: 50, bottom: 50, left: 50},
+    margins = {top: 50, right: 50, bottom: 50, left: 100},
     id = "test-chart",
     title = "Stack Area Chart",
     svgClassName = "test-chart-class",
@@ -25,7 +26,10 @@ var AreaStackChart = require('../../lib').AreaStackChart;
     chartSeries = [
       {
         field: 'IE',
-        name: 'IE browser'
+        name: 'IE browser',
+        style: {
+          "fill-opacity": .5
+        }
       },
       {
         field: 'Chrome',
@@ -62,12 +66,14 @@ var AreaStackChart = require('../../lib').AreaStackChart;
     yScale = 'linear',
     yAxisClassName = 'y-axis';
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}
       width={width}
       height={height}
+      margins= {margins}
+      chartSeries = {chartSeries}
       >
       <AreaStackChart
         title= {title}

@@ -21,7 +21,6 @@ export default class AreaSimple extends Component {
 
   static defaultProps = {
     interpolate: null,
-    areaOpacity: 0.6,
     duration: 500,
     areaClassName: 'react-d3-basic__area'
   }
@@ -42,13 +41,12 @@ export default class AreaSimple extends Component {
     area.datum(dataset.data)
       .attr("class", `${areaClassName} area`)
       .style("fill", dataset.color)
-      .style("fill-opacity", areaOpacity)
       .style("stroke", dataset.color)
       .attr("d", this._setAxes())
 
     if(dataset.style) {
       for(var key in dataset.style) {
-        line.style(key, dataset.style[key]);
+        area.style(key, dataset.style[key]);
       }
     }
 

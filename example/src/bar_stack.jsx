@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var BarStackChart = require('../../lib').BarStackChart;
 
@@ -47,7 +48,10 @@ var BarStackChart = require('../../lib').BarStackChart;
       },
       {
         field: '25 to 44 Years',
-        name: '25 to 44 Years'
+        name: '25 to 44 Years',
+        style: {
+          "fill-opacity": .4
+        }
       },
       {
         field: '45 to 64 Years',
@@ -90,7 +94,7 @@ var BarStackChart = require('../../lib').BarStackChart;
     yOuterTickSize = 6
 
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}

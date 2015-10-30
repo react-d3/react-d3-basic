@@ -22,7 +22,6 @@ export default class AreaStack extends Component {
   static defaultProps = {
     areaClass: 'react-d3-basics__area_stack',
     interpolate: null,
-    areaOpacity: 1,
     duration: 500,
     areaClassName: 'react-d3-basic__area_stack'
   }
@@ -31,7 +30,6 @@ export default class AreaStack extends Component {
     const {
       dataset,
       areaClassName,
-      areaOpacity,
       showBrush,
       showZoom,
       duration
@@ -41,21 +39,27 @@ export default class AreaStack extends Component {
     const _setAxis = this._setAxes();
 
     // make areas
-    var chart = d3.select(dom);
-
-    chart.selectAll(`${areaClassName}`)
-      .data(_setStack(dataset))
-    .enter().append("g")
+    var chart = d3.select(dom)
       .attr("class", `${areaClassName} area-group`)
 
-    chart.append("path")
+    chart.selectAll("path")
+      .data(_setStack(dataset))
+    .enter().append("path")
       .attr("class", "area")
-      .style("fill", (d) => { return d.color} )
-      .style("fill-opacity", areaOpacity)
-    .transition()
-      .duration(duration)
-      .ease("linear")
+      .style("fill", (d) => {return d.color} )
       .attr("d", (d) => { return _setAxis(d.data) })
+      .attr("style", (d) => {
+        var s = '';
+        if(d.style) {
+          for(var key in d.style) {
+            s += key + ':' + d.style[key] + ';';
+          }
+        }
+
+        return s;
+      })
+
+
 
     if(showBrush)
       chart.selectAll("path")
@@ -92,7 +96,7 @@ export default class AreaStack extends Component {
   }
 
   render() {
-    var areaPath = ReactFauxDOM.createElement('path');
+    var areaPath = ReactFauxDOM.createElement('g');
     var area = this._mkStack(areaPath);
 
     return area.node().toReact();

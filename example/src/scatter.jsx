@@ -2,6 +2,7 @@
 
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var ScatterPlot = require('../../lib').ScatterPlot;
 
@@ -28,7 +29,10 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         field: 'New York',
         name: 'New York Temp',
         color: '#ff7f0e',
-        symbol: "cross"
+        symbol: "cross",
+        style: {
+          "fill-opacity": .5
+        }
       },
       {
         field: 'San Francisco',
@@ -69,12 +73,13 @@ var ScatterPlot = require('../../lib').ScatterPlot;
 
 
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}
       width={width}
       height={height}
+      chartSeries = {chartSeries}
       >
       <ScatterPlot
         title= {title}

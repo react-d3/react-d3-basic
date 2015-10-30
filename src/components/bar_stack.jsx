@@ -19,7 +19,6 @@ export default class BarStack extends Component {
   }
 
   static defaultProps = {
-    barOpacity: 0.8,
     onMouseOver: (d) => {},
     onMouseOut: (d) => {},
     barClassName: 'react-d3-basic__bar_stack'
@@ -58,11 +57,16 @@ export default class BarStack extends Component {
         return height - margins.top - margins.bottom - yScaleSet(stackVal[d.x].y);
       })
       .style("fill", (d) => { return dataset.color; })
-      .style("fill-opacity", barOpacity)
       // not using ES6 fat arrow syntax, cause it will cause 'this' variable not passing issue see details in here:
       // https://github.com/mbostock/d3/issues/2246
       .on("mouseover", function(d) { return onMouseOver(d, this); })
-      .on("mouseout", function(d) { return onMouseOut(d, this, barOpacity); })
+      .on("mouseout", function(d) { return onMouseOut(d, this); })
+
+    if(dataset.style) {
+      for(var key in dataset.style) {
+        chart.style(key, dataset.style[key]);
+      }
+    }
 
     return chart;
   }

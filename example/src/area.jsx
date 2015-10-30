@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var LineChart = require('../../lib').LineChart;
 
@@ -26,7 +27,12 @@ var LineChart = require('../../lib').LineChart;
         field: 'close',
         name: 'Price',
         color: '#ff7f0e',
-        area: true
+        area: true,
+        style: {
+          "stroke-width": 3,
+          "stroke-opacity": 1,
+          "fill-opacity": .2
+        }
       }
     ],
     x = function(d) {
@@ -53,7 +59,7 @@ var LineChart = require('../../lib').LineChart;
     areaOpacity = 0.3
 
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}

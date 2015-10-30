@@ -19,7 +19,6 @@ export default class Pie extends Component {
   }
 
   static defaultProps = {
-    pieOpacity: 0.8
   }
 
   _mkPie (dom) {
@@ -31,8 +30,7 @@ export default class Pie extends Component {
       chartSeriesData,
       radius,
       onMouseOut,
-      onMouseOver,
-      pieOpacity
+      onMouseOver
     } = this.props;
 
 
@@ -58,12 +56,21 @@ export default class Pie extends Component {
     g.append("path")
       .attr("d", arc)
       .style("fill", (d) => { return d.data.color; })
-      .style("fill-opacity", pieOpacity)
       .style("stroke", "#FFF")
       // not using ES6 fat arrow syntax, cause it will cause 'this' variable not passing issue see details in here:
       // https://github.com/mbostock/d3/issues/2246
       .on("mouseover", function(d) { return onMouseOver(d, this, arcOver); })
-      .on("mouseout", function(d) { return onMouseOut(d, this, pieOpacity, arc); })
+      .on("mouseout", function(d) { return onMouseOut(d, this, arc); })
+      .attr("style", (d) => {
+        var s = '';
+        if(d.data.style) {
+          for(var key in d.data.style) {
+            s += key + ':' + d.data.style[key] + ';';
+          }
+        }
+        return s;
+      })
+
 
     var labelr = radius + 10;
 

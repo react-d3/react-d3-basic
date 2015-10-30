@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
 var BarGroupChart = require('../../lib').BarGroupChart;
 
@@ -38,7 +39,10 @@ var BarGroupChart = require('../../lib').BarGroupChart;
       },
       {
         field: '14 to 17 Years',
-        name: '14 to 17 Years'
+        name: '14 to 17 Years',
+        style: {
+          "fill-opacity": .4
+        }
       },
       {
         field: '18 to 24 Years',
@@ -84,12 +88,13 @@ var BarGroupChart = require('../../lib').BarGroupChart;
     categoricalColors = d3.scale.category10();
 
 
-  React.render(
+  ReactDOM.render(
     <Chart
       title={title}
       id={id}
       width={width}
       height={height}
+      chartSeries = {chartSeries}
       >
       <BarGroupChart
         title= {title}
