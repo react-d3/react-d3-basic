@@ -33,10 +33,10 @@ export default class Pie extends Component {
       .selectAll(".arc")
       .each(function(p) {
         this.addEventListener('mouseover', (e) => {
-          onMouseOver(e, p)
+          onMouseOver(e)
         })
         this.addEventListener('mouseout', (e) => {
-          onMouseOut(e, p)
+          onMouseOut(e)
         })
       })
   }

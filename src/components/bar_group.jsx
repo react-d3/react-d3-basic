@@ -36,10 +36,10 @@ export default class BarGroup extends Component {
       .selectAll("rect")
       .each(function(p) {
         this.addEventListener('mouseover', (e) => {
-          onMouseOver(e, p)
+          onMouseOver(e)
         })
         this.addEventListener('mouseout', (e) => {
-          onMouseOut(e, p)
+          onMouseOut(e)
         })
       })
   }
