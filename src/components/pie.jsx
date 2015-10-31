@@ -27,9 +27,9 @@ export default class Pie extends Component {
       onMouseOut
     } = this.props;
 
-    var barChart = this.refs["react-d3-basic__pie"];
+    var pieChart = this.refs["react-d3-basic__pie"];
 
-    d3.select(barChart)
+    d3.select(pieChart)
       .selectAll(".arc")
       .each(function(p) {
         this.addEventListener('mouseover', (e) => {
@@ -124,7 +124,7 @@ export default class Pie extends Component {
 
     var pieChart = ReactFauxDOM.createElement('g');
     pieChart.setAttribute("transform", t);
-    barChart.setAttribute("ref", "react-d3-basic__pie")
+    pieChart.setAttribute("ref", "react-d3-basic__pie")
     var pie = this._mkPie(pieChart);
 
     return pie.node().toReact();
