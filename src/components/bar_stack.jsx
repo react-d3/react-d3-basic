@@ -24,6 +24,26 @@ export default class BarStack extends Component {
     barClassName: 'react-d3-basic__bar_stack'
   }
 
+  componentDidMount () {
+    const {
+      onMouseOver,
+      onMouseOut
+    } = this.props;
+
+    var barChart = this.refs["react-d3-basic__bar"];
+
+    d3.select(barChart)
+      .selectAll("rect")
+      .each(function(p) {
+        this.addEventListener('mouseover', (e) => {
+          onMouseOver(e)
+        })
+        this.addEventListener('mouseout', (e) => {
+          onMouseOut(e)
+        })
+      })
+  }
+
   _mkBarStack(dom) {
     const {
       height,
@@ -57,10 +77,7 @@ export default class BarStack extends Component {
         return height - margins.top - margins.bottom - yScaleSet(stackVal[d.x].y);
       })
       .style("fill", (d) => { return dataset.color; })
-      // not using ES6 fat arrow syntax, cause it will cause 'this' variable not passing issue see details in here:
-      // https://github.com/mbostock/d3/issues/2246
-      .on("mouseover", function(d) { return onMouseOver(d, this); })
-      .on("mouseout", function(d) { return onMouseOut(d, this); })
+      .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
 
     if(dataset.style) {
       for(var key in dataset.style) {
@@ -73,6 +90,7 @@ export default class BarStack extends Component {
 
   render() {
     var barChart = ReactFauxDOM.createElement('g');
+    barChart.setAttribute("ref", "react-d3-basic__bar")
     var bar = this._mkBarStack(barChart);
 
     return bar.node().toReact();
