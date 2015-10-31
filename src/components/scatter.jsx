@@ -68,11 +68,11 @@ export default class Scatter extends Component {
     }
 
     if(showBrush)
-      d3.select(React.findDOMNode(this.refs.scatterPlot))
+      d3.select(dom)
         .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
 
     if(showZoom)
-      d3.select(React.findDOMNode(this.refs.scatterPlot))
+      d3.select(dom)
         .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
 
     return dots;
