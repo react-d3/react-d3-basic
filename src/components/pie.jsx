@@ -32,11 +32,11 @@ export default class Pie extends Component {
     d3.select(pieChart)
       .selectAll(".arc")
       .each(function(p) {
-        this.addEventListener('mouseover', (e) => {
-          onMouseOver(e)
+        this.addEventListener('mouseover', (e, p) => {
+          onMouseOver(e, p)
         })
-        this.addEventListener('mouseout', (e) => {
-          onMouseOut(e)
+        this.addEventListener('mouseout', (e, p) => {
+          onMouseOut(e, p)
         })
       })
   }

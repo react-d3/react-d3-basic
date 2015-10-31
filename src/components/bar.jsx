@@ -36,11 +36,11 @@ export default class Bar extends Component {
     d3.select(barChart)
       .selectAll("rect")
       .each(function(p) {
-        this.addEventListener('mouseover', (e) => {
-          onMouseOver(e)
+        this.addEventListener('mouseover', (e, p) => {
+          onMouseOver(e, p)
         })
-        this.addEventListener('mouseout', (e) => {
-          onMouseOut(e)
+        this.addEventListener('mouseout', (e, p) => {
+          onMouseOut(e, p)
         })
       })
   }
