@@ -73,7 +73,17 @@ export default class AreaSimple extends Component {
     return d3.svg.area()
       .interpolate(interpolate)
       .x((d) => { return xScaleSet(d.x) })
-      .y0((d) => { return yScaleSet(0)})
+      .y0((d) => {
+        var domain = yScaleSet.domain();
+
+        if (domain[0] * domain[1] < 0) {
+          return yScaleSet(0);
+        } else if (((domain[0] * domain[1]) >= 0) && (domain[0] >= 0)){
+          return yScaleSet.range()[0];
+        } else if (((domain[0] * domain[1]) >= 0) && (domain[0] < 0)){
+          return yScaleSet.range()[1];
+        }
+      })
       .y1((d) => { return yScaleSet(d.y) });
   }
 

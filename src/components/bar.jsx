@@ -62,6 +62,16 @@ export default class Bar extends Component {
     // make areas
     var chart = d3.select(dom)
 
+    var domain = yScaleSet.domain();
+    var zeroBase;
+
+    if (domain[0] * domain[1] < 0) {
+      zeroBase = yScaleSet(0);
+    } else if (((domain[0] * domain[1]) >= 0) && (domain[0] >= 0)){
+      zeroBase = yScaleSet.range()[0];
+    } else if (((domain[0] * domain[1]) >= 0) && (domain[0] < 0)){
+      zeroBase = yScaleSet.range()[1];
+    }
 
     chart.selectAll("rect")
       .data(dataset.data)
@@ -69,8 +79,8 @@ export default class Bar extends Component {
       .attr("class", `${barClassName} bar`)
       .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x) : -10000 })
       .attr("width", xScaleSet.rangeBand())
-      .attr("y", (d) => { return d.y < 0 ? yScaleSet(0): yScaleSet(d.y); })
-      .attr("height", (d) => { return Math.abs(yScaleSet(d.y) - yScaleSet(0)); })
+      .attr("y", (d) => { return d.y < 0 ? zeroBase: yScaleSet(d.y); })
+      .attr("height", (d) => { return d.y < domain[0] ? 0: Math.abs(zeroBase - yScaleSet(d.y))})
       .style("fill", dataset.color )
       .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
 

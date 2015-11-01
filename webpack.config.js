@@ -13,6 +13,7 @@ module.exports = [{
   entry: {
     line: js_root + '/line.jsx',
     line_multi: js_root + '/line_multi.jsx',
+    line_animate_multi: js_root + '/line_animate_multi.jsx',
     line_multi_negative: js_root + '/line_multi_negative.jsx',
     scatter: js_root + '/scatter.jsx',
     area: js_root + '/area.jsx',

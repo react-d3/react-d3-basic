@@ -59,6 +59,17 @@ export default class BarGroup extends Component {
       onMouseOver
     } = this.props;
 
+    var domain = yScaleSet.domain();
+    var zeroBase;
+
+    if (domain[0] * domain[1] < 0) {
+      zeroBase = yScaleSet(0);
+    } else if (((domain[0] * domain[1]) >= 0) && (domain[0] >= 0)){
+      zeroBase = yScaleSet.range()[0];
+    } else if (((domain[0] * domain[1]) >= 0) && (domain[0] < 0)){
+      zeroBase = yScaleSet.range()[1];
+    }
+
     // make areas
     var chart = d3.select(dom)
       .datum(dataset)
@@ -70,8 +81,8 @@ export default class BarGroup extends Component {
       .attr("class", `${barClassName} bar`)
       .attr("width", x1.rangeBand())
       .attr("x", function(d) { return xScaleSet(d.x)? (xScaleSet(d.x) + x1.rangeBand() * count) : -10000})
-      .attr("y", function(d) { return d.y < 0 ? yScaleSet(0): yScaleSet(d.y); })
-      .attr("height", function(d) { return Math.abs(yScaleSet(d.y) - yScaleSet(0)); })
+      .attr("y", function(d) { return d.y < 0 ? zeroBase: yScaleSet(d.y); })
+      .attr("height", function(d) { return d.y < domain[0] ? 0: Math.abs(zeroBase - yScaleSet(d.y)) })
       .style("fill", function(d) { return dataset.color; })
       .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
 

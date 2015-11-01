@@ -35,6 +35,13 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
+  "filename": "./line_animate_multi.html",
+  "data": {
+    "title": "Animation Multipule Line Chart",
+    "type": "line_animate_multi",
+  }
+},{
+  "layout": "./charts.hbs",
   "filename": "./line_multi_negative.html",
   "data": {
     "title": "Multipule Line Chart with negative",

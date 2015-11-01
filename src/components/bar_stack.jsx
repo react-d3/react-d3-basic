@@ -62,6 +62,17 @@ export default class BarStack extends Component {
     var chart = d3.select(dom)
       .attr("class", "g")
 
+    var domain = yScaleSet.domain();
+    var zeroBase;
+
+    if (domain[0] * domain[1] < 0) {
+      zeroBase = yScaleSet(0);
+    } else if (((domain[0] * domain[1]) >= 0) && (domain[0] >= 0)){
+      zeroBase = yScaleSet.range()[0];
+    } else if (((domain[0] * domain[1]) >= 0) && (domain[0] < 0)){
+      zeroBase = yScaleSet.range()[1];
+    }
+
     var barGroup = chart.selectAll("g")
       .data(_setStack(dataset))
     .enter().append("g")
@@ -83,12 +94,8 @@ export default class BarStack extends Component {
       .attr("class", `${barClassName} bar`)
       .attr("width", xScaleSet.rangeBand())
       .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x): -10000 })
-      .attr("y", (d, i) => {
-        return yScaleSet(d.y0 + d.y);
-      })
-      .attr("height", (d, i) => {
-        return Math.abs(yScaleSet(d.y) - yScaleSet(0));
-      })
+      .attr("y", (d, i) => { return yScaleSet(d.y0 + d.y); })
+      .attr("height", (d, i) => { return Math.abs(yScaleSet(d.y) - yScaleSet(0));})
       .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
 
     return chart;
