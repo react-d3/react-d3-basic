@@ -98,6 +98,13 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
+  "filename": "./bar_stack_negative.html",
+  "data": {
+    "title": "Bar Stack Chart with negative",
+    "type": "bar_stack_negative",
+  }
+},{
+  "layout": "./charts.hbs",
   "filename": "./pie.html",
   "data": {
     "title": "Pie Chart",

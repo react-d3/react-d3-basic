@@ -24,6 +24,7 @@ module.exports = [{
     bar_group: js_root + '/bar_group.jsx',
     bar_group_negative: js_root + '/bar_group_negative.jsx',
     bar_stack: js_root + '/bar_stack.jsx',
+    bar_stack_negative: js_root + '/bar_stack_negative.jsx',
     pie: js_root + '/pie.jsx',
     donut: js_root + '/donut.jsx'
   },

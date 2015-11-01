@@ -50,25 +50,28 @@ export default class BarStackChart extends xyChart {
     }
 
     if(chartSeries) {
-      var stackVal = chartSeriesData[0].data.map(d => {
-        return {name: d.x, y0: 0};
-      })
+      // var stackVal = chartSeriesData[0].data.map(d => {
+      //   return {name: d.x, y0: 0};
+      // })
+      //
+      // var bargroups = chartSeriesData.map((d, j) => {
+      //
+      //   var stackObj = {};
+      //
+      //   stackVal.forEach((dkey, i) => {
+      //
+      //     var prev = (j === 0)? 0: chartSeriesData[j - 1].data[i].y;
+      //     var newVal = dkey.y0 + prev;
+      //     stackVal[i].y0 = newVal;
+      //
+      //     stackObj[dkey.name]= {y: d.data[i].y, y0: newVal}
+      //   })
+      //
+      //   return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
+      // })
 
-      var bargroups = chartSeriesData.map((d, j) => {
+      var bargroups = <BarStack dataset={chartSeriesData} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
 
-        var stackObj = {};
-
-        stackVal.forEach((dkey, i) => {
-
-          var prev = (j === 0)? 0: chartSeriesData[j - 1].data[i].y;
-          var newVal = dkey.y0 + prev;
-          stackVal[i].y0 = newVal;
-
-          stackObj[dkey.name]= {y: d.data[i].y, y0: newVal}
-        })
-
-        return <BarStack stackVal={stackObj} dataset={d} key={j} count={j} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
-      })
     }
 
     return (

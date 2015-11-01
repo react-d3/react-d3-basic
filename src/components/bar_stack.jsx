@@ -50,42 +50,80 @@ export default class BarStack extends Component {
       margins,
       dataset,
       barClassName,
-      barOpacity,
       xScaleSet,
       yScaleSet,
-      x1,
-      stackVal,
       onMouseOver,
       onMouseOut
     } = this.props;
 
+    const _setStack = this._setStack();
+
     // make areas
     var chart = d3.select(dom)
-      .datum(dataset)
       .attr("class", "g")
 
-    chart.selectAll("rect")
-      .data(dataset.data)
+    var barGroup = chart.selectAll("g")
+      .data(_setStack(dataset))
+    .enter().append("g")
+      .attr("class", "barGroup")
+      .style("fill", (d) => {return d.color;})
+      .attr("style", (d) => {
+        var s = '';
+        if(d.style) {
+          for(var key in d.style) {
+            s += key + ':' + d.style[key] + ';';
+          }
+        }
+        return s;
+      })
+
+    barGroup.selectAll("rect")
+      .data((d) => {return d.data;})
     .enter().append("rect")
       .attr("class", `${barClassName} bar`)
       .attr("width", xScaleSet.rangeBand())
       .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x): -10000 })
       .attr("y", (d, i) => {
-        return yScaleSet(stackVal[d.x].y0 + stackVal[d.x].y)
+        return yScaleSet(d.y0 + d.y);
       })
       .attr("height", (d, i) => {
-        return height - margins.top - margins.bottom - yScaleSet(stackVal[d.x].y);
+        return Math.abs(yScaleSet(d.y) - yScaleSet(0));
       })
-      .style("fill", (d) => { return dataset.color; })
       .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
 
-    if(dataset.style) {
-      for(var key in dataset.style) {
-        chart.style(key, dataset.style[key]);
+    return chart;
+  }
+
+  _setStack () {
+    const{
+      chartSeries
+    } = this.props;
+
+    var buildOut = function(len) {
+      // baseline for positive and negative bars respectively.
+      var currentXOffsets = [];
+      var currentXIndex = 0;
+      return function(d, y0, y){
+
+        if(currentXIndex++ % len === 0){
+          currentXOffsets = [0, 0];
+        }
+
+        if(y >= 0) {
+          d.y0 = currentXOffsets[1];
+          d.y = y;
+          currentXOffsets[1] += y;
+        } else {
+          d.y0 = currentXOffsets[0] + y;
+          d.y = -y;
+          currentXOffsets[0] += y;
+        }
       }
     }
+    return d3.layout.stack()
+      .values((d) => { return d.data; })
+      .out(buildOut(chartSeries.length));
 
-    return chart;
   }
 
   render() {
