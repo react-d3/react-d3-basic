@@ -70,8 +70,8 @@ export default class BarGroup extends Component {
       .attr("class", `${barClassName} bar`)
       .attr("width", x1.rangeBand())
       .attr("x", function(d) { return xScaleSet(d.x)? (xScaleSet(d.x) + x1.rangeBand() * count) : -10000})
-      .attr("y", function(d) { return yScaleSet(d.y); })
-      .attr("height", function(d) { return height - margins.top - margins.bottom - yScaleSet(d.y); })
+      .attr("y", function(d) { return d.y < 0 ? yScaleSet(0): yScaleSet(d.y); })
+      .attr("height", function(d) { return Math.abs(yScaleSet(d.y) - yScaleSet(0)); })
       .style("fill", function(d) { return dataset.color; })
       .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
 

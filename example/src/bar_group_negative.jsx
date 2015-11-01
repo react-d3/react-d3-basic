@@ -1,21 +1,24 @@
 "use strict";
 
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
-var ScatterPlot = require('../../lib').ScatterPlot;
+var BarGroupChart = require('../../lib').BarGroupChart;
 
 (function() {
-  var generalChartData = require('dsv?delimiter=\t!./data/temp3.tsv')
+  var generalChartData = require('dsv?delimiter=,!./data/fake_num.csv')
 
-  var parseDate = d3.time.format("%Y%m%d").parse;
+  var ageNames = d3.keys(generalChartData[0]).filter(function(key) { return key !== "State"; });
+
+  generalChartData.forEach(function(d) {
+    d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
+  });
 
   var width = 960,
     height = 500,
     margins = {top: 50, right: 50, bottom: 50, left: 50},
     id = "test-chart",
-    title = "Scatter Plot",
+    title = "Bar Group Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
@@ -26,52 +29,80 @@ var ScatterPlot = require('../../lib').ScatterPlot;
     showYAxis = true,
     chartSeries = [
       {
-        field: 'New York',
-        name: 'New York Temp',
-        color: '#ff7f0e',
-        symbol: "cross",
+        field: 'num1',
+        name: 'num1',
         style: {
-          "fill-opacity": .5
+          "fill-opacity": .8
         }
       },
       {
-        field: 'San Francisco',
-        name: 'San Francisco Temp',
-        color: '#2ca02c',
-        symbol: 'diamond'
+        field: 'num2',
+        name: 'num2',
+        style: {
+          "fill-opacity": .8
+        }
       },
       {
-        field: 'Austin',
-        name: 'Austin Temp',
-        color: '#7777ff',
-        symbol: 'triangle-down'
-      }
+        field: 'num3',
+        name: 'num3',
+        style: {
+          "fill-opacity": .8
+        }
+      },
+      {
+        field: 'num4',
+        name: 'num4',
+        style: {
+          "fill-opacity": .8
+        }
+      },
+      {
+        field: 'num5',
+        name: 'num5',
+        style: {
+          "fill-opacity": .8
+        }
+      },
+      {
+        field: 'num6',
+        name: 'num6',
+        style: {
+          "fill-opacity": .8
+        }
+      },
+      {
+        field: 'num7',
+        name: 'num7',
+        style: {
+          "fill-opacity": .8
+        }
+      },
+
     ],
     x = function(d) {
-      return parseDate(d.date);
+      return d.State;
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
-    xRange = [0, width - margins.left - margins.right],
-    xScale = 'time',
+    xDomain = generalChartData.map(function(d) { return d.State; }),
+    xRangeRoundBands = {interval: [0, width - margins.left - margins.right], padding: .1},
+    xScale = 'ordinal',
     xAxisClassName = 'x-axis',
-    xLabel = "Date",
+    xLabel = "Age",
     xLabelPosition = 'bottom',
     y = function(d) {
-      return d;
+      return +d;
     },
     yOrient = 'left',
-    yTickOrient = 'left',
-    yDomain = [-100, 100],
+    yTickOrient = 'right',
     yRange = [height - margins.top - margins.bottom, 0],
+    yDomain = [-10604510, d3.max(generalChartData, function(d) { return d3.max(d.ages, (d) => { return d.value; }); })],
     yScale = 'linear',
     yAxisClassName = 'y-axis',
-    yLabel = "Temperature (ºF)",
+    yLabel = "Population",
+    yTickFormat = d3.format(".2s"),
     yLabelPosition = 'left',
-    scatterClassName = 'test-line-dot-class';
-
-
+    categoricalColors = d3.scale.category10();
 
   ReactDOM.render(
     <Chart
@@ -81,7 +112,7 @@ var ScatterPlot = require('../../lib').ScatterPlot;
       height={height}
       chartSeries = {chartSeries}
       >
-      <ScatterPlot
+      <BarGroupChart
         title= {title}
         data= {generalChartData}
         width= {width}
@@ -95,14 +126,14 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
         legendPosition= {legendPosition}
+        categoricalColors= {categoricalColors}
         chartSeries = {chartSeries}
-        scatterClassName = {scatterClassName}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
         x= {x}
         xDomain= {xDomain}
-        xRange= {xRange}
+        xRangeRoundBands= {xRangeRoundBands}
         xScale= {xScale}
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
@@ -110,14 +141,15 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         xLabelPosition = {xLabelPosition}
         y= {y}
         yOrient= {yOrient}
-        yDomain= {yDomain}
         yRange= {yRange}
+        yDomain= {yDomain}
         yScale= {yScale}
         yTickOrient= {yTickOrient}
+        yTickFormat= {yTickFormat}
         yLabel = {yLabel}
         yLabelPosition = {yLabelPosition}
       />
     </Chart>
-  , document.getElementById('data_scatter')
+  , document.getElementById('data_bar_group_negative')
   )
 })()

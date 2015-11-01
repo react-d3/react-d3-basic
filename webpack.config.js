@@ -13,11 +13,16 @@ module.exports = [{
   entry: {
     line: js_root + '/line.jsx',
     line_multi: js_root + '/line_multi.jsx',
+    line_multi_negative: js_root + '/line_multi_negative.jsx',
     scatter: js_root + '/scatter.jsx',
     area: js_root + '/area.jsx',
+    area_negative: js_root + '/area_negative.jsx',
     area_stack: js_root + '/area_stack.jsx',
+    area_stack_negative: js_root + '/area_stack_negative.jsx',
     bar: js_root + '/bar.jsx',
+    bar_negative: js_root + '/bar_negative.jsx',
     bar_group: js_root + '/bar_group.jsx',
+    bar_group_negative: js_root + '/bar_group_negative.jsx',
     bar_stack: js_root + '/bar_stack.jsx',
     pie: js_root + '/pie.jsx',
     donut: js_root + '/donut.jsx'

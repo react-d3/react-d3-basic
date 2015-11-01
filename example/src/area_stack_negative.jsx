@@ -1,50 +1,52 @@
 "use strict";
 
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
-var ScatterPlot = require('../../lib').ScatterPlot;
+var AreaStackChart = require('../../lib').AreaStackChart;
 
 (function() {
-  var generalChartData = require('dsv?delimiter=\t!./data/temp3.tsv')
+  var generalChartData = require('dsv?delimiter=,!./data/stack_test.csv')
 
-  var parseDate = d3.time.format("%Y%m%d").parse;
+  var parseDate = d3.time.format("%m/%d/%y").parse;
 
   var width = 960,
     height = 500,
-    margins = {top: 50, right: 50, bottom: 50, left: 50},
+    margins = {top: 50, right: 50, bottom: 50, left: 100},
     id = "test-chart",
-    title = "Scatter Plot",
+    title = "Stack Area Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
-    legendPosition = 'right',
-    labelOffset = 30,
-    showLegend = true,
-    showXAxis = true,
-    showYAxis = true,
+    interpolate = 'basis',
     chartSeries = [
       {
-        field: 'New York',
-        name: 'New York Temp',
-        color: '#ff7f0e',
-        symbol: "cross",
+        field: "Group1",
+        name: "Group 1",
         style: {
-          "fill-opacity": .5
+          "opacity": .2
         }
       },
       {
-        field: 'San Francisco',
-        name: 'San Francisco Temp',
-        color: '#2ca02c',
-        symbol: 'diamond'
+        field: "Group2",
+        name: "Group 2",
+        style: {
+          "opacity": .2
+        }
       },
       {
-        field: 'Austin',
-        name: 'Austin Temp',
-        color: '#7777ff',
-        symbol: 'triangle-down'
+        field: "Group3",
+        name: "Group 3",
+        style: {
+          "opacity": .2
+        }
+      },
+      {
+        field: "Group4",
+        name: "Group 4",
+        style: {
+          "opacity": .2
+        }
       }
     ],
     x = function(d) {
@@ -52,26 +54,20 @@ var ScatterPlot = require('../../lib').ScatterPlot;
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
+    xDomain = d3.extent(generalChartData, function(d) { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
     xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
-    xLabelPosition = 'bottom',
     y = function(d) {
-      return d;
+      return +d;
     },
     yOrient = 'left',
-    yTickOrient = 'left',
-    yDomain = [-100, 100],
+    yTickOrient = 'right',
+    yDomain = [-150, 60],
     yRange = [height - margins.top - margins.bottom, 0],
     yScale = 'linear',
-    yAxisClassName = 'y-axis',
-    yLabel = "Temperature (ºF)",
-    yLabelPosition = 'left',
-    scatterClassName = 'test-line-dot-class';
-
-
+    yAxisClassName = 'y-axis';
 
   ReactDOM.render(
     <Chart
@@ -79,9 +75,10 @@ var ScatterPlot = require('../../lib').ScatterPlot;
       id={id}
       width={width}
       height={height}
+      margins= {margins}
       chartSeries = {chartSeries}
       >
-      <ScatterPlot
+      <AreaStackChart
         title= {title}
         data= {generalChartData}
         width= {width}
@@ -89,17 +86,12 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         id= {id}
         margins= {margins}
         svgClassName= {svgClassName}
-        labelOffset = {labelOffset}
         titleClassName= {titleClassName}
         yAxisClassName= {yAxisClassName}
         xAxisClassName= {xAxisClassName}
         legendClassName= {legendClassName}
-        legendPosition= {legendPosition}
         chartSeries = {chartSeries}
-        scatterClassName = {scatterClassName}
-        showLegend= {showLegend}
-        showXAxis= {showXAxis}
-        showYAxis= {showYAxis}
+        interpolate = {interpolate}
         x= {x}
         xDomain= {xDomain}
         xRange= {xRange}
@@ -107,17 +99,14 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         xOrient= {xOrient}
         xTickOrient= {xTickOrient}
         xLabel = {xLabel}
-        xLabelPosition = {xLabelPosition}
         y= {y}
         yOrient= {yOrient}
         yDomain= {yDomain}
         yRange= {yRange}
         yScale= {yScale}
         yTickOrient= {yTickOrient}
-        yLabel = {yLabel}
-        yLabelPosition = {yLabelPosition}
       />
     </Chart>
-  , document.getElementById('data_scatter')
+  , document.getElementById('data_area_stack_negative')
   )
 })()

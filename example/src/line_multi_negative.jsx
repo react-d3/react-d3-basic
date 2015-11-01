@@ -1,26 +1,22 @@
 "use strict";
 
-
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Chart = require('react-d3-core').Chart;
-var ScatterPlot = require('../../lib').ScatterPlot;
+var LineChart = require('../../lib').LineChart;
 
 (function() {
   var generalChartData = require('dsv?delimiter=\t!./data/temp3.tsv')
-
   var parseDate = d3.time.format("%Y%m%d").parse;
 
   var width = 960,
     height = 500,
-    margins = {top: 50, right: 50, bottom: 50, left: 50},
+    margins = {top: 70, right: 70, bottom: 70, left: 100},
     id = "test-chart",
-    title = "Scatter Plot",
+    title = "Multipule Line Chart",
     svgClassName = "test-chart-class",
     titleClassName = "test-chart-title-class",
     legendClassName = "test-legend",
-    legendPosition = 'right',
-    labelOffset = 30,
     showLegend = true,
     showXAxis = true,
     showYAxis = true,
@@ -29,35 +25,30 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         field: 'New York',
         name: 'New York Temp',
         color: '#ff7f0e',
-        symbol: "cross",
-        style: {
-          "fill-opacity": .5
-        }
+        area: true
       },
       {
         field: 'San Francisco',
         name: 'San Francisco Temp',
-        color: '#2ca02c',
-        symbol: 'diamond'
+        color: '#2ca02c'
       },
       {
         field: 'Austin',
         name: 'Austin Temp',
-        color: '#7777ff',
-        symbol: 'triangle-down'
+        color: '#7777ff'
       }
     ],
+    interpolate = 'monotone',
     x = function(d) {
       return parseDate(d.date);
     },
     xOrient = 'bottom',
     xTickOrient = 'bottom',
-    xDomain = d3.extent(generalChartData, (d) => { return x(d); }),
+    xDomain = d3.extent(generalChartData, function(d) { return x(d); }),
     xRange = [0, width - margins.left - margins.right],
     xScale = 'time',
     xAxisClassName = 'x-axis',
     xLabel = "Date",
-    xLabelPosition = 'bottom',
     y = function(d) {
       return d;
     },
@@ -68,10 +59,12 @@ var ScatterPlot = require('../../lib').ScatterPlot;
     yScale = 'linear',
     yAxisClassName = 'y-axis',
     yLabel = "Temperature (ºF)",
-    yLabelPosition = 'left',
-    scatterClassName = 'test-line-dot-class';
-
-
+    labelOffset = 60,
+    legendPosition= 'right',
+    showXGrid= true,
+    showYGrid= true,
+    xLabelPosition = 'bottom',
+    yLabelPosition = 'left';
 
   ReactDOM.render(
     <Chart
@@ -79,9 +72,10 @@ var ScatterPlot = require('../../lib').ScatterPlot;
       id={id}
       width={width}
       height={height}
+      margins= {margins}
       chartSeries = {chartSeries}
       >
-      <ScatterPlot
+      <LineChart
         title= {title}
         data= {generalChartData}
         width= {width}
@@ -96,10 +90,12 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         legendClassName= {legendClassName}
         legendPosition= {legendPosition}
         chartSeries = {chartSeries}
-        scatterClassName = {scatterClassName}
+        interpolate = {interpolate}
         showLegend= {showLegend}
         showXAxis= {showXAxis}
         showYAxis= {showYAxis}
+        showXGrid= {showXGrid}
+        showYGrid= {showYGrid}
         x= {x}
         xDomain= {xDomain}
         xRange= {xRange}
@@ -118,6 +114,7 @@ var ScatterPlot = require('../../lib').ScatterPlot;
         yLabelPosition = {yLabelPosition}
       />
     </Chart>
-  , document.getElementById('data_scatter')
+
+  , document.getElementById('data_line_multi_negative')
   )
 })()

@@ -62,14 +62,15 @@ export default class Bar extends Component {
     // make areas
     var chart = d3.select(dom)
 
+
     chart.selectAll("rect")
       .data(dataset.data)
     .enter().append("rect")
       .attr("class", `${barClassName} bar`)
       .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x) : -10000 })
       .attr("width", xScaleSet.rangeBand())
-      .attr("y", (d) => { return yScaleSet(d.y); })
-      .attr("height", (d) => { return height - margins.top - margins.bottom - yScaleSet(d.y); })
+      .attr("y", (d) => { return d.y < 0 ? yScaleSet(0): yScaleSet(d.y); })
+      .attr("height", (d) => { return Math.abs(yScaleSet(d.y) - yScaleSet(0)); })
       .style("fill", dataset.color )
       .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
 

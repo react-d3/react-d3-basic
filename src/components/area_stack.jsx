@@ -55,7 +55,6 @@ export default class AreaStack extends Component {
             s += key + ':' + d.style[key] + ';';
           }
         }
-
         return s;
       })
 
@@ -73,8 +72,36 @@ export default class AreaStack extends Component {
   }
 
   _setStack () {
+    const{
+      chartSeries
+    } = this.props;
+
+    var buildOut = function(len) {
+      // baseline for positive and negative bars respectively.
+      var currentXOffsets = [];
+      var currentXIndex = 0;
+      return function(d, y0, y){
+
+        if(currentXIndex++ % len === 0){
+          currentXOffsets = [0, 0];
+        }
+
+        if(y >= 0) {
+          d.y0 = currentXOffsets[1];
+          d.y = y;
+          currentXOffsets[1] += y;
+        } else {
+          d.y0 = currentXOffsets[0] + y;
+          d.y = -y;
+          currentXOffsets[0] += y;
+        }
+
+      }
+    }
     return d3.layout.stack()
-      .values((d) => { return d.data; });
+      .values((d) => { return d.data; })
+      .out(buildOut(chartSeries.length));
+
   }
 
   _setAxes () {
