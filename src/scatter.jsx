@@ -21,7 +21,13 @@ import {
   default as Scatter,
 } from './components/scatter';
 
+import {
+  default as CommonProps,
+} from './commonProps';
+
 export default class ScatterPlot extends xyChart {
+
+  static defaultProps = CommonProps
 
   render() {
 
@@ -34,16 +40,20 @@ export default class ScatterPlot extends xyChart {
       showYGrid
     } = this.props;
 
+
+    const xDomain = this.props.xDomain || this.mkXDomain();
+    const yDomain = this.props.yDomain || this.mkYDomain();
+
     const xScaleSet = this.mkXScale();
     const yScaleSet = this.mkYScale();
     const chartSeriesData = this.mkSeries();
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props} />
+      var xgrid = <Grid type="x" xDomain={xDomain} {...this.props} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props} />
+      var ygrid = <Grid type="y" yDomain={yDomain} {...this.props} />
     }
 
     if(chartSeries) {
@@ -59,8 +69,8 @@ export default class ScatterPlot extends xyChart {
         <g ref= "plotGroup">
           {scatters}
         </g>
-        <Xaxis {...this.props} />
-        <Yaxis {...this.props} />
+        <Xaxis xDomain={xDomain} {...this.props} />
+        <Yaxis yDomain={yDomain} {...this.props} />
       </g>
     )
   }

@@ -21,13 +21,16 @@ import {
   default as Bar,
 } from './components/bar';
 
+import {
+  default as CommonProps,
+} from './commonProps';
 
 export default class BarChart extends xyChart {
 
-  static defaultProps = {
+  static defaultProps = Object.assign(CommonProps, {
     onMouseOver: () => {},
     onMouseOut: () => {}
-  }
+  })
 
   render() {
 
@@ -37,16 +40,19 @@ export default class BarChart extends xyChart {
       showYGrid,
     } = this.props;
 
+    const xDomain = this.props.xDomain || this.mkXDomain();
+    const yDomain = this.props.yDomain || this.mkYDomain();
+
     const xScaleSet = this.mkXScale();
     const yScaleSet = this.mkYScale();
     const chartSeriesData = this.mkSeries();
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props} />
+      var xgrid = <Grid type="x" key="xgrid" xDomain={xDomain} {...this.props} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props} />
+      var ygrid = <Grid type="y" key="ygrid" yDomain={yDomain} {...this.props} />
     }
 
     if(chartSeries) {
@@ -62,8 +68,8 @@ export default class BarChart extends xyChart {
         <g ref= "plotGroup">
           {bars}
         </g>
-        <Xaxis {...this.props} />
-        <Yaxis {...this.props} />
+        <Xaxis xDomain={xDomain} {...this.props} />
+        <Yaxis yDomain={yDomain} {...this.props} />
       </g>
     )
   }

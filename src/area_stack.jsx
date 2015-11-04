@@ -25,10 +25,13 @@ import {
   default as AreaStack,
 } from './components/area_stack';
 
+import {
+  default as CommonProps,
+} from './commonProps';
+
 export default class AreaStackChart extends xyChart {
 
-  static defaultProps = {
-  }
+  static defaultProps = CommonProps
 
   render() {
 
@@ -40,16 +43,19 @@ export default class AreaStackChart extends xyChart {
       showBrush,
     } = this.props;
 
+    const xDomain = this.props.xDomain || this.mkXDomain();
+    const yDomain = this.props.yDomain || this.mkYDomain(true);
+
     const xScaleSet = this.mkXScale();
     const yScaleSet = this.mkYScale();
     const chartSeriesData = this.mkSeries();
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props}/>
+      var xgrid = <Grid type="x" {...this.props} xDomain={xDomain}/>
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props}/>
+      var ygrid = <Grid type="y" {...this.props} yDomain={yDomain}/>
     }
 
     if(chartSeries) {
@@ -58,13 +64,13 @@ export default class AreaStackChart extends xyChart {
 
     return (
       <g>
-        {xgrid}
-        {ygrid}
         <g ref= "plotGroup">
           {areas}
         </g>
-        <Xaxis {...this.props} />
-        <Yaxis {...this.props} />
+        {xgrid}
+        {ygrid}
+        <Xaxis {...this.props} xDomain={xDomain} />
+        <Yaxis {...this.props} yDomain={yDomain} />
       </g>
     )
   }

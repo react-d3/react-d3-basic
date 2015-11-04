@@ -33,11 +33,15 @@ import {
   default as Scatter,
 } from './components/scatter';
 
+import {
+  default as CommonProps,
+} from './commonProps';
+
 export default class LineChart extends xyChart {
 
-  static defaultProps = {
+  static defaultProps = Object.assign(CommonProps, {
     showScatter: false
-  }
+  })
 
   render() {
 
@@ -49,19 +53,23 @@ export default class LineChart extends xyChart {
       showXGrid,
       showYGrid,
       interpolate,
-      chartSeries,
+      chartSeries
     } = this.props;
+
+    const xDomain = this.props.xDomain || this.mkXDomain();
+    const yDomain = this.props.yDomain || this.mkYDomain();
 
     const xScaleSet = this.mkXScale();
     const yScaleSet = this.mkYScale();
     const chartSeriesData = this.mkSeries();
 
+
     if(showXGrid) {
-      var xgrid = <Grid type="x" key="xgrid" {...this.props} />
+      var xgrid = <Grid type="x" key="xgrid" xDomain={xDomain} {...this.props} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" key="ygrid" {...this.props} />
+      var ygrid = <Grid type="y" key="ygrid" yDomain={yDomain} {...this.props} />
     }
 
     if(chartSeries) {
@@ -85,14 +93,14 @@ export default class LineChart extends xyChart {
 
     return (
       <g>
-        {xgrid}
-        {ygrid}
         <g ref= "plotGroup">
           {lines}
           {scatters}
         </g>
-        <Xaxis {...this.props} />
-        <Yaxis {...this.props} />
+        {xgrid}
+        {ygrid}
+        <Xaxis xDomain={xDomain} {...this.props} />
+        <Yaxis yDomain={yDomain} {...this.props} />
       </g>
     )
   }

@@ -19,14 +19,6 @@ export default class xyChart extends Component {
     super(props);
   }
 
-  static defaultProps = {
-    showXGrid: true,
-    showYGrid: true,
-    showXAxis: true,
-    showYAxis: true,
-    categoricalColors: d3.scale.category10(),
-  }
-
   static propTypes = {
     title: PropTypes.string,
     data: PropTypes.array.isRequired,
@@ -39,12 +31,12 @@ export default class xyChart extends Component {
     titleClassName: PropTypes.string,
     yAxisClassName: PropTypes.string,
     xAxisClassName: PropTypes.string,
-    legendClassName: PropTypes.string,
     lineClass: PropTypes.string,
     scatterClass: PropTypes.string,
     showScatter: PropTypes.bool,
     showXAxis: PropTypes.bool,
     showYAxis: PropTypes.bool,
+    categoricalColors: PropTypes.func,
     interpolate: PropTypes.string,
     x: PropTypes.func.isRequired,
     xDomain: PropTypes.array,
@@ -69,9 +61,10 @@ export default class xyChart extends Component {
       data,
       xScale,
       xRange,
-      xDomain,
       xRangeRoundBands,
     } = this.props;
+
+    const xDomain = this.props.xDomain || this.setXDomain;
 
     var newXScale = {
       scale: xScale,
@@ -88,9 +81,10 @@ export default class xyChart extends Component {
       data,
       yScale,
       yRange,
-      yDomain,
       yRangeRoundBands,
     } = this.props;
+
+    const yDomain = this.props.yDomain || this.setYDomain;
 
     var newYScale = {
       scale: yScale,
@@ -104,5 +98,63 @@ export default class xyChart extends Component {
 
   mkSeries() {
     return series(this.props);
+  }
+
+  mkXDomain() {
+    const {
+      data,
+      x,
+      xScale
+    } = this.props;
+
+    if(xScale === 'ordinal') {
+      return this.setXDomain = data.map((d) => { return x(d); });
+    }else {
+      return this.setXDomain = d3.extent(data, (d) => { return x(d); });
+    }
+  }
+
+  mkYDomain(stack) {
+    const {
+      data,
+      chartSeries,
+      y
+    } = this.props;
+
+    if(stack) {
+      // stack
+      var max = 0;
+      var min = 0;
+
+      data.forEach((d) => {
+        var totalTop = 0;
+        var totalBottom = 0;
+
+        chartSeries.forEach((sd) => {
+          var field = sd.field;
+
+          if(d[field] > 0) {
+            totalTop += y(d[field]);
+          }else if (d[field] < 0) {
+            totalBottom += y(d[field]);
+          }
+        })
+
+        if(totalTop > max) max = totalTop;
+        if(totalBottom < min) min = totalBottom;
+      })
+
+      return this.setYDomain = [min, max];
+    }else {
+      // not stack, single
+      var domainArr = chartSeries.map((d) => {
+        var field = d.field;
+        var extent = d3.extent(data, (dt) => { return y(dt[field]); });
+
+        return extent;
+      })
+
+      return this.setYDomain = d3.extent([].concat.apply([], domainArr));
+    }
   }
 }
