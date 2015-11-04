@@ -21,7 +21,6 @@ export default class Line extends Component {
 
   static defaultProps = {
     interpolate: null,
-    duration: 500,
     lineClassName: 'react-d3-basic__line'
   }
 

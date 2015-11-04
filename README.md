@@ -15,6 +15,41 @@ react-d3 basic charts, charts that we support:
 - Pie Chart
 - Donut Chart
 
+## Docs
+
+
+#### Charts
+
+- [Line Chart](./docs/charts/line_chart.md)
+- [Line Multiple Chart](./docs/charts/line_mult_chart.md)
+- [Scatter Chart](./docs/charts/scatter_chart.md)
+- [Area Chart](./docs/charts/area_chart.md)
+- [Area Stack Chart](./docs/charts/area_stack_chart.md)
+- [Bar Chart](./docs/charts/bar_chart.md)
+- [Bar Group Chart](./docs/charts/bar_group_chart.md)
+- [Bar Stack Chart](./docs/charts/bar_stack_chart.md)
+- [Pie Chart](./docs/charts/pie_chart.md)
+- [Donut Chart](./docs/charts/donut_chart.md)
+
+#### Shape Components
+
+- [Line](./docs/components/line.md)
+- [Scatter](./docs/components/scatter.md)
+- [Area](./docs/components/area.md)
+- [Area Stack](./docs/components/area_stack.md)
+- [Bar](./docs/components/bar.md)
+- [Bar Group](./docs/components/bar_group.md)
+- [Bar Stack](./docs/components/bar_stack.md)
+- [Pie](./docs/components/pie.md)
+
+#### Inherit
+
+- [PieLayout](./docs/inherit/pie.md)
+- [XYPlot](./docs/inherit/xyplot.md)
+
+#### Utilities
+
+- [Series](./docs/utils/series.md)
 
 ## Install
 

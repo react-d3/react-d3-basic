@@ -107,22 +107,26 @@ var LineChart = require('react-d3-basic').LineChart;
 
 ### Basic Settings
 
-- interpolate
-- chartSeries
-- data
-- xDomain
-- yDomain
-- x
-- y
-- categoricalColors
+##### interpolate -> string
+
+##### chartSeries -> array
+
+Your chartSeries data
 
 
 ### Show Implements
 
-- showScatter
-- showXGrid
-- showYGrid
-- showLegend
+##### showScatter
+
+Set true to show Scatter. Default false.
+
+##### showXGrid
+
+Set true to show X grid. Default true.
+
+##### showYGrid
+
+Set true to show Y grid. Default true.
 
 ---
 
@@ -131,11 +135,13 @@ var LineChart = require('react-d3-basic').LineChart;
 ### Plotting
 
 - AreaSimple
-- Line
+- [Line](../components/line.md)
 - Scatter
 
 
 ### Core
+
+see http://github.com/react-d3/react-d3-core
 
 #### Container
 
