@@ -23,9 +23,6 @@ var LineChart = require('../../lib').LineChart;
     ],
     x = function(d) {
       return d.index;
-    },
-    y = function(d) {
-      return d;
     }
 
   ReactDOM.render(
@@ -36,7 +33,6 @@ var LineChart = require('../../lib').LineChart;
         data= {generalChartData}
         chartSeries= {chartSeries}
         x= {x}
-        y= {y}
       />
     </Chart>
   , document.getElementById('data_line')

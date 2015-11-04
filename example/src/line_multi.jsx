@@ -31,11 +31,7 @@ var LineChart = require('../../lib').LineChart;
       var parseDate = d3.time.format("%Y%m%d").parse;
       return parseDate(d.date);
     },
-    xScale = 'time',
-    y = function(d) {
-      return d;
-    };
-
+    xScale = 'time';
   chartSeries.reverse();
 
   ReactDOM.render(
@@ -46,7 +42,6 @@ var LineChart = require('../../lib').LineChart;
         data= {generalChartData}
         chartSeries= {chartSeries}
         x= {x}
-        y= {y}
         xScale = {xScale}
         interpolate= {interpolate}
       />

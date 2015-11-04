@@ -9,6 +9,7 @@ export default {
   width: width,
   height: height,
   margins: margins,
+  y: (d) => {return +d;},
   xRange: [0, width - margins.left - margins.right],
   yRange: [height - margins.top - margins.bottom, 0],
   xRangeRoundBands: {interval: [0, width - margins.left - margins.right], padding: .1},

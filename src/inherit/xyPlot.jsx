@@ -46,7 +46,7 @@ export default class xyChart extends Component {
     xTickOrient: PropTypes.oneOf(['bottom', 'top']),
     xAxisClassName: PropTypes.string,
     xLabel: PropTypes.string,
-    y: PropTypes.func.isRequired,
+    y: PropTypes.func,
     yDomain: PropTypes.array,
     yRange: PropTypes.array,
     yScale: PropTypes.string,
