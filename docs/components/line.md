@@ -1,8 +1,8 @@
 # Line Component
 
-Whenever you need to build a line chart. `Line Component` (Line) is where you generate it!
+Whenever you need to build a line chart. `Line Component` (\<Line\>) is where you generate it!
 
-This only generate the **<path>** in line chart, if you want to show up a complete line chart you should use `LineChart Component` (<LineChart>).
+This only generate the **<path>** in line chart, if you want to show up a complete line chart you should use `LineChart Component` (\<LineChart\>).
 
 
 
