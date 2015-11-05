@@ -15,26 +15,8 @@ export default class Pie extends Component {
   }
 
   static defaultProps = {
-  }
-
-  componentDidMount () {
-    const {
-      onMouseOver,
-      onMouseOut
-    } = this.props;
-
-    var pieChart = this.refs["react-d3-basic__pie"];
-
-    d3.select(pieChart)
-      .selectAll(".arc")
-      .each(function(p) {
-        this.addEventListener('mouseover', (e) => {
-          onMouseOver(e)
-        })
-        this.addEventListener('mouseout', (e) => {
-          onMouseOut(e)
-        })
-      })
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
   }
 
   _mkPie (dom) {
@@ -73,7 +55,6 @@ export default class Pie extends Component {
       .attr("d", arc)
       .style("fill", (d) => { return d.data.color; })
       .style("stroke", "#FFF")
-      .attr('data-react-d3-origin', (d) => { return JSON.stringify(d.data)})
       .attr("style", (d) => {
         var s = '';
         if(d.data.style) {
@@ -83,7 +64,8 @@ export default class Pie extends Component {
         }
         return s;
       })
-
+      .on("mouseover", onMouseOver)
+      .on("mouseout", onMouseOut)
 
     var labelr = radius + 10;
 
