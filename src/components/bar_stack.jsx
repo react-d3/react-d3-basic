@@ -26,6 +26,7 @@ export default class BarStack extends Component {
       margins,
       dataset,
       barClassName,
+      showZoom,
       xScaleSet,
       yScaleSet,
       onMouseOver,
@@ -74,6 +75,10 @@ export default class BarStack extends Component {
       .attr("height", (d, i) => { return Math.abs(yScaleSet(d.y) - yScaleSet(0));})
       .on("mouseover", onMouseOver)
       .on("mouseout", onMouseOut)
+
+    if(showZoom)
+      barGroup.selectAll("rect")
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
 
     return chart;
   }

@@ -25,8 +25,8 @@ export default class BarGroup extends Component {
       height,
       margins,
       dataset,
+      showZoom,
       barClassName,
-      barOpacity,
       xScaleSet,
       yScaleSet,
       x1,
@@ -69,6 +69,10 @@ export default class BarGroup extends Component {
         chart.style(key, dataset.style[key]);
       }
     }
+
+    if(showZoom)
+      chart.selectAll("rect")
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
 
     return chart;
   }

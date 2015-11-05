@@ -27,8 +27,8 @@ export default class Bar extends Component {
       margins,
       dataset,
       showBrush,
+      showZoom,
       barClassName,
-      barOpacity,
       xScaleSet,
       yScaleSet,
       onMouseOut,
@@ -70,6 +70,11 @@ export default class Bar extends Component {
     if(showBrush)
       chart.selectAll("rect")
         .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+
+    if(showZoom)
+      chart.selectAll("rect")
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+
 
     return chart;
   }
