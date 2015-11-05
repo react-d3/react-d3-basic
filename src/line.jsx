@@ -7,10 +7,6 @@ import {
 } from 'react';
 
 import {
-  default as d3
-} from 'd3';
-
-import {
   Chart as Chart,
   Xaxis as Xaxis,
   Yaxis as Yaxis,

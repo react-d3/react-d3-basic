@@ -11,7 +11,9 @@ import {
 } from '../utils/series'
 
 import {
-  scale as scale
+  scale,
+  xDomainCount,
+  yDomainCount
 } from 'react-d3-core';
 
 export default class xyChart extends Component {
@@ -101,60 +103,10 @@ export default class xyChart extends Component {
   }
 
   mkXDomain() {
-    const {
-      data,
-      x,
-      xScale
-    } = this.props;
-
-    if(xScale === 'ordinal') {
-      return this.setXDomain = data.map((d) => { return x(d); });
-    }else {
-      return this.setXDomain = d3.extent(data, (d) => { return x(d); });
-    }
+    return this.setXDomain = xDomainCount(this.props)
   }
 
   mkYDomain(stack) {
-    const {
-      data,
-      chartSeries,
-      y
-    } = this.props;
-
-    if(stack) {
-      // stack
-      var max = 0;
-      var min = 0;
-
-      data.forEach((d) => {
-        var totalTop = 0;
-        var totalBottom = 0;
-
-        chartSeries.forEach((sd) => {
-          var field = sd.field;
-
-          if(d[field] > 0) {
-            totalTop += y(d[field]);
-          }else if (d[field] < 0) {
-            totalBottom += y(d[field]);
-          }
-        })
-
-        if(totalTop > max) max = totalTop;
-        if(totalBottom < min) min = totalBottom;
-      })
-
-      return this.setYDomain = [min, max];
-    }else {
-      // not stack, single
-      var domainArr = chartSeries.map((d) => {
-        var field = d.field;
-        var extent = d3.extent(data, (dt) => { return y(dt[field]); });
-
-        return extent;
-      })
-
-      return this.setYDomain = d3.extent([].concat.apply([], domainArr));
-    }
+    return this.setYDomain = yDomainCount(this.props, stack)
   }
 }
