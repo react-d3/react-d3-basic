@@ -24,7 +24,13 @@ var BarChart = require('../../lib').BarChart;
     y = function(d) {
       return +d;
     },
-    yTicks = [10, "%"];
+    yTicks = [10, "%"],
+    onMouseOver = function(d, i) {
+      console.log(d, i);
+    },
+    onMouseOut = function(d, i) {
+      console.log(d, i);
+    }
 
   ReactDOM.render(
     <Chart
@@ -39,6 +45,8 @@ var BarChart = require('../../lib').BarChart;
         yTicks= {yTicks}
         showXGrid= {false}
         showYGrid= {false}
+        onMouseOver= {onMouseOver}
+        onMouseOut= {onMouseOut}
       />
     </Chart>
   , document.getElementById('data_bar')

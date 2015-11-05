@@ -24,26 +24,6 @@ export default class BarGroup extends Component {
     barClassName: 'react-d3-basic__bar_group'
   }
 
-  componentDidMount () {
-    const {
-      onMouseOver,
-      onMouseOut
-    } = this.props;
-
-    var barChart = this.refs["react-d3-basic__bar"];
-
-    d3.select(barChart)
-      .selectAll("rect")
-      .each(function(p) {
-        this.addEventListener('mouseover', (e) => {
-          onMouseOver(e)
-        })
-        this.addEventListener('mouseout', (e) => {
-          onMouseOut(e)
-        })
-      })
-  }
-
   _mkBarGroup(dom) {
     const {
       height,
@@ -84,7 +64,9 @@ export default class BarGroup extends Component {
       .attr("y", function(d) { return d.y < 0 ? zeroBase: yScaleSet(d.y); })
       .attr("height", function(d) { return d.y < domain[0] ? 0: Math.abs(zeroBase - yScaleSet(d.y)) })
       .style("fill", function(d) { return dataset.color; })
-      .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
+      .on("mouseover", onMouseOver)
+      .on("mouseout", onMouseOut)
+
 
     if(dataset.style) {
       for(var key in dataset.style) {
@@ -97,7 +79,6 @@ export default class BarGroup extends Component {
 
   render() {
     var barChart = ReactFauxDOM.createElement('g');
-    barChart.setAttribute("ref", "react-d3-basic__bar")
     var bar = this._mkBarGroup(barChart);
 
     return bar.node().toReact();

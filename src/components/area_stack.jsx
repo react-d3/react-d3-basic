@@ -22,7 +22,6 @@ export default class AreaStack extends Component {
   static defaultProps = {
     areaClass: 'react-d3-basics__area_stack',
     interpolate: null,
-    duration: 500,
     areaClassName: 'react-d3-basic__area_stack'
   }
 
@@ -31,8 +30,7 @@ export default class AreaStack extends Component {
       dataset,
       areaClassName,
       showBrush,
-      showZoom,
-      duration
+      showZoom
     } = this.props;
 
     const _setStack = this._setStack();

@@ -1,6 +1,6 @@
 {
   "name": "react-d3-basic",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "react chart component",
   "main": "./lib/index.js",
   "directories": {
@@ -34,6 +34,6 @@
     "react-addons-css-transition-group": "^0.14.1",
     "react-d3-core": "^0.5.4",
     "react-dom": "^0.14.0",
-    "react-faux-dom": "^2.0.1"
+    "react-faux-dom": "^2.1.0"
   }
 }

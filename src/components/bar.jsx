@@ -6,10 +6,6 @@ import {
 } from 'react';
 
 import {
-  default as d3
-} from 'd3';
-
-import {
   default as ReactFauxDOM
 } from 'react-faux-dom';
 
@@ -23,26 +19,6 @@ export default class Bar extends Component {
     onMouseOver: (d) => {},
     onMouseOut: (d) => {},
     barClassName: 'react-d3-basic__bar'
-  }
-
-  componentDidMount () {
-    const {
-      onMouseOver,
-      onMouseOut
-    } = this.props;
-
-    var barChart = this.refs["react-d3-basic__bar"];
-
-    d3.select(barChart)
-      .selectAll("rect")
-      .each(function(p) {
-        this.addEventListener('mouseover', (e) => {
-          onMouseOver(e)
-        })
-        this.addEventListener('mouseout', (e) => {
-          onMouseOut(e)
-        })
-      })
   }
 
   _mkBar(dom) {
@@ -82,7 +58,8 @@ export default class Bar extends Component {
       .attr("y", (d) => { return d.y < 0 ? zeroBase: yScaleSet(d.y); })
       .attr("height", (d) => { return d.y < domain[0] ? 0: Math.abs(zeroBase - yScaleSet(d.y))})
       .style("fill", dataset.color )
-      .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
+      .on("mouseover", onMouseOver)
+      .on("mouseout", onMouseOut)
 
     if(dataset.style) {
       for(var key in dataset.style) {
@@ -99,7 +76,6 @@ export default class Bar extends Component {
 
   render() {
     var barChart = ReactFauxDOM.createElement('g');
-    barChart.setAttribute("ref", "react-d3-basic__bar")
     var bar = this._mkBar(barChart);
 
     return bar.node().toReact();

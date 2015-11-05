@@ -24,26 +24,6 @@ export default class BarStack extends Component {
     barClassName: 'react-d3-basic__bar_stack'
   }
 
-  componentDidMount () {
-    const {
-      onMouseOver,
-      onMouseOut
-    } = this.props;
-
-    var barChart = this.refs["react-d3-basic__bar"];
-
-    d3.select(barChart)
-      .selectAll("rect")
-      .each(function(p) {
-        this.addEventListener('mouseover', (e) => {
-          onMouseOver(e)
-        })
-        this.addEventListener('mouseout', (e) => {
-          onMouseOut(e)
-        })
-      })
-  }
-
   _mkBarStack(dom) {
     const {
       height,
@@ -96,7 +76,8 @@ export default class BarStack extends Component {
       .attr("x", (d) => { return xScaleSet(d.x)? xScaleSet(d.x): -10000 })
       .attr("y", (d, i) => { return yScaleSet(d.y0 + d.y); })
       .attr("height", (d, i) => { return Math.abs(yScaleSet(d.y) - yScaleSet(0));})
-      .attr('data-react-d3-origin', (d) => { return JSON.stringify(d)})
+      .on("mouseover", onMouseOver)
+      .on("mouseout", onMouseOut)
 
     return chart;
   }
@@ -135,7 +116,6 @@ export default class BarStack extends Component {
 
   render() {
     var barChart = ReactFauxDOM.createElement('g');
-    barChart.setAttribute("ref", "react-d3-basic__bar")
     var bar = this._mkBarStack(barChart);
 
     return bar.node().toReact();
