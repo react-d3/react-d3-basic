@@ -27,6 +27,25 @@ import {
 
 export default class AreaStackChart extends xyChart {
 
+  constructor(props) {
+    super(props);
+
+    const {
+      width,
+      height,
+      margins,
+      xRange,
+      yRange,
+      xRangeRoundBands
+    } = this.props;
+
+    this.state = {
+      xRange: xRange || [0, width - margins.left - margins.right],
+      yRange: yRange || [height - margins.top - margins.bottom, 0],
+      xRangeRoundBands: xRangeRoundBands || {interval: [0, width - margins.left - margins.right], padding: .1}
+    }
+  }
+
   static defaultProps = CommonProps
 
   render() {
@@ -47,15 +66,15 @@ export default class AreaStackChart extends xyChart {
     const chartSeriesData = this.mkSeries();
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" {...this.props} xDomain={xDomain}/>
+      var xgrid = <Grid type="x" {...this.props} {...this.state} xDomain={xDomain}/>
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" {...this.props} yDomain={yDomain}/>
+      var ygrid = <Grid type="y" {...this.props} {...this.state} yDomain={yDomain}/>
     }
 
     if(chartSeries) {
-      var areas = <AreaStack dataset={chartSeriesData} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} />
+      var areas = <AreaStack dataset={chartSeriesData} {...this.props} {...this.state} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} />
     }
 
     return (
@@ -65,8 +84,8 @@ export default class AreaStackChart extends xyChart {
         </g>
         {xgrid}
         {ygrid}
-        <Xaxis {...this.props} xDomain={xDomain} />
-        <Yaxis {...this.props} yDomain={yDomain} />
+        <Xaxis {...this.props} {...this.state} xDomain={xDomain} />
+        <Yaxis {...this.props} {...this.state} yDomain={yDomain} />
       </g>
     )
   }

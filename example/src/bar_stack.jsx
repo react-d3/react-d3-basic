@@ -53,9 +53,13 @@ var BarStackChart = require('../../lib').BarStackChart;
 
   ReactDOM.render(
     <Chart
+      width= {600}
+      height= {300}
       chartSeries = {chartSeries}
       >
       <BarStackChart
+        width= {600}
+        height= {300}
         data= {generalChartData}
         chartSeries = {chartSeries}
         x= {x}

@@ -61,10 +61,13 @@ export default class xyChart extends Component {
   mkXScale() {
     const {
       data,
-      xScale,
-      xRange,
-      xRangeRoundBands,
+      xScale
     } = this.props;
+
+    const {
+      xRange,
+      xRangeRoundBands
+    } = this.state;
 
     const xDomain = this.props.xDomain || this.setXDomain;
 
@@ -81,10 +84,15 @@ export default class xyChart extends Component {
   mkYScale() {
     const {
       data,
-      yScale,
-      yRange,
-      yRangeRoundBands,
+      yScale
     } = this.props;
+
+    const {
+      yRange,
+      yRangeRoundBands
+    } = this.state;
+
+    console.log(yRange)
 
     const yDomain = this.props.yDomain || this.setYDomain;
 

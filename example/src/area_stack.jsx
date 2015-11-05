@@ -44,9 +44,13 @@ var AreaStackChart = require('../../lib').AreaStackChart;
 
   ReactDOM.render(
     <Chart
+      width= {600}
+      height= {400}
       chartSeries = {chartSeries}
       >
       <AreaStackChart
+        width= {600}
+        height= {400}
         data = {generalChartData}
         chartSeries = {chartSeries}
         x= {x}

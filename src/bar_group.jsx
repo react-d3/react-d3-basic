@@ -27,6 +27,25 @@ import {
 
 export default class BarGroupChart extends xyChart {
 
+  constructor(props) {
+    super(props);
+
+    const {
+      width,
+      height,
+      margins,
+      xRange,
+      yRange,
+      xRangeRoundBands
+    } = this.props;
+
+    this.state = {
+      xRange: xRange || [0, width - margins.left - margins.right],
+      yRange: yRange || [height - margins.top - margins.bottom, 0],
+      xRangeRoundBands: xRangeRoundBands || {interval: [0, width - margins.left - margins.right], padding: .1}
+    }
+  }
+
   static defaultProps = Object.assign(CommonProps, {
     onMouseOver: () => {},
     onMouseOut: () => {}
@@ -48,11 +67,11 @@ export default class BarGroupChart extends xyChart {
     const chartSeriesData = this.mkSeries();
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" xDomain={xDomain} {...this.props} />
+      var xgrid = <Grid type="x" xDomain={xDomain} {...this.props} {...this.state} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" yDomain={yDomain} {...this.props} />
+      var ygrid = <Grid type="y" yDomain={yDomain} {...this.props} {...this.state} />
     }
 
     if(chartSeries) {
@@ -74,6 +93,7 @@ export default class BarGroupChart extends xyChart {
             onMouseOver={this.props.onMouseOver}
             onMouseOut={this.props.onMouseOut}
             {...this.props}
+            {...this.state}
             xScaleSet= {xScaleSet}
             yScaleSet= {yScaleSet}
             chartSeriesData= {chartSeriesData}
@@ -89,8 +109,8 @@ export default class BarGroupChart extends xyChart {
         <g ref= "plotGroup">
           {bargroups}
         </g>
-        <Xaxis xDomain={xDomain} {...this.props} />
-        <Yaxis yDomain={yDomain} {...this.props} />
+        <Xaxis xDomain={xDomain} {...this.props} {...this.state} />
+        <Yaxis yDomain={yDomain} {...this.props} {...this.state} />
       </g>
     )
   }

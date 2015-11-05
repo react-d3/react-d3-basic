@@ -46,9 +46,13 @@ var PieChart = require('../../lib').PieChart;
 
   ReactDOM.render(
     <Chart
+      width= {600}
+      height= {300}
       chartSeries= {chartSeries}
       >
       <PieChart
+        width= {600}
+        height= {300}
         chartSeries= {chartSeries}
         data= {generalChartData}
         value = {value}

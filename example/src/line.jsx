@@ -27,9 +27,13 @@ var LineChart = require('../../lib').LineChart;
 
   ReactDOM.render(
     <Chart
+      width= {600}
+      height= {300}
       chartSeries= {chartSeries}
       >
       <LineChart
+        width= {600}
+        height= {300}
         data= {generalChartData}
         chartSeries= {chartSeries}
         x= {x}

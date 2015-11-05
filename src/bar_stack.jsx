@@ -27,6 +27,25 @@ import {
 
 export default class BarStackChart extends xyChart {
 
+  constructor(props) {
+    super(props);
+
+    const {
+      width,
+      height,
+      margins,
+      xRange,
+      yRange,
+      xRangeRoundBands
+    } = this.props;
+
+    this.state = {
+      xRange: xRange || [0, width - margins.left - margins.right],
+      yRange: yRange || [height - margins.top - margins.bottom, 0],
+      xRangeRoundBands: xRangeRoundBands || {interval: [0, width - margins.left - margins.right], padding: .1}
+    }
+  }
+
   static defaultProps = Object.assign(CommonProps, {
     onMouseOver: () => {},
     onMouseOut: () => {}
@@ -48,15 +67,15 @@ export default class BarStackChart extends xyChart {
     const chartSeriesData = this.mkSeries();
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" key="xgrid" xDomain={xDomain} {...this.props} />
+      var xgrid = <Grid type="x" key="xgrid" xDomain={xDomain} {...this.props} {...this.state} />
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" key="ygrid" yDomain={yDomain} {...this.props} />
+      var ygrid = <Grid type="y" key="ygrid" yDomain={yDomain} {...this.props} {...this.state} />
     }
 
     if(chartSeries) {
-      var bargroups = <BarStack dataset={chartSeriesData} {...this.props} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
+      var bargroups = <BarStack dataset={chartSeriesData} {...this.props} {...this.state} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
     }
 
     return (
@@ -66,8 +85,8 @@ export default class BarStackChart extends xyChart {
         <g ref= "plotGroup">
           {bargroups}
         </g>
-        <Xaxis xDomain={xDomain} {...this.props} />
-        <Yaxis yDomain={yDomain} {...this.props} />
+        <Xaxis xDomain={xDomain} {...this.props} {...this.state} />
+        <Yaxis yDomain={yDomain} {...this.props} {...this.state} />
       </g>
     )
   }

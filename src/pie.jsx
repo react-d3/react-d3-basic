@@ -26,6 +26,19 @@ import {
 export default class PieChart extends PieLayout {
   constructor(props) {
     super(props);
+
+    const {
+      width,
+      height,
+      outerRadius
+    } = this.props;
+
+    const radius = this.props.radius || Math.min(width, height - 100) / 2;
+
+    this.state = {
+      radius: radius,
+      outerRadius: outerRadius || (radius - 10)
+    }
   }
 
   static defaultProps = Object.assign(pieProps, {
@@ -41,7 +54,7 @@ export default class PieChart extends PieLayout {
 
     var chartSeriesData = this._mkSeries();
 
-    var pie = <Pie chartSeriesData= {chartSeriesData} {...this.props} onMouseOver={onMouseOver} onMouseOut={onMouseOut}/>
+    var pie = <Pie chartSeriesData= {chartSeriesData} {...this.props} {...this.state} onMouseOver={onMouseOver} onMouseOut={onMouseOut}/>
 
     return (
       <g ref="plotGroup">
