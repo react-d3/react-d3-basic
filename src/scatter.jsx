@@ -7,10 +7,10 @@ import {
 } from 'react';
 
 import {
-  Chart as Chart,
-  Xaxis as Xaxis,
-  Yaxis as Yaxis,
-  Grid as Grid,
+  Chart,
+  Xaxis,
+  Yaxis,
+  Grid,
 } from 'react-d3-core';
 
 import {
@@ -41,8 +41,8 @@ export default class ScatterPlot extends xyChart {
     } = this.props;
 
 
-    const xDomain = this.props.xDomain || this.mkXDomain();
-    const yDomain = this.props.yDomain || this.mkYDomain();
+    const xDomain = this.mkXDomain();
+    const yDomain = this.mkYDomain();
 
     const xScaleSet = this.mkXScale();
     const yScaleSet = this.mkYScale();

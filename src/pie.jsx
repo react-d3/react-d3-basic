@@ -10,8 +10,8 @@ import {
 } from './inherit/pieLayout';
 
 import {
-  Chart as Chart,
-  Legend as Legend,
+  Chart,
+  Legend,
 } from 'react-d3-core';
 
 import {
