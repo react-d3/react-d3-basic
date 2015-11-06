@@ -124,6 +124,13 @@ Inherit initial props, state, functions...
 
 ![img](http://www.reactd3.org/img/basic/cover.png)
 
+## Develop
+
+```
+$ sudo npm i
+$ webpack -w
+```
+
 ## License
 
 Apache 2.0
