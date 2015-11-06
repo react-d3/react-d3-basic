@@ -92,8 +92,6 @@ export default class xyChart extends Component {
       yRangeRoundBands
     } = this.state;
 
-    console.log(yRange)
-
     const yDomain = this.props.yDomain || this.setYDomain;
 
     var newYScale = {
