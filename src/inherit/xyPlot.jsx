@@ -46,7 +46,6 @@ export default class xyChart extends Component {
     xScale: PropTypes.string,
     xOrient: PropTypes.oneOf(['bottom', 'top']),
     xTickOrient: PropTypes.oneOf(['bottom', 'top']),
-    xAxisClassName: PropTypes.string,
     xLabel: PropTypes.string,
     y: PropTypes.func,
     yDomain: PropTypes.array,
@@ -54,8 +53,7 @@ export default class xyChart extends Component {
     yScale: PropTypes.string,
     yOrient: PropTypes.oneOf(['right', 'left']),
     yTickOrient: PropTypes.oneOf(['right', 'left']),
-    yAxisClassName: PropTypes.string,
-    yLabel: PropTypes.string,
+    yLabel: PropTypes.string
   }
 
   mkXScale() {

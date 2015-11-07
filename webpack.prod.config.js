@@ -29,8 +29,8 @@ module.exports = [{
     loaders: [
       {
         test: [/\.jsx$/, /\.js$/],
-        include: /detail/,
-        loaders: ["jsx-loader"],
+        include: './src/index.jsx',
+        loaders: ["jsx-loader?insertPragma=React.DOM&harmony"],
       },
       {
         test: /\.css$/,
