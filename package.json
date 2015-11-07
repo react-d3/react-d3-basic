@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "NODE_ENV=0 webpack -w",
-    "build": "rm -rf ./lib && babel -w --stage 0 src --out-dir lib"
+    "build": "rm -rf ./lib && babel -w --stage 0 src --out-dir lib",
+    "prod": "NODE_ENV=0 webpack --config webpack.prod.config.js && NODE_ENV=1 webpack --config webpack.prod.config.js"
   },
   "author": "ElixirDoc team",
   "license": "Apache 2.0",
