@@ -17,7 +17,11 @@ var PieChart = require('../../lib').PieChart;
     chartSeries = [
       {
         "field": "<5",
-        "name": "less than 5"
+        "name": "less than 5",
+        "color": "red",
+        "style": {
+          "fill-opacity": .2
+        }
       },
       {
         "field": "5-13",
