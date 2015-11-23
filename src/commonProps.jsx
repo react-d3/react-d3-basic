@@ -1,5 +1,9 @@
 "use strict";
 
+import {
+  default as d3
+} from 'd3';
+
 const width = 960;
 const height = 500;
 const margins = {top: 80, right: 100, bottom: 80, left: 100};

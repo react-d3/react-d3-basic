@@ -32,7 +32,6 @@ export default class xyChart extends Component {
     svgClassName: PropTypes.string,
     titleClassName: PropTypes.string,
     yAxisClassName: PropTypes.string,
-    xAxisClassName: PropTypes.string,
     lineClass: PropTypes.string,
     scatterClass: PropTypes.string,
     showScatter: PropTypes.bool,

@@ -63,71 +63,71 @@ var ReactD3Basic =
 
 	var _inheritXyPlot2 = _interopRequireDefault(_inheritXyPlot);
 
-	var _inheritPieLayout = __webpack_require__(75);
+	var _inheritPieLayout = __webpack_require__(71);
 
 	var _inheritPieLayout2 = _interopRequireDefault(_inheritPieLayout);
 
 	// Export basic component of charts
 
-	var _componentsLine = __webpack_require__(76);
+	var _componentsLine = __webpack_require__(72);
 
 	var _componentsLine2 = _interopRequireDefault(_componentsLine);
 
-	var _componentsArea = __webpack_require__(77);
+	var _componentsArea = __webpack_require__(73);
 
 	var _componentsArea2 = _interopRequireDefault(_componentsArea);
 
-	var _componentsArea_stack = __webpack_require__(78);
+	var _componentsArea_stack = __webpack_require__(74);
 
 	var _componentsArea_stack2 = _interopRequireDefault(_componentsArea_stack);
 
-	var _componentsBar = __webpack_require__(79);
+	var _componentsBar = __webpack_require__(75);
 
 	var _componentsBar2 = _interopRequireDefault(_componentsBar);
 
-	var _componentsBar_group = __webpack_require__(80);
+	var _componentsBar_group = __webpack_require__(76);
 
 	var _componentsBar_group2 = _interopRequireDefault(_componentsBar_group);
 
-	var _componentsBar_stack = __webpack_require__(81);
+	var _componentsBar_stack = __webpack_require__(77);
 
 	var _componentsBar_stack2 = _interopRequireDefault(_componentsBar_stack);
 
-	var _componentsPie = __webpack_require__(82);
+	var _componentsPie = __webpack_require__(78);
 
 	var _componentsPie2 = _interopRequireDefault(_componentsPie);
 
-	var _componentsScatter = __webpack_require__(83);
+	var _componentsScatter = __webpack_require__(79);
 
 	var _componentsScatter2 = _interopRequireDefault(_componentsScatter);
 
 	// Export high level charts
 
-	var _line = __webpack_require__(84);
+	var _line = __webpack_require__(80);
 
 	var _line2 = _interopRequireDefault(_line);
 
-	var _scatter = __webpack_require__(86);
+	var _scatter = __webpack_require__(82);
 
 	var _scatter2 = _interopRequireDefault(_scatter);
 
-	var _area_stack = __webpack_require__(87);
+	var _area_stack = __webpack_require__(83);
 
 	var _area_stack2 = _interopRequireDefault(_area_stack);
 
-	var _bar = __webpack_require__(88);
+	var _bar = __webpack_require__(84);
 
 	var _bar2 = _interopRequireDefault(_bar);
 
-	var _bar_group = __webpack_require__(89);
+	var _bar_group = __webpack_require__(85);
 
 	var _bar_group2 = _interopRequireDefault(_bar_group);
 
-	var _bar_stack = __webpack_require__(90);
+	var _bar_stack = __webpack_require__(86);
 
 	var _bar_stack2 = _interopRequireDefault(_bar_stack);
 
-	var _pie = __webpack_require__(91);
+	var _pie = __webpack_require__(87);
 
 	var _pie2 = _interopRequireDefault(_pie);
 
@@ -309,7 +309,6 @@ var ReactD3Basic =
 	      svgClassName: _react.PropTypes.string,
 	      titleClassName: _react.PropTypes.string,
 	      yAxisClassName: _react.PropTypes.string,
-	      xAxisClassName: _react.PropTypes.string,
 	      lineClass: _react.PropTypes.string,
 	      scatterClass: _react.PropTypes.string,
 	      showScatter: _react.PropTypes.bool,
@@ -323,7 +322,6 @@ var ReactD3Basic =
 	      xScale: _react.PropTypes.string,
 	      xOrient: _react.PropTypes.oneOf(['bottom', 'top']),
 	      xTickOrient: _react.PropTypes.oneOf(['bottom', 'top']),
-	      xAxisClassName: _react.PropTypes.string,
 	      xLabel: _react.PropTypes.string,
 	      y: _react.PropTypes.func,
 	      yDomain: _react.PropTypes.array,
@@ -331,7 +329,6 @@ var ReactD3Basic =
 	      yScale: _react.PropTypes.string,
 	      yOrient: _react.PropTypes.oneOf(['right', 'left']),
 	      yTickOrient: _react.PropTypes.oneOf(['right', 'left']),
-	      yAxisClassName: _react.PropTypes.string,
 	      yLabel: _react.PropTypes.string
 	    },
 	    enumerable: true
@@ -404,8 +401,6 @@ var ReactD3Basic =
 	var _utilsXDomain = __webpack_require__(69);
 
 	var _utilsYDomain = __webpack_require__(70);
-
-	__webpack_require__(71);
 
 	exports.Svg = _containerSvg2['default'];
 	exports.Title = _containerTitle2['default'];
@@ -8956,6 +8951,15 @@ var ReactD3Basic =
 	        }
 	      }
 
+	      // basic styles
+	      axisDom.selectAll('.axis path').style('fill', 'none').style('stroke', '#000').style('shape-rendering', 'crispEdges');
+
+	      axisDom.selectAll('.axis line').style('fill', 'none').style('stroke', '#000').style('shape-rendering', 'crispEdges');
+
+	      axisDom.selectAll('.tick line').style('opacity', .2);
+
+	      axisDom.selectAll('.x.axis path').style('display', 'none');
+
 	      return axisDom.node().toReact();
 	    }
 	  }], [{
@@ -9700,327 +9704,6 @@ var ReactD3Basic =
 /* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(72);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(74)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../css-loader/index.js!./axis.css", function() {
-				var newContent = require("!!./../../css-loader/index.js!./axis.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 72 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(73)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".axis path,\n.axis line {\n  fill: none;\n  stroke: #000;\n  shape-rendering: crispEdges;\n}\n\n.x.axis path {\n  display: none;\n}\n\n.line {\n  fill: none;\n  stroke: steelblue;\n  stroke-width: 1.5px;\n}\n\n.tick line{\n  opacity: 0.2;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 73 */
-/***/ function(module, exports) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	// css base code, injected by the css-loader
-	module.exports = function() {
-		var list = [];
-
-		// return the list of modules as css string
-		list.toString = function toString() {
-			var result = [];
-			for(var i = 0; i < this.length; i++) {
-				var item = this[i];
-				if(item[2]) {
-					result.push("@media " + item[2] + "{" + item[1] + "}");
-				} else {
-					result.push(item[1]);
-				}
-			}
-			return result.join("");
-		};
-
-		// import a list of modules into the list
-		list.i = function(modules, mediaQuery) {
-			if(typeof modules === "string")
-				modules = [[null, modules, ""]];
-			var alreadyImportedModules = {};
-			for(var i = 0; i < this.length; i++) {
-				var id = this[i][0];
-				if(typeof id === "number")
-					alreadyImportedModules[id] = true;
-			}
-			for(i = 0; i < modules.length; i++) {
-				var item = modules[i];
-				// skip already imported module
-				// this implementation is not 100% perfect for weird media query combinations
-				//  when a module is imported multiple times with different media queries.
-				//  I hope this will never occur (Hey this way we have smaller bundles)
-				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-					if(mediaQuery && !item[2]) {
-						item[2] = mediaQuery;
-					} else if(mediaQuery) {
-						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-					}
-					list.push(item);
-				}
-			}
-		};
-		return list;
-	};
-
-
-/***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	var stylesInDom = {},
-		memoize = function(fn) {
-			var memo;
-			return function () {
-				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-				return memo;
-			};
-		},
-		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-		}),
-		getHeadElement = memoize(function () {
-			return document.head || document.getElementsByTagName("head")[0];
-		}),
-		singletonElement = null,
-		singletonCounter = 0;
-
-	module.exports = function(list, options) {
-		if(false) {
-			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-		}
-
-		options = options || {};
-		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-		// tags it will allow on a page
-		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
-
-		var styles = listToStyles(list);
-		addStylesToDom(styles, options);
-
-		return function update(newList) {
-			var mayRemove = [];
-			for(var i = 0; i < styles.length; i++) {
-				var item = styles[i];
-				var domStyle = stylesInDom[item.id];
-				domStyle.refs--;
-				mayRemove.push(domStyle);
-			}
-			if(newList) {
-				var newStyles = listToStyles(newList);
-				addStylesToDom(newStyles, options);
-			}
-			for(var i = 0; i < mayRemove.length; i++) {
-				var domStyle = mayRemove[i];
-				if(domStyle.refs === 0) {
-					for(var j = 0; j < domStyle.parts.length; j++)
-						domStyle.parts[j]();
-					delete stylesInDom[domStyle.id];
-				}
-			}
-		};
-	}
-
-	function addStylesToDom(styles, options) {
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			if(domStyle) {
-				domStyle.refs++;
-				for(var j = 0; j < domStyle.parts.length; j++) {
-					domStyle.parts[j](item.parts[j]);
-				}
-				for(; j < item.parts.length; j++) {
-					domStyle.parts.push(addStyle(item.parts[j], options));
-				}
-			} else {
-				var parts = [];
-				for(var j = 0; j < item.parts.length; j++) {
-					parts.push(addStyle(item.parts[j], options));
-				}
-				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-			}
-		}
-	}
-
-	function listToStyles(list) {
-		var styles = [];
-		var newStyles = {};
-		for(var i = 0; i < list.length; i++) {
-			var item = list[i];
-			var id = item[0];
-			var css = item[1];
-			var media = item[2];
-			var sourceMap = item[3];
-			var part = {css: css, media: media, sourceMap: sourceMap};
-			if(!newStyles[id])
-				styles.push(newStyles[id] = {id: id, parts: [part]});
-			else
-				newStyles[id].parts.push(part);
-		}
-		return styles;
-	}
-
-	function createStyleElement() {
-		var styleElement = document.createElement("style");
-		var head = getHeadElement();
-		styleElement.type = "text/css";
-		head.appendChild(styleElement);
-		return styleElement;
-	}
-
-	function createLinkElement() {
-		var linkElement = document.createElement("link");
-		var head = getHeadElement();
-		linkElement.rel = "stylesheet";
-		head.appendChild(linkElement);
-		return linkElement;
-	}
-
-	function addStyle(obj, options) {
-		var styleElement, update, remove;
-
-		if (options.singleton) {
-			var styleIndex = singletonCounter++;
-			styleElement = singletonElement || (singletonElement = createStyleElement());
-			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-		} else if(obj.sourceMap &&
-			typeof URL === "function" &&
-			typeof URL.createObjectURL === "function" &&
-			typeof URL.revokeObjectURL === "function" &&
-			typeof Blob === "function" &&
-			typeof btoa === "function") {
-			styleElement = createLinkElement();
-			update = updateLink.bind(null, styleElement);
-			remove = function() {
-				styleElement.parentNode.removeChild(styleElement);
-				if(styleElement.href)
-					URL.revokeObjectURL(styleElement.href);
-			};
-		} else {
-			styleElement = createStyleElement();
-			update = applyToTag.bind(null, styleElement);
-			remove = function() {
-				styleElement.parentNode.removeChild(styleElement);
-			};
-		}
-
-		update(obj);
-
-		return function updateStyle(newObj) {
-			if(newObj) {
-				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-					return;
-				update(obj = newObj);
-			} else {
-				remove();
-			}
-		};
-	}
-
-	var replaceText = (function () {
-		var textStore = [];
-
-		return function (index, replacement) {
-			textStore[index] = replacement;
-			return textStore.filter(Boolean).join('\n');
-		};
-	})();
-
-	function applyToSingletonTag(styleElement, index, remove, obj) {
-		var css = remove ? "" : obj.css;
-
-		if (styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = replaceText(index, css);
-		} else {
-			var cssNode = document.createTextNode(css);
-			var childNodes = styleElement.childNodes;
-			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-			if (childNodes.length) {
-				styleElement.insertBefore(cssNode, childNodes[index]);
-			} else {
-				styleElement.appendChild(cssNode);
-			}
-		}
-	}
-
-	function applyToTag(styleElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-		var sourceMap = obj.sourceMap;
-
-		if(media) {
-			styleElement.setAttribute("media", media)
-		}
-
-		if(styleElement.styleSheet) {
-			styleElement.styleSheet.cssText = css;
-		} else {
-			while(styleElement.firstChild) {
-				styleElement.removeChild(styleElement.firstChild);
-			}
-			styleElement.appendChild(document.createTextNode(css));
-		}
-	}
-
-	function updateLink(linkElement, obj) {
-		var css = obj.css;
-		var media = obj.media;
-		var sourceMap = obj.sourceMap;
-
-		if(sourceMap) {
-			// http://stackoverflow.com/a/26603875
-			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-		}
-
-		var blob = new Blob([css], { type: "text/css" });
-
-		var oldSrc = linkElement.href;
-
-		linkElement.href = URL.createObjectURL(blob);
-
-		if(oldSrc)
-			URL.revokeObjectURL(oldSrc);
-	}
-
-
-/***/ },
-/* 75 */
-/***/ function(module, exports, __webpack_require__) {
-
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -10109,7 +9792,7 @@ var ReactD3Basic =
 	module.exports = exports["default"];
 
 /***/ },
-/* 76 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -10213,7 +9896,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 77 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -10331,7 +10014,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 78 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -10478,7 +10161,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 79 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -10590,7 +10273,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 80 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -10702,7 +10385,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 81 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -10850,7 +10533,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 82 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -10978,7 +10661,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 83 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -11087,7 +10770,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 84 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11118,19 +10801,19 @@ var ReactD3Basic =
 
 	var _inheritXyPlot2 = _interopRequireDefault(_inheritXyPlot);
 
-	var _componentsLine = __webpack_require__(76);
+	var _componentsLine = __webpack_require__(72);
 
 	var _componentsLine2 = _interopRequireDefault(_componentsLine);
 
-	var _componentsArea = __webpack_require__(77);
+	var _componentsArea = __webpack_require__(73);
 
 	var _componentsArea2 = _interopRequireDefault(_componentsArea);
 
-	var _componentsScatter = __webpack_require__(83);
+	var _componentsScatter = __webpack_require__(79);
 
 	var _componentsScatter2 = _interopRequireDefault(_componentsScatter);
 
-	var _commonProps = __webpack_require__(85);
+	var _commonProps = __webpack_require__(81);
 
 	var _commonProps2 = _interopRequireDefault(_commonProps);
 
@@ -11236,14 +10919,21 @@ var ReactD3Basic =
 	module.exports = exports['default'];
 
 /***/ },
-/* 85 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
+	"use strict";
 
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _d3 = __webpack_require__(2);
+
+	var _d32 = _interopRequireDefault(_d3);
+
 	var width = 960;
 	var height = 500;
 	var margins = { top: 80, right: 100, bottom: 80, left: 100 };
@@ -11265,14 +10955,13 @@ var ReactD3Basic =
 	  height: height,
 	  margins: margins,
 	  innerRadius: 0,
-	  categoricalColors: d3.scale.category10(),
-	  pieSort: d3.descending
+	  categoricalColors: _d32['default'].scale.category10(),
+	  pieSort: _d32['default'].descending
 	};
 	exports.pieProps = pieProps;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 86 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11303,11 +10992,11 @@ var ReactD3Basic =
 
 	var _inheritXyPlot2 = _interopRequireDefault(_inheritXyPlot);
 
-	var _componentsScatter = __webpack_require__(83);
+	var _componentsScatter = __webpack_require__(79);
 
 	var _componentsScatter2 = _interopRequireDefault(_componentsScatter);
 
-	var _commonProps = __webpack_require__(85);
+	var _commonProps = __webpack_require__(81);
 
 	var _commonProps2 = _interopRequireDefault(_commonProps);
 
@@ -11395,7 +11084,7 @@ var ReactD3Basic =
 	module.exports = exports['default'];
 
 /***/ },
-/* 87 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11426,11 +11115,11 @@ var ReactD3Basic =
 
 	var _inheritXyPlot2 = _interopRequireDefault(_inheritXyPlot);
 
-	var _componentsArea_stack = __webpack_require__(78);
+	var _componentsArea_stack = __webpack_require__(74);
 
 	var _componentsArea_stack2 = _interopRequireDefault(_componentsArea_stack);
 
-	var _commonProps = __webpack_require__(85);
+	var _commonProps = __webpack_require__(81);
 
 	var _commonProps2 = _interopRequireDefault(_commonProps);
 
@@ -11513,7 +11202,7 @@ var ReactD3Basic =
 	module.exports = exports['default'];
 
 /***/ },
-/* 88 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11544,11 +11233,11 @@ var ReactD3Basic =
 
 	var _inheritXyPlot2 = _interopRequireDefault(_inheritXyPlot);
 
-	var _componentsBar = __webpack_require__(79);
+	var _componentsBar = __webpack_require__(75);
 
 	var _componentsBar2 = _interopRequireDefault(_componentsBar);
 
-	var _commonProps = __webpack_require__(85);
+	var _commonProps = __webpack_require__(81);
 
 	var _commonProps2 = _interopRequireDefault(_commonProps);
 
@@ -11636,7 +11325,7 @@ var ReactD3Basic =
 	module.exports = exports['default'];
 
 /***/ },
-/* 89 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(d3) {"use strict";
@@ -11667,11 +11356,11 @@ var ReactD3Basic =
 
 	var _inheritXyPlot2 = _interopRequireDefault(_inheritXyPlot);
 
-	var _componentsBar_group = __webpack_require__(80);
+	var _componentsBar_group = __webpack_require__(76);
 
 	var _componentsBar_group2 = _interopRequireDefault(_componentsBar_group);
 
-	var _commonProps = __webpack_require__(85);
+	var _commonProps = __webpack_require__(81);
 
 	var _commonProps2 = _interopRequireDefault(_commonProps);
 
@@ -11780,7 +11469,7 @@ var ReactD3Basic =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 90 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11811,11 +11500,11 @@ var ReactD3Basic =
 
 	var _inheritXyPlot2 = _interopRequireDefault(_inheritXyPlot);
 
-	var _componentsBar_stack = __webpack_require__(81);
+	var _componentsBar_stack = __webpack_require__(77);
 
 	var _componentsBar_stack2 = _interopRequireDefault(_componentsBar_stack);
 
-	var _commonProps = __webpack_require__(85);
+	var _commonProps = __webpack_require__(81);
 
 	var _commonProps2 = _interopRequireDefault(_commonProps);
 
@@ -11899,7 +11588,7 @@ var ReactD3Basic =
 	module.exports = exports['default'];
 
 /***/ },
-/* 91 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -11924,17 +11613,17 @@ var ReactD3Basic =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _inheritPieLayout = __webpack_require__(75);
+	var _inheritPieLayout = __webpack_require__(71);
 
 	var _inheritPieLayout2 = _interopRequireDefault(_inheritPieLayout);
 
 	var _reactD3Core = __webpack_require__(5);
 
-	var _componentsPie = __webpack_require__(82);
+	var _componentsPie = __webpack_require__(78);
 
 	var _componentsPie2 = _interopRequireDefault(_componentsPie);
 
-	var _commonProps = __webpack_require__(85);
+	var _commonProps = __webpack_require__(81);
 
 	var PieChart = (function (_PieLayout) {
 	  _inherits(PieChart, _PieLayout);
