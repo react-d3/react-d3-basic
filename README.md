@@ -200,6 +200,8 @@ Inherit initial props, state, functions...
 
 ```
 $ sudo npm i
+$ sudo npm i -g babel@5.8.23
+$ sudo npm run build
 $ webpack -w
 ```
 
