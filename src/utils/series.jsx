@@ -1,5 +1,7 @@
 "use strict";
 
+import d3 from 'd3';
+
 export function series(props) {
   var {
     data,
