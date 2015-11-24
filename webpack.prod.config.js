@@ -55,13 +55,6 @@ module.exports = [{
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       mangle: false
-    }),
-    new webpack.ProvidePlugin({
-      'd3': 'd3'
     })
-  ]: [
-    new webpack.ProvidePlugin({
-      'd3': 'd3'
-    })
-  ]
+  ]: []
 }];

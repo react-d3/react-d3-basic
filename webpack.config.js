@@ -54,11 +54,5 @@ module.exports = [{
 
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
-  },
-
-  plugins: [
-    new webpack.ProvidePlugin({
-      'd3': 'd3'
-    })
-  ]
+  }
 }];
