@@ -21,7 +21,8 @@ export default class Scatter extends Component {
     defaultSymbol: 'circle',
     defaultSymbolSize: 10,
     duration: 1000,
-    scatterClassName: 'react-d3-basic__scatter'
+    scatterClassName: 'react-d3-basic__scatter',
+    chartId: 0
   }
 
   _mkScatter(dom) {
@@ -37,7 +38,8 @@ export default class Scatter extends Component {
       showBrush,
       showZoom,
       brushSymbol,
-      duration
+      duration,
+      chartId
     } = this.props;
 
     var symbol = dataset.symbol? dataset.symbol: defaultSymbol;
@@ -67,11 +69,11 @@ export default class Scatter extends Component {
 
     if(showBrush)
       d3.select(dom)
-        .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__brush_focus__clip__' + chartId + ')');
 
     if(showZoom)
       d3.select(dom)
-        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip__' + chartId + ')');
 
     return dots;
   }

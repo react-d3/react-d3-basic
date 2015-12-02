@@ -18,7 +18,8 @@ export default class Line extends Component {
 
   static defaultProps = {
     interpolate: null,
-    lineClassName: 'react-d3-basic__line'
+    lineClassName: 'react-d3-basic__line',
+    chartId: 0
   }
 
   _mkLine(dom) {
@@ -27,7 +28,8 @@ export default class Line extends Component {
       lineClassName,
       showBrush,
       showZoom,
-      duration
+      duration,
+      chartId
     } = this.props;
 
     // make line
@@ -45,10 +47,10 @@ export default class Line extends Component {
     }
 
     if(showBrush)
-      line.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+      line.style('clip-path', 'url(#react-d3-basic__brush_focus__clip__' + chartId + ')');
 
     if(showZoom)
-      line.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+      line.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)__' + chartId + ')');
 
     return line;
   }

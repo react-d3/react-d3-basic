@@ -20,7 +20,8 @@ export default class Bar extends Component {
     interpolate: null,
     onMouseOver: (d) => {},
     onMouseOut: (d) => {},
-    barClassName: 'react-d3-basic__bar'
+    barClassName: 'react-d3-basic__bar',
+    chartId: 0
   }
 
   _mkBar(dom) {
@@ -35,6 +36,7 @@ export default class Bar extends Component {
       yScaleSet,
       onMouseOut,
       onMouseOver,
+      chartId
     } = this.props;
 
     // make areas
@@ -71,11 +73,11 @@ export default class Bar extends Component {
 
     if(showBrush)
       chart.selectAll("rect")
-        .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__brush_focus__clip__' + chartId + ')');
 
     if(showZoom)
       chart.selectAll("rect")
-        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip__' + chartId + ')');
 
 
     return chart;

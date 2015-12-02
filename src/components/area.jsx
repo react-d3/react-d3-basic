@@ -20,7 +20,8 @@ export default class AreaSimple extends Component {
   static defaultProps = {
     interpolate: null,
     duration: 500,
-    areaClassName: 'react-d3-basic__area'
+    areaClassName: 'react-d3-basic__area',
+    chartId: 0
   }
 
   _mkArea(dom) {
@@ -30,7 +31,8 @@ export default class AreaSimple extends Component {
       areaOpacity,
       showBrush,
       showZoom,
-      duration
+      duration,
+      chartId
     } = this.props;
 
     // make area
@@ -49,10 +51,10 @@ export default class AreaSimple extends Component {
     }
 
     if(showBrush)
-      area.style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+      area.style('clip-path', 'url(#react-d3-basic__brush_focus__clip__' + chartId + ')');
 
     if(showZoom)
-      area.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+      area.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip__' + chartId + ')');
 
     return area;
   }

@@ -20,7 +20,8 @@ export default class AreaStack extends Component {
   static defaultProps = {
     areaClass: 'react-d3-basics__area_stack',
     interpolate: null,
-    areaClassName: 'react-d3-basic__area_stack'
+    areaClassName: 'react-d3-basic__area_stack',
+    chartId: 0
   }
 
   _mkStack(dom) {
@@ -28,7 +29,8 @@ export default class AreaStack extends Component {
       dataset,
       areaClassName,
       showBrush,
-      showZoom
+      showZoom,
+      chartId
     } = this.props;
 
     const _setStack = this._setStack();
@@ -58,11 +60,11 @@ export default class AreaStack extends Component {
 
     if(showBrush)
       chart.selectAll("path")
-        .style('clip-path', 'url(#react-d3-basic__brush_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__brush_focus__clip__' + chartId + ')');
 
     if(showZoom)
       chart.selectAll("path")
-        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip__' + chartId + ')');
 
     return chart;
   }

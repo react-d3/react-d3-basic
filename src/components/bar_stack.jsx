@@ -19,7 +19,8 @@ export default class BarStack extends Component {
   static defaultProps = {
     onMouseOver: (d) => {},
     onMouseOut: (d) => {},
-    barClassName: 'react-d3-basic__bar_stack'
+    barClassName: 'react-d3-basic__bar_stack',
+    chartId: 0
   }
 
   _mkBarStack(dom) {
@@ -32,7 +33,8 @@ export default class BarStack extends Component {
       xScaleSet,
       yScaleSet,
       onMouseOver,
-      onMouseOut
+      onMouseOut,
+      chartId
     } = this.props;
 
     const _setStack = this._setStack();
@@ -80,7 +82,7 @@ export default class BarStack extends Component {
 
     if(showZoom)
       barGroup.selectAll("rect")
-        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip__' + chartId + ')');
 
     return chart;
   }

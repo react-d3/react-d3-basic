@@ -19,7 +19,8 @@ export default class BarGroup extends Component {
   static defaultProps = {
     onMouseOver: (d) => {},
     onMouseOut: (d) => {},
-    barClassName: 'react-d3-basic__bar_group'
+    barClassName: 'react-d3-basic__bar_group',
+    chartId: 0
   }
 
   _mkBarGroup(dom) {
@@ -34,7 +35,8 @@ export default class BarGroup extends Component {
       x1,
       count,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      chartId
     } = this.props;
 
     var domain = yScaleSet.domain();
@@ -74,7 +76,7 @@ export default class BarGroup extends Component {
 
     if(showZoom)
       chart.selectAll("rect")
-        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)');
+        .style('clip-path', 'url(#react-d3-basic__zoom_focus__clip__' + chartId + ')');
 
     return chart;
   }
