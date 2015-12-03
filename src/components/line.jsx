@@ -37,6 +37,7 @@ export default class Line extends Component {
 
     line.datum(dataset.data)
       .style("stroke", dataset.color)
+      .style("fill", 'none')
       .attr("class", `${lineClassName} line`)
       .attr("d", this._setAxes())
 
@@ -50,7 +51,7 @@ export default class Line extends Component {
       line.style('clip-path', 'url(#react-d3-basic__brush_focus__clip__' + chartId + ')');
 
     if(showZoom)
-      line.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip)__' + chartId + ')');
+      line.style('clip-path', 'url(#react-d3-basic__zoom_focus__clip__' + chartId + ')');
 
     return line;
   }
