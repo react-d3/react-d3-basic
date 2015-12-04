@@ -211,6 +211,14 @@ Build production `js`, `min.js` code
 $ npm run prod
 ```
 
+### Docs
+
+If you want to modify the docs file, please modify `docs_pre` folder.
+
+After you finish, remember to install [smash-md](https://github.com/Canner/smash-md) first, then run `sh doc.sh` to compile the readme.
+
+Your new readme would show in `docs` folder.
+
 ## License
 
 Apache 2.0
