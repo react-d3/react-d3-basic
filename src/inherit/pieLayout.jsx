@@ -30,7 +30,7 @@ export default class PieLayout extends Component {
     pieSort: PropTypes.func
   }
 
-  _mkSeries() {
+  mkSeries() {
     const {
       data,
       chartSeries,

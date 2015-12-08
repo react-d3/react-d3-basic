@@ -29,21 +29,6 @@ export default class BarStackChart extends xyChart {
 
   constructor(props) {
     super(props);
-
-    const {
-      width,
-      height,
-      margins,
-      xRange,
-      yRange,
-      xRangeRoundBands
-    } = this.props;
-
-    this.state = {
-      xRange: xRange || [0, width - margins.left - margins.right],
-      yRange: yRange || [height - margins.top - margins.bottom, 0],
-      xRangeRoundBands: xRangeRoundBands || {interval: [0, width - margins.left - margins.right], padding: .1}
-    }
   }
 
   static defaultProps = Object.assign(CommonProps, {
@@ -54,10 +39,20 @@ export default class BarStackChart extends xyChart {
   render() {
 
     const {
+      width,
+      height,
+      margins,
+      xRange,
+      yRange,
+      xRangeRoundBands,
       chartSeries,
       showXGrid,
       showYGrid,
     } = this.props;
+
+    this.xRange = xRange || [0, width - margins.left - margins.right],
+    this.yRange = yRange || [height - margins.top - margins.bottom, 0],
+    this.xRangeRoundBands = xRangeRoundBands || {interval: [0, width - margins.left - margins.right], padding: .1}
 
     const xDomain = this.mkXDomain();
     const yDomain = this.mkYDomain(true);
@@ -67,15 +62,37 @@ export default class BarStackChart extends xyChart {
     const chartSeriesData = this.mkSeries();
 
     if(showXGrid) {
-      var xgrid = <Grid type="x" key="xgrid" xDomain={xDomain} {...this.props} {...this.state} />
+      var xgrid = (<Grid
+        {...this.props}
+        type="x"
+        key="xgrid"
+        xDomain={xDomain}
+        xRange= {this.xRange}
+        xRangeRoundBands= {this.xRangeRoundBands}
+      />)
     }
 
     if(showYGrid) {
-      var ygrid = <Grid type="y" key="ygrid" yDomain={yDomain} {...this.props} {...this.state} />
+      var ygrid = (<Grid
+        {...this.props}
+        type="y"
+        key="ygrid"
+        yDomain={yDomain}
+        yRange= {this.yRange}
+        yRangeRoundBands= {this.yRangeRoundBands}
+      />)
     }
 
     if(chartSeries) {
-      var bargroups = <BarStack dataset={chartSeriesData} {...this.props} {...this.state} xScaleSet= {xScaleSet} yScaleSet= {yScaleSet} chartSeriesData= {chartSeriesData} onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}/>
+      var bargroups = (<BarStack
+        {...this.props}
+        dataset={chartSeriesData}
+        xScaleSet= {xScaleSet}
+        yScaleSet= {yScaleSet}
+        chartSeriesData= {chartSeriesData}
+        onMouseOver={this.props.onMouseOver}
+        onMouseOut={this.props.onMouseOut}
+      />)
     }
 
     return (
@@ -85,8 +102,18 @@ export default class BarStackChart extends xyChart {
         <g ref= "plotGroup">
           {bargroups}
         </g>
-        <Xaxis xDomain={xDomain} {...this.props} {...this.state} />
-        <Yaxis yDomain={yDomain} {...this.props} {...this.state} />
+        <Xaxis
+          {...this.props}
+          xDomain={xDomain}
+          xRange= {this.xRange}
+          xRangeRoundBands= {this.xRangeRoundBands}
+        />
+        <Yaxis
+          {...this.props}
+          yDomain={yDomain}
+          yRange= {this.yRange}
+          yRangeRoundBands= {this.yRangeRoundBands}
+        />
       </g>
     )
   }

@@ -61,11 +61,8 @@ export default class xyChart extends Component {
       xScale
     } = this.props;
 
-    const {
-      xRange,
-      xRangeRoundBands
-    } = this.state;
-
+    const xRange = this.xRange;
+    const xRangeRoundBands = this.xRangeRoundBands;
     const xDomain = this.props.xDomain || this.setXDomain;
 
     var newXScale = {
@@ -84,11 +81,8 @@ export default class xyChart extends Component {
       yScale
     } = this.props;
 
-    const {
-      yRange,
-      yRangeRoundBands
-    } = this.state;
-
+    const yRange = this.yRange;
+    const yRangeRoundBands = this.yRangeRoundBands;
     const yDomain = this.props.yDomain || this.setYDomain;
 
     var newYScale = {

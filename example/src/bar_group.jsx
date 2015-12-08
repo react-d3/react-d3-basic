@@ -53,22 +53,71 @@ var BarGroupChart = require('../../lib').BarGroupChart;
     },
     yTickFormat = d3.format(".2s");
 
+  var Container = React.createClass({
+    getInitialState: function() {
+      return {
+        width: 600,
+        height: 500,
+        series: chartSeries
+      }
+    },
+    onClick: function() {
+      this.setState({
+        width: this.state.width === 600? 500: 600,
+        height: this.state.width === 600? 600: 500,
+        series: this.state.width === 600? [
+            {
+              field: '5 to 13 Years',
+              name: '5 to 13 Years'
+            },
+            {
+              field: '14 to 17 Years',
+              name: '14 to 17 Years'
+            },
+            {
+              field: '18 to 24 Years',
+              name: '18 to 24 Years'
+            },
+            {
+              field: '25 to 44 Years',
+              name: '25 to 44 Years',
+              style: {
+                "fill-opacity": .4
+              }
+            }
+          ]: chartSeries
+      })
+    },
+    render: function() {
+
+      return (
+        <div>
+          <button onClick={this.onClick}>toggle</button>
+          <Chart
+            chartSeries = {this.state.series}
+            width= {this.state.width}
+            height= {this.state.height}
+            >
+            <BarGroupChart
+              width= {this.state.width}
+              height= {this.state.height}
+              data= {generalChartData}
+              chartSeries = {this.state.series}
+              x= {x}
+              xDomain= {xDomain}
+              xScale= {xScale}
+              y= {y}
+              yTickFormat= {yTickFormat}
+            />
+          </Chart>
+        </div>
+      )
+    }
+  })
+
 
   ReactDOM.render(
-    <Chart
-      chartSeries = {chartSeries}
-      >
-      <BarGroupChart
-        data= {generalChartData}
-        chartSeries = {chartSeries}
-        x= {x}
-        xDomain= {xDomain}
-        xRangeRoundBands= {xRangeRoundBands}
-        xScale= {xScale}
-        y= {y}
-        yTickFormat= {yTickFormat}
-      />
-    </Chart>
+    <Container/>
   , document.getElementById('data_bar_group')
   )
 })()

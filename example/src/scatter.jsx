@@ -41,18 +41,53 @@ var ScatterPlot = require('../../lib').ScatterPlot;
       return +d;
     };
 
+  var Container = React.createClass({
+    getInitialState: function() {
+      return {
+        width: 600,
+        height: 400,
+        series: chartSeries
+      }
+    },
+    onClick: function() {
+      this.setState({
+        width: this.state.width === 600? 400: 600,
+        height: this.state.width === 600? 600: 400,
+        series: this.state.width === 600? [{
+          field: 'Austin',
+          name: 'Austin Temp',
+          color: '#7777ff',
+          symbol: 'triangle-down'
+        }]: chartSeries
+      })
+    },
+    render: function() {
+
+      return (
+        <div>
+          <button onClick={this.onClick}>toggle</button>
+          <Chart
+            width= {this.state.width}
+            height= {this.state.height}
+            chartSeries = {this.state.series}
+            >
+            <ScatterPlot
+              width= {this.state.width}
+              height= {this.state.height}
+              data= {generalChartData}
+              chartSeries = {this.state.series}
+              x= {x}
+              y= {y}
+              xScale= {xScale}
+            />
+          </Chart>
+        </div>
+      )
+    }
+  })
+
   ReactDOM.render(
-    <Chart
-      chartSeries = {chartSeries}
-      >
-      <ScatterPlot
-        data= {generalChartData}
-        chartSeries = {chartSeries}
-        x= {x}
-        y= {y}
-        xScale= {xScale}
-      />
-    </Chart>
+    <Container/>
   , document.getElementById('data_scatter')
   )
 })()

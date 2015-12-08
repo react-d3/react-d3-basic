@@ -32,23 +32,62 @@ var BarChart = require('../../lib').BarChart;
       console.log(d, i);
     }
 
+  var Container = React.createClass({
+    getInitialState: function() {
+      return {
+        width: 600,
+        height: 500,
+        series: chartSeries
+      }
+    },
+    onClick: function() {
+      this.setState({
+        width: this.state.width === 600? 500: 600,
+        height: this.state.width === 600? 600: 500,
+        series: this.state.width === 600? [
+            {
+              field: 'frequency',
+              name: 'Frequency',
+              style: {
+                'fill': 'red',
+                'fill-opacity': .8
+              }
+            }
+          ]: chartSeries
+      })
+    },
+    render: function() {
+
+      return (
+        <div>
+          <button onClick={this.onClick}>toggle</button>
+          <Chart
+            width= {this.state.width}
+            height= {this.state.height}
+            chartSeries = {this.state.series}
+            >
+            <BarChart
+              width= {this.state.width}
+              height= {this.state.height}
+              data= {generalChartData}
+              chartSeries = {this.state.series}
+              x= {x}
+              xScale= {xScale}
+              y= {y}
+              yTicks= {yTicks}
+              showXGrid= {true}
+              showYGrid= {true}
+              onMouseOver= {onMouseOver}
+              onMouseOut= {onMouseOut}
+            />
+          </Chart>
+        </div>
+      )
+    }
+  })
+
   ReactDOM.render(
-    <Chart
-      chartSeries = {chartSeries}
-      >
-      <BarChart
-        data= {generalChartData}
-        chartSeries = {chartSeries}
-        x= {x}
-        xScale= {xScale}
-        y= {y}
-        yTicks= {yTicks}
-        showXGrid= {false}
-        showYGrid= {false}
-        onMouseOver= {onMouseOver}
-        onMouseOut= {onMouseOut}
-      />
-    </Chart>
+    <Container/>
   , document.getElementById('data_bar')
   )
 })()
