@@ -2,7 +2,7 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Chart = require('react-d3-core').Chart;
+var ChartPie = require('../../lib').ChartPie;
 var PieChart = require('../../lib').PieChart;
 
 (function() {
@@ -82,20 +82,14 @@ var PieChart = require('../../lib').PieChart;
       return (
         <div>
           <button onClick={this.onClick}>toggle</button>
-          <Chart
+          <PieChart
             width= {this.state.width}
             height= {this.state.height}
+            data= {generalChartData}
             chartSeries= {this.state.series}
-            >
-            <PieChart
-              width= {this.state.width}
-              height= {this.state.height}
-              chartSeries= {this.state.series}
-              data= {generalChartData}
-              value = {value}
-              name = {name}
-            />
-          </Chart>
+            value = {value}
+            name = {name}
+          />
         </div>
       )
     }

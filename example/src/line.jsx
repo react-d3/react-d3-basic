@@ -2,7 +2,6 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Chart = require('react-d3-core').Chart;
 var LineChart = require('../../lib').LineChart;
 
 (function() {
@@ -54,19 +53,13 @@ var LineChart = require('../../lib').LineChart;
       return (
         <div>
           <button onClick={this.onClick}>toggle</button>
-          <Chart
+          <LineChart
             width= {this.state.width}
             height= {this.state.height}
+            data= {generalChartData}
             chartSeries= {this.state.series}
-            >
-            <LineChart
-              width= {this.state.width}
-              height= {this.state.height}
-              data= {generalChartData}
-              chartSeries= {this.state.series}
-              x= {x}
-            />
-          </Chart>
+            x= {x}
+          />
         </div>
       )
     }

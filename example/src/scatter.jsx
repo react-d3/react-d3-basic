@@ -1,9 +1,7 @@
 "use strict";
 
-
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Chart = require('react-d3-core').Chart;
 var ScatterPlot = require('../../lib').ScatterPlot;
 
 (function() {
@@ -62,25 +60,18 @@ var ScatterPlot = require('../../lib').ScatterPlot;
       })
     },
     render: function() {
-
       return (
         <div>
           <button onClick={this.onClick}>toggle</button>
-          <Chart
+          <ScatterPlot
             width= {this.state.width}
             height= {this.state.height}
+            data= {generalChartData}
             chartSeries = {this.state.series}
-            >
-            <ScatterPlot
-              width= {this.state.width}
-              height= {this.state.height}
-              data= {generalChartData}
-              chartSeries = {this.state.series}
-              x= {x}
-              y= {y}
-              xScale= {xScale}
-            />
-          </Chart>
+            x= {x}
+            y= {y}
+            xScale= {xScale}
+          />
         </div>
       )
     }

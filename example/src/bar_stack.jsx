@@ -2,7 +2,6 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Chart = require('react-d3-core').Chart;
 var BarStackChart = require('../../lib').BarStackChart;
 
 (function() {
@@ -91,22 +90,16 @@ var BarStackChart = require('../../lib').BarStackChart;
       return (
         <div>
           <button onClick={this.onClick}>toggle</button>
-          <Chart
+          <BarStackChart
             width= {this.state.width}
             height= {this.state.height}
+            data= {generalChartData}
             chartSeries = {this.state.series}
-            >
-            <BarStackChart
-              width= {this.state.width}
-              height= {this.state.height}
-              data= {generalChartData}
-              chartSeries = {this.state.series}
-              x= {x}
-              xScale= {xScale}
-              y= {y}
-              yTickFormat= {yTickFormat}
-            />
-          </Chart>
+            x= {x}
+            xScale= {xScale}
+            y= {y}
+            yTickFormat= {yTickFormat}
+          />
         </div>
       )
     }

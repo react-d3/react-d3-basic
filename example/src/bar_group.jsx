@@ -93,23 +93,17 @@ var BarGroupChart = require('../../lib').BarGroupChart;
       return (
         <div>
           <button onClick={this.onClick}>toggle</button>
-          <Chart
-            chartSeries = {this.state.series}
+          <BarGroupChart
             width= {this.state.width}
             height= {this.state.height}
-            >
-            <BarGroupChart
-              width= {this.state.width}
-              height= {this.state.height}
-              data= {generalChartData}
-              chartSeries = {this.state.series}
-              x= {x}
-              xDomain= {xDomain}
-              xScale= {xScale}
-              y= {y}
-              yTickFormat= {yTickFormat}
-            />
-          </Chart>
+            data= {generalChartData}
+            chartSeries = {this.state.series}
+            x= {x}
+            xDomain= {xDomain}
+            xScale= {xScale}
+            y= {y}
+            yTickFormat= {yTickFormat}
+          />
         </div>
       )
     }

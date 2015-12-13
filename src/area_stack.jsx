@@ -7,25 +7,20 @@ import {
 } from 'react';
 
 import {
-  Chart,
   Xaxis,
   Yaxis,
-  Grid
+  Xgrid,
+  Ygrid
 } from 'react-d3-core';
 
 import {
-  default as xyChart
-} from './inherit/xyPlot';
+  AreaStack,
+  Chart
+} from 'react-d3-shape';
 
-import {
-  default as AreaStack,
-} from './components/area_stack';
+import CommonProps from './commonProps';
 
-import {
-  default as CommonProps,
-} from './commonProps';
-
-export default class AreaStackChart extends xyChart {
+export default class AreaStackChart extends Component {
 
   constructor(props) {
     super(props);
@@ -33,85 +28,48 @@ export default class AreaStackChart extends xyChart {
 
   static defaultProps = CommonProps
 
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    margins: PropTypes.object.isRequired,
+    data: PropTypes.array.isRequired,
+    chartSeries: PropTypes.array.isRequired
+  }
+
   render() {
 
     const {
       width,
       height,
       margins,
-      xRange,
-      yRange,
-      xRangeRoundBands,
+      data,
       chartSeries,
       showXGrid,
-      showYGrid,
-      showTooltip,
-      showBrush,
+      showYGrid
     } = this.props;
 
-    this.xRange = xRange || [0, width - margins.left - margins.right],
-    this.yRange = yRange || [height - margins.top - margins.bottom, 0],
-    this.xRangeRoundBands = xRangeRoundBands || {interval: [0, width - margins.left - margins.right], padding: .1}
+    var xgrid, ygrid;
 
-    const xDomain = this.mkXDomain();
-    const yDomain = this.mkYDomain(true);
-
-    const xScaleSet = this.mkXScale();
-    const yScaleSet = this.mkYScale();
-    const chartSeriesData = this.mkSeries();
-
-    if(showXGrid) {
-      var xgrid = (<Grid
-        {...this.props}
-        type="x"
-        key="xgrid"
-        xDomain={xDomain}
-        xRange= {this.xRange}
-        xRangeRoundBands= {this.xRangeRoundBands}
-      />)
-    }
-
-    if(showYGrid) {
-      var ygrid = (<Grid
-        {...this.props}
-        type="y"
-        key="ygrid"
-        yDomain={yDomain}
-        yRange= {this.yRange}
-        yRangeRoundBands= {this.yRangeRoundBands}
-      />)
-    }
-
-    if(chartSeries) {
-      var areas = (<AreaStack
-        {...this.props}
-        dataset={chartSeriesData}
-        xScaleSet= {xScaleSet}
-        yScaleSet= {yScaleSet}
-        chartSeriesData= {chartSeriesData}
-      />)
-    }
+    if(showXGrid) xgrid = <Xgrid/>
+    if(showYGrid) ygrid = <Ygrid/>
 
     return (
-      <g>
+      <Chart
+        {...this.props}
+        width= {width}
+        height= {height}
+        data= {data}
+        chartSeries= {chartSeries}
+        stack= {true}
+        >
+        <AreaStack
+          chartSeries= {chartSeries}
+        />
         {xgrid}
         {ygrid}
-        <g ref= "plotGroup">
-          {areas}
-        </g>
-        <Xaxis
-          {...this.props}
-          xDomain={xDomain}
-          xRange= {this.xRange}
-          xRangeRoundBands= {this.xRangeRoundBands}
-        />
-        <Yaxis
-          {...this.props}
-          yDomain={yDomain}
-          yRange= {this.yRange}
-          yRangeRoundBands= {this.yRangeRoundBands}
-        />
-      </g>
+        <Xaxis/>
+        <Yaxis/>
+      </Chart>
     )
   }
 }

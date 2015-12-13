@@ -2,12 +2,9 @@
 
 import {
   default as React,
-  Component
+  Component,
+  PropTypes
 } from 'react';
-
-import {
-  default as PieLayout
-} from './inherit/pieLayout';
 
 import {
   Chart,
@@ -15,51 +12,54 @@ import {
 } from 'react-d3-core';
 
 import {
-  default as Pie,
-} from './components/pie';
+  ChartPie,
+  Pie
+} from 'react-d3-shape';
 
-import {
-  pieProps
-} from './commonProps';
-
-
-export default class PieChart extends PieLayout {
+export default class PieChart extends Component {
   constructor(props) {
     super(props);
   }
 
-  static defaultProps = Object.assign(pieProps, {
+  static defaultProps = {
     onMouseOver: () => {},
     onMouseOut: () => {}
-  })
+  }
+
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    data: PropTypes.array.isRequired,
+    chartSeries: PropTypes.array.isRequired,
+    value: PropTypes.func.isRequired,
+    name: PropTypes.func.isRequired
+  }
 
   render() {
     const {
       width,
       height,
-      outerRadius,
-      onMouseOut,
-      onMouseOver
+      data,
+      chartSeries,
+      value,
+      name
     } = this.props;
 
-    const radius = this.props.radius || Math.min(width - 100, height - 100) / 2;
-    const outerRadiusSet = outerRadius || (radius - 10)
-
-    var chartSeriesData = this.mkSeries();
-
-    var pie = (<Pie
-      {...this.props}
-      outerRadius= {outerRadiusSet}
-      radius= {radius}
-      chartSeriesData= {chartSeriesData}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-    />)
 
     return (
-      <g ref="plotGroup">
-        {pie}
-      </g>
+      <ChartPie
+        {...this.props}
+        width= {width}
+        height= {height}
+        data= {data}
+        chartSeries= {chartSeries}
+        value = {value}
+        name = {name}
+        >
+        <Pie
+          chartSeries= {chartSeries}
+        />
+      </ChartPie>
     )
   }
 }

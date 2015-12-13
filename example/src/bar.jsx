@@ -57,30 +57,23 @@ var BarChart = require('../../lib').BarChart;
       })
     },
     render: function() {
-
       return (
         <div>
           <button onClick={this.onClick}>toggle</button>
-          <Chart
+          <BarChart
             width= {this.state.width}
             height= {this.state.height}
+            data= {generalChartData}
             chartSeries = {this.state.series}
-            >
-            <BarChart
-              width= {this.state.width}
-              height= {this.state.height}
-              data= {generalChartData}
-              chartSeries = {this.state.series}
-              x= {x}
-              xScale= {xScale}
-              y= {y}
-              yTicks= {yTicks}
-              showXGrid= {true}
-              showYGrid= {true}
-              onMouseOver= {onMouseOver}
-              onMouseOut= {onMouseOut}
-            />
-          </Chart>
+            x= {x}
+            xScale= {xScale}
+            y= {y}
+            yTicks= {yTicks}
+            showXGrid= {true}
+            showYGrid= {true}
+            onMouseOver= {onMouseOver}
+            onMouseOut= {onMouseOut}
+          />
         </div>
       )
     }

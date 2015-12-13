@@ -7,31 +7,35 @@ import {
 } from 'react';
 
 import {
-  Chart,
   Xaxis,
   Yaxis,
-  Grid,
+  Xgrid,
+  Ygrid
 } from 'react-d3-core';
 
 import {
-  default as xyChart
-} from './inherit/xyPlot';
+  Scatter,
+  Chart
+} from 'react-d3-shape';
 
-import {
-  default as Scatter,
-} from './components/scatter';
+import CommonProps from './commonProps';
 
-import {
-  default as CommonProps,
-} from './commonProps';
-
-export default class ScatterPlot extends xyChart {
+export default class ScatterPlot extends Component {
 
   constructor(props) {
     super(props);
+    console.log('hellow')
   }
 
   static defaultProps = CommonProps
+
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    margins: PropTypes.object.isRequired,
+    data: PropTypes.array.isRequired,
+    chartSeries: PropTypes.array.isRequired
+  }
 
   render() {
 
@@ -39,81 +43,33 @@ export default class ScatterPlot extends xyChart {
       width,
       height,
       margins,
-      xRange,
-      yRange,
-      xRangeRoundBands,
+      data,
       chartSeries,
       showXGrid,
       showYGrid
     } = this.props;
 
-    var scatters;
-    var legends;
+    var xgrid, ygrid;
 
-    this.xRange = xRange || [0, width - margins.left - margins.right],
-    this.yRange = yRange || [height - margins.top - margins.bottom, 0],
-    this.xRangeRoundBands = xRangeRoundBands || {interval: [0, width - margins.left - margins.right], padding: .1}
-
-    const xDomain = this.mkXDomain();
-    const yDomain = this.mkYDomain();
-
-    const xScaleSet = this.mkXScale();
-    const yScaleSet = this.mkYScale();
-    const chartSeriesData = this.mkSeries();
-
-    if(showXGrid) {
-      var xgrid = (<Grid
-        {...this.props}
-        type="x"
-        xDomain={xDomain}
-        xRange= {this.xRange}
-        xRangeRoundBands= {this.xRangeRoundBands}
-      />)
-    }
-
-    if(showYGrid) {
-      var ygrid = (<Grid
-        {...this.props}
-        type="y"
-        yDomain={yDomain}
-        yRange= {this.yRange}
-        yRangeRoundBands= {this.yRangeRoundBands}
-      />)
-    }
-
-    if(chartSeries) {
-      var scatters = chartSeriesData.map((d, i) => {
-        return (<Scatter
-          {...this.props}
-          dataset={d}
-          key={i}
-          xScaleSet= {xScaleSet}
-          yScaleSet= {yScaleSet}
-          chartSeriesData= {chartSeriesData}
-        />)
-      })
-    }
+    if(showXGrid) xgrid = <Xgrid/>
+    if(showYGrid) ygrid = <Ygrid/>
 
     return (
-      <g>
+      <Chart
+        {...this.props}
+        width= {width}
+        height= {height}
+        data= {data}
+        chartSeries= {chartSeries}
+        >
+        <Scatter
+          chartSeries= {chartSeries}
+        />
         {xgrid}
         {ygrid}
-        <g ref= "plotGroup">
-          {scatters}
-        </g>
-        <Xaxis
-          {...this.props}
-          xDomain={xDomain}
-          xRange= {this.xRange}
-          xRangeRoundBands= {this.xRangeRoundBands}
-        />
-        <Yaxis
-          {...this.props}
-          yDomain={yDomain}
-          yRange= {this.yRange}
-          yRangeRoundBands= {this.yRangeRoundBands}
-        />
-      </g>
+        <Xaxis/>
+        <Yaxis/>
+      </Chart>
     )
   }
 }
