@@ -4,7 +4,7 @@ import d3 from 'd3';
 
 const width = 960;
 const height = 500;
-const margins = {top: 80, right: 100, bottom: 80, left: 100};
+const margins = {top: 40, right: 100, bottom: 40, left: 100};
 
 export default {
   width: width,

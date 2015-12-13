@@ -15,21 +15,20 @@ import {
 } from 'react-d3-core';
 
 import {
-  Bar,
+  Area,
   Chart
 } from 'react-d3-shape';
 
 import CommonProps from './commonProps';
 
-export default class BarChart extends Component {
+export default class AreaChart extends Component {
 
   constructor(props) {
     super(props);
   }
 
   static defaultProps = Object.assign(CommonProps, {
-    onMouseOver: () => {},
-    onMouseOut: () => {}
+    showScatter: false
   })
 
   static propTypes = {
@@ -74,7 +73,7 @@ export default class BarChart extends Component {
           data= {data}
           chartSeries= {chartSeries}
           >
-          <Bar
+          <Area
             chartSeries= {chartSeries}
           />
           {xgrid}

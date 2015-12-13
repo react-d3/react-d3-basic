@@ -50,19 +50,13 @@ var LineChart = require('react-d3-basic').LineChart;
     }
 
   ReactDOM.render(
-    <Chart
+    <LineChart
       width= {600}
       height= {300}
+      data= {generalChartData}
       chartSeries= {chartSeries}
-      >
-      <LineChart
-        width= {600}
-        height= {300}
-        data= {generalChartData}
-        chartSeries= {chartSeries}
-        x= {x}
-      />
-    </Chart>
+      x= {x}
+    />
   , document.getElementById('data_line')
   )
 })()
@@ -130,9 +124,7 @@ You'll also need `react`, `react-dom`, `d3`
         }
 
       ReactDOM.render(
-        <svg width= {600} height= {300} >
-          <LineChart width= {600} height= {300} data= {data} chartSeries= {chartSeries} x= {x} />
-        </svg>
+        <LineChart width= {600} height= {300} data= {data} chartSeries= {chartSeries} x= {x} />
       , document.getElementById('data_line')
       )
     </script>

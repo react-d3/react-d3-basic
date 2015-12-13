@@ -10,7 +10,8 @@ import {
   Xaxis,
   Yaxis,
   Xgrid,
-  Ygrid
+  Ygrid,
+  Legend
 } from 'react-d3-core';
 
 import {
@@ -48,7 +49,8 @@ export default class BarGroupChart extends Component {
       data,
       chartSeries,
       showXGrid,
-      showYGrid
+      showYGrid,
+      categoricalColors
     } = this.props;
 
     var xgrid, ygrid;
@@ -57,21 +59,30 @@ export default class BarGroupChart extends Component {
     if(showYGrid) ygrid = <Ygrid/>
 
     return (
-      <Chart
-        {...this.props}
-        width= {width}
-        height= {height}
-        data= {data}
-        chartSeries= {chartSeries}
-        >
-        <BarGroup
+      <div>
+        <Legend
+          {...this.props}
+          width= {width}
+          margins= {margins}
           chartSeries= {chartSeries}
+          categoricalColors= {categoricalColors}
         />
-        {xgrid}
-        {ygrid}
-        <Xaxis/>
-        <Yaxis/>
-      </Chart>
+        <Chart
+          {...this.props}
+          width= {width}
+          height= {height}
+          data= {data}
+          chartSeries= {chartSeries}
+          >
+          <BarGroup
+            chartSeries= {chartSeries}
+          />
+          {xgrid}
+          {ygrid}
+          <Xaxis/>
+          <Yaxis/>
+        </Chart>
+      </div>
     )
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-d3-basic",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "react chart component",
   "main": "./lib/index.js",
   "directories": {

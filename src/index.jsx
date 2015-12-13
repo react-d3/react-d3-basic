@@ -1,6 +1,7 @@
 // Export high level charts
+
 export LineChart from './line';
-// export AreaChart from './area';
+export AreaChart from './area';
 export ScatterPlot from './scatter';
 export BarChart from './bar';
 export BarGroupChart from './bar_group';

@@ -2,8 +2,7 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Chart = require('react-d3-core').Chart;
-var LineChart = require('../../lib').LineChart;
+var AreaChart = require('../../lib').AreaChart;
 
 (function() {
   var generalChartData = require('dsv?delimiter=\t!./data/stock.tsv')
@@ -31,16 +30,13 @@ var LineChart = require('../../lib').LineChart;
 
 
   ReactDOM.render(
-    <Chart
-      >
-      <LineChart
-        data= {generalChartData}
-        chartSeries= {chartSeries}
-        x= {x}
-        y= {y}
-        xScale= {xScale}
-      />
-    </Chart>
+    <AreaChart
+      data= {generalChartData}
+      chartSeries= {chartSeries}
+      x= {x}
+      y= {y}
+      xScale= {xScale}
+    />
   , document.getElementById('data_area')
   )
 })()

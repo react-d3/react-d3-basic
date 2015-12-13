@@ -7,8 +7,7 @@ import {
 } from 'react';
 
 import {
-  Chart,
-  Legend,
+  Legend
 } from 'react-d3-core';
 
 import {
@@ -42,24 +41,33 @@ export default class PieChart extends Component {
       data,
       chartSeries,
       value,
-      name
+      name,
+      categoricalColors
     } = this.props;
 
 
     return (
-      <ChartPie
-        {...this.props}
-        width= {width}
-        height= {height}
-        data= {data}
-        chartSeries= {chartSeries}
-        value = {value}
-        name = {name}
-        >
-        <Pie
+      <div>
+        <Legend
+          {...this.props}
+          width= {width}
           chartSeries= {chartSeries}
+          categoricalColors= {categoricalColors}
         />
-      </ChartPie>
+        <ChartPie
+          {...this.props}
+          width= {width}
+          height= {height}
+          data= {data}
+          chartSeries= {chartSeries}
+          value = {value}
+          name = {name}
+          >
+          <Pie
+            chartSeries= {chartSeries}
+          />
+        </ChartPie>
+      </div>
     )
   }
 }
