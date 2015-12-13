@@ -26,7 +26,6 @@ react-d3 basic charts, charts that we support:
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Chart = require('react-d3-core').Chart;
 var LineChart = require('react-d3-basic').LineChart;
 
 (function() {
