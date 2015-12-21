@@ -157,31 +157,9 @@ Building Charts.
 - [Scatter Plot](./docs/charts/scatter_chart.md)
 - [Pie Chart](./docs/charts/pie_chart.md)
 - [Donut Chart](./docs/charts/donut_chart.md)
-
-
-### Detail Components
-
-Chart shapes components
-
-- [area](./docs/components/area.md)
-- [area stack](./docs/components/area_stack.md)
-- [bar](./docs/components/bar.md)
-- [bar group](./docs/components/bar_group.md)
-- [bar stack](./docs/components/bar_stack.md)
-- [line](./docs/components/line.md)
-- [pie](./docs/components/pie.md)
-- [scatter](./docs/components/scatter.md)
-
-### inherit
-
-Inherit initial props, state, functions...
-
-- [pieLayout](./docs/inherit/pie.md)
-- [xyPlot](./docs/inherit/xyplot.md)
-
-#### Utilities
-
-- [Series](./docs/utils/series.md)
+- [Bar Horizontal]
+- [Bar Stack Horizontal]
+- [Bar Group Horizontal]
 
 ## Gallery
 

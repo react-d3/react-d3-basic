@@ -17,6 +17,17 @@ export default {
   showYGrid: true
 }
 
+export const horizontalProps = {
+  width: width,
+  height: height,
+  margins: margins,
+  x: (d) => {return +d;},
+  xScale: 'linear',
+  yScale: 'linear',
+  showXGrid: true,
+  showYGrid: true
+}
+
 export const pieProps = {
   width: width,
   height: height,

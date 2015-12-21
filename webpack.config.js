@@ -21,10 +21,13 @@ module.exports = [{
     area_stack: js_root + '/area_stack.jsx',
     area_stack_negative: js_root + '/area_stack_negative.jsx',
     bar: js_root + '/bar.jsx',
+    bar_horizontal: js_root + '/bar_horizontal.jsx',
     bar_negative: js_root + '/bar_negative.jsx',
     bar_group: js_root + '/bar_group.jsx',
+    bar_group_horizontal: js_root + '/bar_group_horizontal.jsx',
     bar_group_negative: js_root + '/bar_group_negative.jsx',
     bar_stack: js_root + '/bar_stack.jsx',
+    bar_stack_horizontal: js_root + '/bar_stack_horizontal.jsx',
     bar_stack_negative: js_root + '/bar_stack_negative.jsx',
     pie: js_root + '/pie.jsx',
     donut: js_root + '/donut.jsx'

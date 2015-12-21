@@ -15,19 +15,19 @@ import {
 } from 'react-d3-core';
 
 import {
-  Bar,
+  BarHorizontal,
   Chart
 } from 'react-d3-shape';
 
-import CommonProps from './commonProps';
+import {horizontalProps} from './commonProps';
 
-export default class BarChart extends Component {
+export default class BarHorizontalChart extends Component {
 
   constructor(props) {
     super(props);
   }
 
-  static defaultProps = Object.assign(CommonProps, {
+  static defaultProps = Object.assign(horizontalProps, {
     onMouseOver: () => {},
     onMouseOut: () => {}
   })
@@ -66,8 +66,9 @@ export default class BarChart extends Component {
           height= {height}
           data= {data}
           chartSeries= {chartSeries}
+          horizontal= {true}
           >
-          <Bar
+          <BarHorizontal
             chartSeries= {chartSeries}
           />
           {xgrid}

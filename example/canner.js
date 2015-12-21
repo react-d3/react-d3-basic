@@ -77,6 +77,13 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
+  "filename": "./bar_horizontal.html",
+  "data": {
+    "title": "Bar Horizontal Chart",
+    "type": "bar_horizontal",
+  }
+},{
+  "layout": "./charts.hbs",
   "filename": "./bar_negative.html",
   "data": {
     "title": "Bar Chart with negative",
@@ -91,6 +98,13 @@ module.exports = [{
   }
 },{
   "layout": "./charts.hbs",
+  "filename": "./bar_group_horizontal.html",
+  "data": {
+    "title": "Bar Group Horizontal Chart",
+    "type": "bar_group_horizontal",
+  }
+},{
+  "layout": "./charts.hbs",
   "filename": "./bar_group_negative.html",
   "data": {
     "title": "Bar Group Chart with negative",
@@ -102,6 +116,13 @@ module.exports = [{
   "data": {
     "title": "Bar Stack Chart",
     "type": "bar_stack",
+  }
+},{
+  "layout": "./charts.hbs",
+  "filename": "./bar_stack_horizontal.html",
+  "data": {
+    "title": "Bar Stack Horizontal Chart",
+    "type": "bar_stack_horizontal",
   }
 },{
   "layout": "./charts.hbs",
