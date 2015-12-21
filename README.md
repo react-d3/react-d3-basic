@@ -12,6 +12,9 @@ react-d3 basic charts, charts that we support:
 - Bar Chart
 - Bar Group Chart
 - Bar Stack Chart
+- Bar Horizontal ()Chart
+- Bar Group Horizontal ()Chart
+- Bar Stack Horizontal ()Chart
 - Pie Chart
 - Donut Chart
 
@@ -157,9 +160,9 @@ Building Charts.
 - [Scatter Plot](./docs/charts/scatter_chart.md)
 - [Pie Chart](./docs/charts/pie_chart.md)
 - [Donut Chart](./docs/charts/donut_chart.md)
-- [Bar Horizontal]
-- [Bar Stack Horizontal]
-- [Bar Group Horizontal]
+- [Bar Horizontal](./)
+- [Bar Stack Horizontal](./)
+- [Bar Group Horizontal](./)
 
 ## Gallery
 
