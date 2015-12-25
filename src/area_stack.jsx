@@ -79,6 +79,7 @@ export default class AreaStackChart extends Component {
           {ygrid}
           <Xaxis/>
           <Yaxis/>
+          {this.props.children}
         </Chart>
       </div>
     )

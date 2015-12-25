@@ -77,6 +77,7 @@ export default class ScatterPlot extends Component {
           {ygrid}
           <Xaxis/>
           <Yaxis/>
+          {this.props.children}
         </Chart>
       </div>
     )

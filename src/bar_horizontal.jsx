@@ -75,6 +75,7 @@ export default class BarHorizontalChart extends Component {
           {ygrid}
           <Xaxis/>
           <Yaxis/>
+          {this.props.children}
         </Chart>
       </div>
     )

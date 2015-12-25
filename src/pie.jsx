@@ -67,6 +67,7 @@ export default class PieChart extends Component {
             {...this.props}
             chartSeries= {chartSeries}
           />
+          {this.props.children}
         </ChartPie>
       </div>
     )
