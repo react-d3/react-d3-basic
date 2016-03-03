@@ -171,11 +171,12 @@ Building Charts.
 ## Develop
 
 ```
-$ sudo npm i
-$ sudo npm i -g babel@5.8.23
-$ sudo npm run build
-$ webpack -w
+$ npm install
+$ node devServer.js
 ```
+
+Open `localhost:5000/example`
+
 
 Build production `js`, `min.js` code
 
@@ -190,6 +191,21 @@ If you want to modify the docs file, please modify `docs_pre` folder.
 After you finish, remember to install [smash-md](https://github.com/Canner/smash-md) first, then run `sh doc.sh` to compile the readme.
 
 Your new readme would show in `docs` folder.
+
+## History
+
+#### Before v1.6.x ...
+  
+  - Initial release
+  - Babel 5
+  - D3 3.0
+
+#### 2016 / 3 / 3, v1.6.0
+  
+  - Move to Babel 6.
+  - D3 4.0.
+  - improve example folder.
+
 
 ## License
 
