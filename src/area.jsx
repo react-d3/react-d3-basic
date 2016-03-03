@@ -78,8 +78,8 @@ export default class AreaChart extends Component {
           />
           {xgrid}
           {ygrid}
-          <Xaxis/>
-          <Yaxis/>
+          <Xaxis xOrient="top"/>
+          <Yaxis yOrient="right"/>
           {this.props.children}
         </Chart>
       </div>
