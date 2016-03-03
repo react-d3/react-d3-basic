@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+console.log(require('react-d3-shape'))
 var BarGroupChart = require('../../src').BarGroupChart;
 
 var generalChartData = require('dsv?delimiter=,!./data/fake_num.csv')

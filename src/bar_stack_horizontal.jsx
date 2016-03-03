@@ -27,10 +27,11 @@ export default class BarStackChart extends Component {
     super(props);
   }
 
-  static defaultProps = Object.assign(horizontalProps, {
+  static defaultProps = {
     onMouseOver: () => {},
-    onMouseOut: () => {}
-  })
+    onMouseOut: () => {},
+    ...horizontalProps
+  }
 
   static propTypes = {
     width: PropTypes.number.isRequired,

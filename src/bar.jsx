@@ -27,10 +27,11 @@ export default class BarChart extends Component {
     super(props);
   }
 
-  static defaultProps = Object.assign(CommonProps, {
+  static defaultProps = {
     onMouseOver: () => {},
-    onMouseOut: () => {}
-  })
+    onMouseOut: () => {},
+    ...CommonProps
+  }
 
   static propTypes = {
     width: PropTypes.number.isRequired,

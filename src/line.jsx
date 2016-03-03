@@ -27,9 +27,10 @@ export default class LineChart extends Component {
     super(props);
   }
 
-  static defaultProps = Object.assign(CommonProps, {
-    showScatter: false
-  })
+  static defaultProps = {
+    showScatter: false,
+    ...CommonProps
+  }
 
   static propTypes = {
     width: PropTypes.number.isRequired,
