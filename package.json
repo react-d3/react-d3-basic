@@ -1,6 +1,6 @@
 {
   "name": "react-d3-basic",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "description": "react chart component",
   "main": "./lib/index.js",
   "directories": {
@@ -43,14 +43,14 @@
     "webpack-hot-middleware": "^2.9.1"
   },
   "peerDependencies": {
-    "react": "^0.14.7"
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "dependencies": {
     "d3-array": "^0.7.1",
     "d3-scale": "^0.6.4",
-    "react-d3-core": "^1.2.5",
-    "react-d3-shape": "^0.2.8",
-    "react-dom": "^0.14.7",
+    "react-d3-core": "^1.2.7",
+    "react-d3-shape": "^0.2.9",
     "react-faux-dom": "^2.1.0"
   }
 }
