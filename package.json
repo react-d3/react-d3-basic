@@ -1,6 +1,6 @@
 {
   "name": "react-d3-basic",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "description": "react chart component",
   "main": "./lib/index.js",
   "directories": {
@@ -49,8 +49,8 @@
   "dependencies": {
     "d3-array": "^0.7.1",
     "d3-scale": "^0.6.4",
-    "react-d3-core": "^1.2.7",
-    "react-d3-shape": "^0.2.9",
+    "react-d3-core": "^1.2.8",
+    "react-d3-shape": "^0.2.11",
     "react-faux-dom": "^2.1.0"
   }
 }

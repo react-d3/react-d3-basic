@@ -3,7 +3,8 @@
 import React, {Component} from 'react'
 import {AreaChart} from '../../src'
 
-var generalChartData = require('dsv?delimiter=\t!./data/stock.tsv')
+var data = require('dsv?delimiter=\t!./data/stock.tsv')
+var data2 = require('dsv?delimiter=\t!./data/stock2.tsv')
 
 var chartSeries = [
     {
@@ -27,16 +28,34 @@ var chartSeries = [
   }
 
 export default class AreaChartSample extends Component {
+  constructor(props) {
+    super(props)
+
+    this.toggle = this.toggle.bind(this)
+
+    this.state = {
+      active: true
+    }
+  }
+
+  toggle() {
+    this.setState({
+      active: !this.state.active
+    })
+  }
 
   render() {
     return (
-      <AreaChart
-        data= {generalChartData}
-        chartSeries= {chartSeries}
-        x= {x}
-        y= {y}
-        xScale= {xScale}
-      />
+      <div>
+        <button onClick={this.toggle}>toggle</button>
+        <AreaChart
+          data= {this.state.active? data: data2}
+          chartSeries= {chartSeries}
+          x= {x}
+          y= {y}
+          xScale= {xScale}
+        />
+      </div>
     )
   }
 }

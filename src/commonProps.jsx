@@ -15,7 +15,8 @@ export default {
   xScale: 'linear',
   yScale: 'linear',
   showXGrid: true,
-  showYGrid: true
+  showYGrid: true,
+  showLegend: true
 }
 
 export const horizontalProps = {
@@ -26,7 +27,8 @@ export const horizontalProps = {
   xScale: 'linear',
   yScale: 'linear',
   showXGrid: true,
-  showYGrid: true
+  showYGrid: true,
+  showLegend: true
 }
 
 export const pieProps = {
