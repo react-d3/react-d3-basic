@@ -68,6 +68,7 @@ module.exports = React.createClass({
           yTicks= {yTicks}
           showXGrid= {true}
           showYGrid= {true}
+          showLegend={false}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
         />

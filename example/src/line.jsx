@@ -54,6 +54,7 @@ var LineChart = require('../../lib').LineChart;
         <div>
           <button onClick={this.onClick}>toggle</button>
           <LineChart
+            showLegend={false}
             width= {this.state.width}
             height= {this.state.height}
             data= {generalChartData}

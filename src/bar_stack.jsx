@@ -51,6 +51,7 @@ export default class BarStackChart extends Component {
       chartSeries,
       showXGrid,
       showYGrid,
+      showLegend,
       categoricalColors
     } = this.props;
 
@@ -61,13 +62,16 @@ export default class BarStackChart extends Component {
 
     return (
       <div>
-        <Legend
-          {...this.props}
-          width= {width}
-          margins= {margins}
-          chartSeries= {chartSeries}
-          categoricalColors= {categoricalColors}
-        />
+        {showLegend?
+          <Legend
+            {...this.props}
+            width= {width}
+            margins= {margins}
+            chartSeries= {chartSeries}
+            categoricalColors= {categoricalColors}
+          />
+          : null
+        }
         <Chart
           {...this.props}
           width= {width}
