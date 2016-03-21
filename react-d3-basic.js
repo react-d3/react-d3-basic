@@ -15278,6 +15278,7 @@ var ReactD3Basic =
 	      var data = _props.data;
 	      var chartSeries = _props.chartSeries;
 	      var value = _props.value;
+	      var margins = _props.margins;
 	      var name = _props.name;
 	      var categoricalColors = _props.categoricalColors;
 	      var showLegend = _props.showLegend;
