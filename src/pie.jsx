@@ -39,6 +39,7 @@ export default class PieChart extends Component {
     const {
       width,
       height,
+      margins,
       data,
       chartSeries,
       value,
