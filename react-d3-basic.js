@@ -10561,6 +10561,8 @@ var ReactD3Basic =
 	      var xBandPaddingOuter = _props.xBandPaddingOuter;
 	      var yBandPaddingInner = _props.yBandPaddingInner;
 	      var yBandPaddingOuter = _props.yBandPaddingOuter;
+	      var xLabel = _props.xLabel;
+	      var yLabel = _props.yLabel;
 	      var stack = _props.stack;
 	      var data = _props.data;
 	      var svgClassName = _props.svgClassName;
@@ -10620,6 +10622,8 @@ var ReactD3Basic =
 	            yTickFormat: yTickFormat,
 	            xTicks: xTicks,
 	            yTicks: yTicks,
+	            xLabel: xLabel,
+	            yLabel: yLabel,
 	            data: data,
 	            x: x,
 	            y: y
@@ -10864,13 +10868,14 @@ var ReactD3Basic =
 	      return _react2.default.createElement(
 	        'g',
 	        null,
-	        dataset.map(function (line) {
+	        dataset.map(function (line, i) {
 	          return _react2.default.createElement('path', {
 	            stroke: line.color,
 	            fill: 'none',
 	            className: lineClassName + ' line',
 	            d: that._setAxes(line.data),
-	            style: line.style });
+	            style: line.style,
+	            key: i });
 	        })
 	      );
 	    }
@@ -14014,9 +14019,8 @@ var ReactD3Basic =
 
 	          return _react2.default.createElement(
 	            'g',
-	            null,
+	            { key: i },
 	            _react2.default.createElement('path', {
-	              key: i,
 	              d: arc(slice),
 	              style: _extends({ fill: slice.data.color, stroke: '#FFF' }, slice.data.style),
 	              onMouseOut: that.triggerOut.bind(_this2, slice),
@@ -15275,6 +15279,7 @@ var ReactD3Basic =
 	      var _props = this.props;
 	      var width = _props.width;
 	      var height = _props.height;
+	      var margins = _props.margins;
 	      var data = _props.data;
 	      var chartSeries = _props.chartSeries;
 	      var value = _props.value;
