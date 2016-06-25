@@ -50,7 +50,9 @@ export default class PieChart extends Component {
 
 
     return (
-      <div>
+      <div 
+        style={{width: width, 
+          height: height}}>
         {showLegend?
           <Legend
             {...this.props}

@@ -61,7 +61,9 @@ export default class BarStackChart extends Component {
     if(showYGrid) ygrid = <Ygrid/>
 
     return (
-      <div>
+      <div 
+        style={{width: width, 
+          height: height}}>
         {showLegend?
           <Legend
             {...this.props}

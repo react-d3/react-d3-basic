@@ -61,7 +61,9 @@ export default class BarHorizontalChart extends Component {
     if(showYGrid) ygrid = <Ygrid/>
 
     return (
-      <div>
+      <div 
+        style={{width: width, 
+          height: height}}>
         {showLegend?
           <Legend
             {...this.props}
