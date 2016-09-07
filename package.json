@@ -2,6 +2,7 @@
   "name": "react-d3-basic",
   "version": "1.6.11",
   "description": "react chart component",
+  "repository": "https://github.com/react-d3/react-d3-basic",
   "main": "./lib/index.js",
   "directories": {
     "example": "example"
