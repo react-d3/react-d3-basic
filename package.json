@@ -38,13 +38,15 @@
     "react-router": "^2.0.0",
     "style-loader": "^0.12.4",
     "tapable": "^0.2.4",
+    "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-dev-server": "^1.11.0",
     "webpack-hot-middleware": "^2.9.1"
   },
   "peerDependencies": {
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "prop-types": "^15.6.0"
   },
   "dependencies": {
     "d3-array": "^0.7.1",
