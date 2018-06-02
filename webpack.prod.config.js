@@ -29,7 +29,7 @@ module.exports = [{
     loaders: [
       {
         test: [/\.jsx$/, /\.js$/],
-        include: './src/index.jsx',
+        include: js_dist+'/src/index.jsx',
         loaders: ["jsx-loader?insertPragma=React.DOM&harmony"],
       },
       {
@@ -40,7 +40,7 @@ module.exports = [{
   },
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
+    extensions: ['.webpack.js', '.web.js', '.js', '.jsx']
   },
 
   externals: {
